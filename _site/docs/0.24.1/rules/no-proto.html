@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="keywords" content="JavaScript, Linter, Linting, Pluggable, Configurable, Code Quality">
+  <meta name="description" content="A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript. Maintain your code quality with ease.">
+
+    
+        <title>Rule no-proto - ESLint - Pluggable JavaScript linter</title>
+    
+
+
+  <link href="http://eslint.org/docs/0.24.1/rules/no-proto" rel="canonical" />
+  <link rel="stylesheet" href="/styles/main.936b04d2.css"/>
+  <link rel="stylesheet" href="/styles/ads.css"/>
+  <link rel="stylesheet" href="/styles/search.css"/>
+  <link rel="stylesheet" href="/styles/overrides.css"/>
+  <link rel="icon" href="/img/favicon.512x512.png">
+  <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60915033-1', 'eslint.org');
+  ga('send', 'pageview');
+
+</script>
+  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
+
+</head>
+<body>
+
+
+
+<input type="checkbox" id="eslint-toggle-search" class="eslint-toggle-search-checkbox" />
+<header class="navbar navbar-default navbar-demo navbar-fixed-top eslint-nav" id="top" role="banner">
+  <div class="container">
+
+    <a href="/" class="navbar-brand"><img alt="ESLint" src="/img/logo.svg" itemprop="image">ESLint</a>
+
+    <div class="eslint-navbar-toggles">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#eslint-navbar" aria-controls="eslint-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open">
+        <span class="sr-only">Open search</span>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </label>
+    </div>
+
+    <nav id="eslint-navbar" class="collapse navbar-collapse eslint-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User guide<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/docs/user-guide/configuring">Configuring ESLint</a></li>
+            <li><a href="/docs/user-guide/command-line-interface">Command Line Interface</a></li>
+            <li><a href="/docs/rules/">Rules</a></li>
+            <li class="divider"></li>
+            <li><a href="/docs/user-guide/migrating-to-1.0.0">Migrating to v1.0.0</a></li>
+            <li><a href="/docs/user-guide/integrations">Integrations</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Developer guide<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/docs/developer-guide/architecture">Architecture</a></li>
+            <li><a href="/docs/developer-guide/contributing">Contributing</a></li>
+            <li><a href="/docs/developer-guide/source-code">Get the Source Code</a></li>
+            <li><a href="/docs/developer-guide/development-environment">Setup a Development Environment</a></li>
+            <li><a href="/docs/developer-guide/unit-tests">Run the Unit Tests</a></li>
+            <li><a href="/docs/developer-guide/working-with-rules">Working with Rules</a></li>
+            <li><a href="/docs/developer-guide/working-with-plugins">Working with Plugins</a></li>
+            <li><a href="/docs/developer-guide/shareable-configs">Shareable Configs</a></li>
+            <li><a href="/docs/developer-guide/nodejs-api">Node.js API</a></li>
+            <li><a href="/docs/developer-guide/governance">Governance Model</a></li>
+          </ul>
+        </li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Demo<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/demo/">ESLint Demo</a></li>
+            <li><a href="/parser/">Espree Demo</a></li>
+          </ul>
+        </li>
+        <li><a href="/docs/about/">About</a></li>
+      </ul>
+
+      <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open">
+        <span class="sr-only">Open search</span>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </label>
+
+      <div class="navbar-form navbar-right eslint-search" role="search">
+        <div class="input-group">
+          <label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label>
+          <div class="eslint-search-input-wrapper">
+            <input type="text" class="form-control" id="eslint-search-input" accesskey="s" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search the docs...">
+            <label for="eslint-toggle-search" class="eslint-toggle-search-close">
+              <span class="sr-only">Close search</span>
+              <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+  </div><!-- /.container -->
+</header><!-- /.navbar -->
+
+<main class="doc">
+  <article class="container">
+    <script>
+if (document.documentElement.clientWidth > 870) {
+document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=eslintorg" id="_carbonads_js"><\/script>');
+}
+</script>
+
+    <!-- Note: No pull requests accepted for this file. See README.md in the root directory for details. -->
+
+<h1>Disallow Use of <strong>proto</strong> (no-proto)</h1>
+
+<p><code>__proto__</code> property has been deprecated as of ECMAScript 3.1 and shouldn&#39;t be used in the code. Use <code>getPrototypeOf</code> method instead.</p>
+
+<h2>Rule Details</h2>
+
+<p>When an object is created <code>__proto__</code> is set to the original prototype property of the object’s constructor function. <code>getPrototypeOf</code> is the preferred method of getting &quot;the prototype&quot;.</p>
+
+<p>The following patterns are considered warnings:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">[</span><span class="s2">"__proto__"</span><span class="p">];</span>
+</code></pre></div>
+<p>The following patterns are considered okay and could be used alternatively:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">getPrototypeOf</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+</code></pre></div>
+<h2>When not to use</h2>
+
+<p>If you need to support legacy browsers, you might want to turn this rule off, since support for <code>getPrototypeOf</code> is not yet universal.</p>
+
+<h2>Further Reading</h2>
+
+<ul>
+<li><a href="http://ejohn.org/blog/objectgetprototypeof/">Object.getPrototypeOf</a></li>
+</ul>
+
+<h2>Version</h2>
+
+<p>This rule was introduced in ESLint 0.0.9.</p>
+
+<h2>Resources</h2>
+
+<ul>
+<li><a href="https://github.com/eslint/eslint/tree/master/lib/rules/no-proto.js">Rule source</a></li>
+<li><a href="https://github.com/eslint/eslint/tree/master/docs/rules/no-proto.md">Documentation source</a></li>
+</ul>
+
+  </article>
+</main>
+
+    <hr>
+
+    <div class="container">
+
+      <footer>
+        <ul class="list-inline">
+          <li><a href="https://groups.google.com/group/eslint">Mailing List</a></li>
+          <li><a href="https://github.com/eslint/eslint">GitHub</a></li>
+          <li><a href="https://twitter.com/geteslint">Twitter</a></li>
+          <li>Copyright &copy; 2013-2015 Nicholas C. Zakas. All rights reserved.</li>
+        </ul>
+      </footer>
+    </div><!-- /.container -->
+
+
+  <script id="suggestion-item-template" type="text/template">
+  
+  {{#isCategoryHeader}}<div class="suggestion-category">{{{category}}}</div>{{/isCategoryHeader}}
+  <div class="suggestion {{#isCategoryHeader}}suggestion-is-category-header{{/isCategoryHeader}}">
+    <div class="suggestion-subcategory-main">{{#isSubcategoryHeader}}{{{subcategory}}}{{/isSubcategoryHeader}}</div>
+    <div class="suggestion-content">
+      <div class="suggestion-subcategory-secondary">{{{subcategory}}}</div>
+      <div class="suggestion-title">{{{title}}}</div>
+      <div class="suggestion-text">{{{text}}}</div>
+    </div>
+  </div>
+  
+  </script>
+
+  <script src="/js/vendor/jquery-1.10.2.min.js"></script>
+  <script src="/js/vendor/bootstrap.min.js"></script>
+  <script src="/js/vendor/anchor.min.js"></script>
+  <script src="/js/app/search.js"></script>
+  <script>
+    $(document).ready(function() {
+      anchors.add('.doc h2, .doc h3, .doc h4, .blog h2, .blog h3, .blog h4');
+      
+    });
+  </script>
+</body>
+</html>
+

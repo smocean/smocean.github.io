@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="keywords" content="JavaScript, Linter, Linting, Pluggable, Configurable, Code Quality">
+  <meta name="description" content="A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript. Maintain your code quality with ease.">
+
+    
+        <title>Documentation - ESLint - Pluggable JavaScript linter</title>
+    
+
+
+  <link href="http://eslint.org/docs/1.0.0/user-guide/command-line-interface" rel="canonical" />
+  <link rel="stylesheet" href="/styles/main.936b04d2.css"/>
+  <link rel="stylesheet" href="/styles/ads.css"/>
+  <link rel="stylesheet" href="/styles/search.css"/>
+  <link rel="stylesheet" href="/styles/overrides.css"/>
+  <link rel="icon" href="/img/favicon.512x512.png">
+  <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60915033-1', 'eslint.org');
+  ga('send', 'pageview');
+
+</script>
+  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
+
+</head>
+<body>
+
+
+
+<input type="checkbox" id="eslint-toggle-search" class="eslint-toggle-search-checkbox" />
+<header class="navbar navbar-default navbar-demo navbar-fixed-top eslint-nav" id="top" role="banner">
+  <div class="container">
+
+    <a href="/" class="navbar-brand"><img alt="ESLint" src="/img/logo.svg" itemprop="image">ESLint</a>
+
+    <div class="eslint-navbar-toggles">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#eslint-navbar" aria-controls="eslint-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open">
+        <span class="sr-only">Open search</span>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </label>
+    </div>
+
+    <nav id="eslint-navbar" class="collapse navbar-collapse eslint-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User guide<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/docs/user-guide/configuring">Configuring ESLint</a></li>
+            <li><a href="/docs/user-guide/command-line-interface">Command Line Interface</a></li>
+            <li><a href="/docs/rules/">Rules</a></li>
+            <li class="divider"></li>
+            <li><a href="/docs/user-guide/migrating-to-1.0.0">Migrating to v1.0.0</a></li>
+            <li><a href="/docs/user-guide/integrations">Integrations</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Developer guide<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/docs/developer-guide/architecture">Architecture</a></li>
+            <li><a href="/docs/developer-guide/contributing">Contributing</a></li>
+            <li><a href="/docs/developer-guide/source-code">Get the Source Code</a></li>
+            <li><a href="/docs/developer-guide/development-environment">Setup a Development Environment</a></li>
+            <li><a href="/docs/developer-guide/unit-tests">Run the Unit Tests</a></li>
+            <li><a href="/docs/developer-guide/working-with-rules">Working with Rules</a></li>
+            <li><a href="/docs/developer-guide/working-with-plugins">Working with Plugins</a></li>
+            <li><a href="/docs/developer-guide/shareable-configs">Shareable Configs</a></li>
+            <li><a href="/docs/developer-guide/nodejs-api">Node.js API</a></li>
+            <li><a href="/docs/developer-guide/governance">Governance Model</a></li>
+          </ul>
+        </li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Demo<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/demo/">ESLint Demo</a></li>
+            <li><a href="/parser/">Espree Demo</a></li>
+          </ul>
+        </li>
+        <li><a href="/docs/about/">About</a></li>
+      </ul>
+
+      <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open">
+        <span class="sr-only">Open search</span>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </label>
+
+      <div class="navbar-form navbar-right eslint-search" role="search">
+        <div class="input-group">
+          <label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label>
+          <div class="eslint-search-input-wrapper">
+            <input type="text" class="form-control" id="eslint-search-input" accesskey="s" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search the docs...">
+            <label for="eslint-toggle-search" class="eslint-toggle-search-close">
+              <span class="sr-only">Close search</span>
+              <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+  </div><!-- /.container -->
+</header><!-- /.navbar -->
+
+<main class="doc">
+  <article class="container">
+    <script>
+if (document.documentElement.clientWidth > 870) {
+document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=eslintorg" id="_carbonads_js"><\/script>');
+}
+</script>
+
+    <!-- Note: No pull requests accepted for this file. See README.md in the root directory for details. -->
+
+<h1>Command line Interface</h1>
+
+<p>To run ESLint on Node.js, you must have npm installed. If npm is not installed, follow the instructions here: http://npmjs.org/</p>
+
+<p>Once npm is installed, run the following</p>
+<div class="highlight"><pre><code class="language-" data-lang="">npm i -g eslint
+</code></pre></div>
+<p>This installs the ESLint CLI from the npm repository. To run ESLint, use the following format:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint [options] [file|dir]*
+</code></pre></div>
+<p>Such as:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint file1.js file2.js
+</code></pre></div>
+<h2>Options</h2>
+
+<p>The command line utility has several options. You can view the options by running <code>eslint -h</code>.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">eslint [options] file.js [file.js] [dir]
+
+Options:
+  -h, --help                  Show help
+  -c, --config path::String   Use configuration from this file
+  --rulesdir [path::String]   Use additional rules from this directory
+  -f, --format String         Use a specific output format - default: stylish
+  -v, --version               Outputs the version number
+  --no-eslintrc               Disable use of configuration from .eslintrc
+  --env [String]              Specify environments
+  --ext [String]              Specify JavaScript file extensions - default: .js
+  --plugin [String]           Specify plugins
+  --global [String]           Define global variables
+  --rule Object               Specify rules
+  --ignore-path path::String  Specify path of ignore file
+  --ignore-pattern String     Specify pattern of files to ignore (in addition to .eslintignore)
+  --no-ignore                 Disable use of .eslintignore
+  --no-color                  Disable color in piped output
+  -o, --output-file path::String  Specify file to write report to
+  --quiet                     Report errors only - default: false
+  --stdin                     Lint code provided on &lt;STDIN&gt; - default: false
+  --stdin-filename            Specify filename to process STDIN as
+  --init                      Run config initialization wizard
+</code></pre></div>
+<h3><code>-c</code>, <code>--config</code></h3>
+
+<p>This option allows you to specify an additional configuration file for ESLint (see <a href="configuring">Configuring ESLint</a> for more).</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint -c ~/my-eslint.json file.js
+</code></pre></div>
+<p>This example uses the configuration file at <code>~/my-eslint.json</code>.</p>
+
+<h3><code>--env</code></h3>
+
+<p>This option enables specific environments. Details about the global variables defined by each environment are available on the <a href="configuring">configuration</a> documentation. This flag only enables environments; it does not disable environments set in other configuration files. To specify multiple environments, separate them using commas, or use the flag multiple times.</p>
+
+<p>Examples:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint --env browser,node file.js
+eslint --env browser --env node file.js
+</code></pre></div>
+<h3><code>--ext</code></h3>
+
+<p>This option allows you to specify which file extensions ESLint will use when searching for JavaScript files. By default, it uses <code>.js</code> as the only file extension.</p>
+
+<p>Examples:</p>
+<div class="highlight"><pre><code class="language-" data-lang=""># Use only .js2 extension
+eslint --ext .js2
+
+# Use both .js and .js2
+eslint --ext .js --ext .js2
+
+# Also use both .js and .js2
+eslint --ext .js,.js2
+</code></pre></div>
+<h3><code>-f</code>, <code>--format</code></h3>
+
+<p>This option specifies the output format for the console. Possible formats are &quot;stylish&quot; (the default), &quot;compact&quot;, &quot;checkstyle&quot;, &quot;jslint-xml&quot;, &quot;junit&quot; and &quot;tap&quot;.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint -f compact file.js
+</code></pre></div>
+<p>You can also use a custom formatter from the command line by specifying a path to the custom formatter file.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint -f ./customformat.js file.js
+</code></pre></div>
+<p>When specified, the given format is output to the console. If you&#39;d like to save that output into a file, you can do so on the command line like so:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint -f compact file.js &gt; results.txt
+</code></pre></div>
+<p>This saves the output into the <code>results.txt</code> file.</p>
+
+<h3><code>--global</code></h3>
+
+<p>This option defines global variables so that they will not be flagged as undefined by the <code>no-undef</code> rule. Global variables are read-only by default, but appending <code>:true</code> to a variable&#39;s name makes it writable. To define multiple variables, separate them using commas, or use the flag multiple times.</p>
+
+<p>Examples:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint --global require,exports:true file.js
+eslint --global require --global exports:true
+</code></pre></div>
+<h3><code>-h</code>, <code>--help</code></h3>
+
+<p>This option outputs the help menu, displaying all of the available options. All other flags are ignored when this is present.</p>
+
+<h3><code>--ignore-path</code></h3>
+
+<p>This option allows you to specify the file to use as your <code>.eslintignore</code>. By default, ESLint looks in the current working directory for <code>.eslintignore</code>. You can override this behavior by providing a path to a different file.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint --ignore-path tmp/.eslintignore file.js
+</code></pre></div>
+<h3><code>--no-color</code></h3>
+
+<p>Disable color in piped output.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint --no-color file.js
+</code></pre></div>
+<h3><code>--no-eslintrc</code></h3>
+
+<p>Disables use of configuration from <code>.eslintrc</code> and <code>package.json</code> files.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint --no-eslintrc file.js
+</code></pre></div>
+<h3><code>--no-ignore</code></h3>
+
+<p>Disables excluding of files from <code>.eslintignore</code> and <code>--ignore-path</code> files.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint --no-ignore file.js
+</code></pre></div>
+<h3><code>-o</code>, <code>--output-file</code></h3>
+
+<p>Enable report to be written to a file.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint -o ./test/test.html
+</code></pre></div>
+<p>When specified, the given format is output into the provided file name.</p>
+
+<h3><code>--plugin</code></h3>
+
+<p>This option specifies a plugin to load. You can omit the prefix <code>eslint-plugin-</code> from the plugin name.
+Before using the plugin you have to install it using npm.</p>
+
+<p>Examples:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint --plugin jquery file.js
+eslint --plugin eslint-plugin-mocha file.js
+</code></pre></div>
+<h3><code>--quiet</code></h3>
+
+<p>This option allows you to disable reporting on warnings. If you enable this option only errors are reported by ESLint.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint --quiet file.js
+</code></pre></div>
+<h3><code>--rule</code></h3>
+
+<p>This option specifies rules to be used. These rules will be merged with any rules specified with configuration files. (You can use <code>--no-eslintrc</code> to change that behavior.) To define multiple rules, separate them using commas, or use the flag multiple times. The <a href="https://github.com/gkz/levn#levn--">levn</a> format is used for specifying the rules.</p>
+
+<p>If the rule is defined within a plugin you have to prefix the rule ID with the plugin name and a <code>/</code>.</p>
+
+<p>Examples:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint --rule 'quotes: [2, double]'
+eslint --rule 'guard-for-in: 2' --rule 'brace-style: [2, 1tbs]'
+eslint --rule 'jquery/dollar-sign: 2'
+</code></pre></div>
+<h3><code>--rulesdir</code></h3>
+
+<p>This option allows you to specify a second directory from which to load rules files. This allows you to dynamically load new rules at run time. This is useful when you have custom rules that aren&#39;t suitable for being bundled with ESLint.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint --rulesdir my-rules/ file.js
+</code></pre></div>
+<p>The rules in your custom rules directory must follow the same format as bundled rules to work properly. You can also specify multiple locations for custom rules by including multiple <code>--rulesdir</code> flags:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint --rulesdir my-rules/ --rulesdir my-other-rules/ file.js
+</code></pre></div>
+<h3><code>--stdin</code></h3>
+
+<p>This option tells ESLint to read and lint source code from STDIN instead files. You can use this to pipe code to ESLint.</p>
+
+<p>Example</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cat myfile.js | eslint --stdin
+</code></pre></div>
+<h3><code>--stdin-filename</code></h3>
+
+<p>This option allows you to specify a filename to process STDIN as. This is useful when processing files from STDIN and you have rules which depend on the filename.</p>
+
+<p>Example</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cat myfile.js | eslint --stdin --stdin-filename=myfile.js
+</code></pre></div>
+<h3><code>-v</code>, <code>--version</code></h3>
+
+<p>This option outputs the current ESLint version onto the console. All other options are ignored when present.</p>
+
+<p>Example:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">eslint -v
+</code></pre></div>
+<h3>&#39;--init&#39;</h3>
+
+<p>This option will start config initialization wizard. It&#39;s designed to help new users quickly create .eslintrc file by answering a few questions. File will be created in current directory.</p>
+
+<h2>Ignoring files from linting</h2>
+
+<p>ESLint supports <code>.eslintignore</code> files to exclude files from the linting process when ESLint operates on a directory. Files given as individual CLI arguments will be exempt from exclusion. The <code>.eslintignore</code> file is a plain text file containing one pattern per line. It can be located in any of the target directory&#39;s ancestors; it will affect files in its containing directory as well as all sub-directories. Here&#39;s a simple example of a <code>.eslintignore</code> file:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">node_modules/*
+**/vendor/*.js
+</code></pre></div>
+  </article>
+</main>
+
+    <hr>
+
+    <div class="container">
+
+      <footer>
+        <ul class="list-inline">
+          <li><a href="https://groups.google.com/group/eslint">Mailing List</a></li>
+          <li><a href="https://github.com/eslint/eslint">GitHub</a></li>
+          <li><a href="https://twitter.com/geteslint">Twitter</a></li>
+          <li>Copyright &copy; 2013-2015 Nicholas C. Zakas. All rights reserved.</li>
+        </ul>
+      </footer>
+    </div><!-- /.container -->
+
+
+  <script id="suggestion-item-template" type="text/template">
+  
+  {{#isCategoryHeader}}<div class="suggestion-category">{{{category}}}</div>{{/isCategoryHeader}}
+  <div class="suggestion {{#isCategoryHeader}}suggestion-is-category-header{{/isCategoryHeader}}">
+    <div class="suggestion-subcategory-main">{{#isSubcategoryHeader}}{{{subcategory}}}{{/isSubcategoryHeader}}</div>
+    <div class="suggestion-content">
+      <div class="suggestion-subcategory-secondary">{{{subcategory}}}</div>
+      <div class="suggestion-title">{{{title}}}</div>
+      <div class="suggestion-text">{{{text}}}</div>
+    </div>
+  </div>
+  
+  </script>
+
+  <script src="/js/vendor/jquery-1.10.2.min.js"></script>
+  <script src="/js/vendor/bootstrap.min.js"></script>
+  <script src="/js/vendor/anchor.min.js"></script>
+  <script src="/js/app/search.js"></script>
+  <script>
+    $(document).ready(function() {
+      anchors.add('.doc h2, .doc h3, .doc h4, .blog h2, .blog h3, .blog h4');
+      
+    });
+  </script>
+</body>
+</html>
+

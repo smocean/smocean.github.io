@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="keywords" content="JavaScript, Linter, Linting, Pluggable, Configurable, Code Quality">
+  <meta name="description" content="A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript. Maintain your code quality with ease.">
+
+    
+        <title>Rule space-before-blocks - ESLint - Pluggable JavaScript linter</title>
+    
+
+
+  <link href="http://eslint.org/docs/rules/space-before-blocks" rel="canonical" />
+  <link rel="stylesheet" href="/styles/main.936b04d2.css"/>
+  <link rel="stylesheet" href="/styles/ads.css"/>
+  <link rel="stylesheet" href="/styles/search.css"/>
+  <link rel="stylesheet" href="/styles/overrides.css"/>
+  <link rel="icon" href="/img/favicon.512x512.png">
+  <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60915033-1', 'eslint.org');
+  ga('send', 'pageview');
+
+</script>
+  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
+
+</head>
+<body>
+
+
+
+<input type="checkbox" id="eslint-toggle-search" class="eslint-toggle-search-checkbox" />
+<header class="navbar navbar-default navbar-demo navbar-fixed-top eslint-nav" id="top" role="banner">
+  <div class="container">
+
+    <a href="/" class="navbar-brand"><img alt="ESLint" src="/img/logo.svg" itemprop="image">ESLint</a>
+
+    <div class="eslint-navbar-toggles">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#eslint-navbar" aria-controls="eslint-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open">
+        <span class="sr-only">Open search</span>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </label>
+    </div>
+
+    <nav id="eslint-navbar" class="collapse navbar-collapse eslint-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User guide<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/docs/user-guide/configuring">Configuring ESLint</a></li>
+            <li><a href="/docs/user-guide/command-line-interface">Command Line Interface</a></li>
+            <li><a href="/docs/rules/">Rules</a></li>
+            <li class="divider"></li>
+            <li><a href="/docs/user-guide/migrating-to-1.0.0">Migrating to v1.0.0</a></li>
+            <li><a href="/docs/user-guide/integrations">Integrations</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Developer guide<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/docs/developer-guide/architecture">Architecture</a></li>
+            <li><a href="/docs/developer-guide/contributing">Contributing</a></li>
+            <li><a href="/docs/developer-guide/source-code">Get the Source Code</a></li>
+            <li><a href="/docs/developer-guide/development-environment">Setup a Development Environment</a></li>
+            <li><a href="/docs/developer-guide/unit-tests">Run the Unit Tests</a></li>
+            <li><a href="/docs/developer-guide/working-with-rules">Working with Rules</a></li>
+            <li><a href="/docs/developer-guide/working-with-plugins">Working with Plugins</a></li>
+            <li><a href="/docs/developer-guide/shareable-configs">Shareable Configs</a></li>
+            <li><a href="/docs/developer-guide/nodejs-api">Node.js API</a></li>
+            <li><a href="/docs/developer-guide/governance">Governance Model</a></li>
+          </ul>
+        </li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Demo<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/demo/">ESLint Demo</a></li>
+            <li><a href="/parser/">Espree Demo</a></li>
+          </ul>
+        </li>
+        <li><a href="/docs/about/">About</a></li>
+      </ul>
+
+      <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open">
+        <span class="sr-only">Open search</span>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </label>
+
+      <div class="navbar-form navbar-right eslint-search" role="search">
+        <div class="input-group">
+          <label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label>
+          <div class="eslint-search-input-wrapper">
+            <input type="text" class="form-control" id="eslint-search-input" accesskey="s" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search the docs...">
+            <label for="eslint-toggle-search" class="eslint-toggle-search-close">
+              <span class="sr-only">Close search</span>
+              <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+  </div><!-- /.container -->
+</header><!-- /.navbar -->
+
+<main class="doc">
+  <article class="container">
+    <script>
+if (document.documentElement.clientWidth > 870) {
+document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=eslintorg" id="_carbonads_js"><\/script>');
+}
+</script>
+
+    <!-- Note: No pull requests accepted for this file. See README.md in the root directory for details. -->
+
+<h1>Require Or Disallow Space Before Blocks (space-before-blocks)</h1>
+
+<p>Consistency is an important part of any style guide.
+While it is a personal preference where to put the opening brace of blocks,
+it should be consistent across a whole project.
+Having an inconsistent style distracts the reader from seeing the important parts of the code.</p>
+
+<p><strong>Fixable:</strong> This rule is automatically fixable using the <code>--fix</code> flag on the command line.</p>
+
+<h2>Rule Details</h2>
+
+<p>This rule will enforce consistency of spacing before blocks. It is only applied on blocks that don’t begin on a new line.</p>
+
+<p>This rule ignores spacing which is between <code>=&gt;</code> and a block. The spacing is handled by the <code>arrow-spacing</code> rule.</p>
+
+<p>This rule takes one argument. If it is <code>&quot;always&quot;</code> then blocks must always have at least one preceding space. If <code>&quot;never&quot;</code>
+then all blocks should never have any preceding space. If different spacing is desired for function
+blocks and keyword blocks, an optional configuration object can be passed as the rule argument to
+configure the cases separately.</p>
+
+<p>( e.g. <code>{ &quot;functions&quot;: &quot;never&quot;, &quot;keywords&quot;: &quot;always&quot; }</code> )</p>
+
+<p>The default is <code>&quot;always&quot;</code>.</p>
+
+<h3><code>&quot;always&quot;</code></h3>
+
+<p>The following patterns are considered problems:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-before-blocks: 2*/</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">){</span>           <span class="cm">/*error Missing space before opening brace.*/</span>
+    <span class="nx">b</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">b</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">else</span><span class="p">{</span>           <span class="cm">/*error Missing space before opening brace.*/</span>
+    <span class="nx">c</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">a</span><span class="p">(){}</span>    <span class="cm">/*error Missing space before opening brace.*/</span>
+
+<span class="k">for</span> <span class="p">(;;){</span>         <span class="cm">/*error Missing space before opening brace.*/</span>
+    <span class="nx">b</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">try</span> <span class="p">{}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">a</span><span class="p">){}</span> <span class="cm">/*error Missing space before opening brace.*/</span>
+</code></pre></div>
+<p>The following patterns are not considered problems:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-before-blocks: 2*/</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">b</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">a</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="k">for</span> <span class="p">(;;)</span> <span class="p">{</span>
+    <span class="nx">b</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">try</span> <span class="p">{}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{}</span>
+</code></pre></div>
+<h3><code>&quot;never&quot;</code></h3>
+
+<p>The following patterns are considered problems:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-before-blocks: [2, "never"]*/</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>           <span class="cm">/*error Unexpected space before opening brace.*/</span>
+    <span class="nx">b</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">a</span><span class="p">()</span> <span class="p">{}</span>    <span class="cm">/*error Unexpected space before opening brace.*/</span>
+
+<span class="k">for</span> <span class="p">(;;)</span> <span class="p">{</span>         <span class="cm">/*error Unexpected space before opening brace.*/</span>
+    <span class="nx">b</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">try</span> <span class="p">{}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{}</span> <span class="cm">/*error Unexpected space before opening brace.*/</span>
+</code></pre></div>
+<p>The following patterns are not considered problems:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-before-blocks: [2, "never"]*/</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">){</span>
+    <span class="nx">b</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">a</span><span class="p">(){}</span>
+
+<span class="k">for</span> <span class="p">(;;){</span>
+    <span class="nx">b</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">try</span><span class="p">{}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">a</span><span class="p">){}</span>
+</code></pre></div>
+<p>The following patterns are considered problems when configured <code>{ &quot;functions&quot;: &quot;never&quot;, &quot;keywords&quot;: &quot;always&quot; }</code>:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-before-blocks: [2, { "functions": "never", "keywords": "always" }]*/</span>
+<span class="cm">/*eslint-env es6*/</span>
+
+<span class="kd">function</span> <span class="nx">a</span><span class="p">()</span> <span class="p">{}</span>    <span class="cm">/*error Unexpected space before opening brace.*/</span>
+
+<span class="k">try</span> <span class="p">{}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">a</span><span class="p">){}</span>  <span class="cm">/*error Missing space before opening brace.*/</span>
+
+<span class="kr">class</span> <span class="nx">Foo</span><span class="p">{</span>         <span class="cm">/*error Missing space before opening brace.*/</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{}</span> <span class="cm">/*error Unexpected space before opening brace.*/</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The following patterns are not considered problems when configured <code>{ &quot;functions&quot;: &quot;never&quot;, &quot;keywords&quot;: &quot;always&quot; }</code>:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-before-blocks: [2, { "functions": "never", "keywords": "always" }]*/</span>
+<span class="cm">/*eslint-env es6*/</span>
+
+<span class="k">for</span> <span class="p">(;;)</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+  <span class="c1">// ...</span>
+<span class="p">});</span>
+
+<span class="kr">class</span> <span class="nx">Foo</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(){}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The following patterns are considered problems when configured <code>{ &quot;functions&quot;: &quot;always&quot;, &quot;keywords&quot;: &quot;never&quot; }</code>:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-before-blocks: [2, { "functions": "always", "keywords": "never" }]*/</span>
+<span class="cm">/*eslint-env es6*/</span>
+
+<span class="kd">function</span> <span class="nx">a</span><span class="p">(){}</span>      <span class="cm">/*error Missing space before opening brace.*/</span>
+
+<span class="k">try</span> <span class="p">{}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{}</span>  <span class="cm">/*error Unexpected space before opening brace.*/</span>
+
+<span class="kr">class</span> <span class="nx">Foo</span> <span class="p">{</span>         <span class="cm">/*error Unexpected space before opening brace.*/</span>
+  <span class="nx">constructor</span><span class="p">(){}</span>   <span class="cm">/*error Missing space before opening brace.*/</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>The following patterns are not considered problems when configured <code>{ &quot;functions&quot;: &quot;always&quot;, &quot;keywords&quot;: &quot;never&quot; }</code>:</p>
+<div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-before-blocks: [2, { "functions": "always", "keywords": "never" }]*/</span>
+<span class="cm">/*eslint-env es6*/</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">){</span>
+  <span class="nx">b</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{}</span>
+
+<span class="kr">class</span> <span class="nx">Foo</span><span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">()</span> <span class="p">{}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>When Not To Use It</h2>
+
+<p>You can turn this rule off if you are not concerned with the consistency of spacing before blocks or if you are using the <code>space-after-keywords</code> rule set to <code>&quot;never&quot;</code>.</p>
+
+<h2>Related Rules</h2>
+
+<ul>
+<li><a href="space-after-keywords">space-after-keywords</a></li>
+<li><a href="arrow-spacing">arrow-spacing</a></li>
+<li><a href="brace-style">brace-style</a></li>
+</ul>
+
+<h2>Version</h2>
+
+<p>This rule was introduced in ESLint 0.9.0.</p>
+
+<h2>Resources</h2>
+
+<ul>
+<li><a href="https://github.com/eslint/eslint/tree/master/lib/rules/space-before-blocks.js">Rule source</a></li>
+<li><a href="https://github.com/eslint/eslint/tree/master/docs/rules/space-before-blocks.md">Documentation source</a></li>
+</ul>
+
+  </article>
+</main>
+
+    <hr>
+
+    <div class="container">
+
+      <footer>
+        <ul class="list-inline">
+          <li><a href="https://groups.google.com/group/eslint">Mailing List</a></li>
+          <li><a href="https://github.com/eslint/eslint">GitHub</a></li>
+          <li><a href="https://twitter.com/geteslint">Twitter</a></li>
+          <li>Copyright &copy; 2013-2015 Nicholas C. Zakas. All rights reserved.</li>
+        </ul>
+      </footer>
+    </div><!-- /.container -->
+
+
+  <script id="suggestion-item-template" type="text/template">
+  
+  {{#isCategoryHeader}}<div class="suggestion-category">{{{category}}}</div>{{/isCategoryHeader}}
+  <div class="suggestion {{#isCategoryHeader}}suggestion-is-category-header{{/isCategoryHeader}}">
+    <div class="suggestion-subcategory-main">{{#isSubcategoryHeader}}{{{subcategory}}}{{/isSubcategoryHeader}}</div>
+    <div class="suggestion-content">
+      <div class="suggestion-subcategory-secondary">{{{subcategory}}}</div>
+      <div class="suggestion-title">{{{title}}}</div>
+      <div class="suggestion-text">{{{text}}}</div>
+    </div>
+  </div>
+  
+  </script>
+
+  <script src="/js/vendor/jquery-1.10.2.min.js"></script>
+  <script src="/js/vendor/bootstrap.min.js"></script>
+  <script src="/js/vendor/anchor.min.js"></script>
+  <script src="/js/app/search.js"></script>
+  <script>
+    $(document).ready(function() {
+      anchors.add('.doc h2, .doc h3, .doc h4, .blog h2, .blog h3, .blog h4');
+      
+    });
+  </script>
+</body>
+</html>
+

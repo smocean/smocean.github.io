@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="keywords" content="JavaScript, Linter, Linting, Pluggable, Configurable, Code Quality">
+  <meta name="description" content="A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript. Maintain your code quality with ease.">
+
+    
+        <title>ESLint 0.17.0 released - ESLint - Pluggable JavaScript linter</title>
+    
+
+
+  <link href="http://eslint.org/blog/2015/03/eslint-0.17.0-released" rel="canonical" />
+  <link rel="stylesheet" href="/styles/main.936b04d2.css"/>
+  <link rel="stylesheet" href="/styles/ads.css"/>
+  <link rel="stylesheet" href="/styles/search.css"/>
+  <link rel="stylesheet" href="/styles/overrides.css"/>
+  <link rel="icon" href="/img/favicon.512x512.png">
+  <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60915033-1', 'eslint.org');
+  ga('send', 'pageview');
+
+</script>
+  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
+
+</head>
+<body>
+
+
+
+<input type="checkbox" id="eslint-toggle-search" class="eslint-toggle-search-checkbox" />
+<header class="navbar navbar-default navbar-demo navbar-fixed-top eslint-nav" id="top" role="banner">
+  <div class="container">
+
+    <a href="/" class="navbar-brand"><img alt="ESLint" src="/img/logo.svg" itemprop="image">ESLint</a>
+
+    <div class="eslint-navbar-toggles">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#eslint-navbar" aria-controls="eslint-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open">
+        <span class="sr-only">Open search</span>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </label>
+    </div>
+
+    <nav id="eslint-navbar" class="collapse navbar-collapse eslint-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User guide<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/docs/user-guide/configuring">Configuring ESLint</a></li>
+            <li><a href="/docs/user-guide/command-line-interface">Command Line Interface</a></li>
+            <li><a href="/docs/rules/">Rules</a></li>
+            <li class="divider"></li>
+            <li><a href="/docs/user-guide/migrating-to-1.0.0">Migrating to v1.0.0</a></li>
+            <li><a href="/docs/user-guide/integrations">Integrations</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Developer guide<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/docs/developer-guide/architecture">Architecture</a></li>
+            <li><a href="/docs/developer-guide/contributing">Contributing</a></li>
+            <li><a href="/docs/developer-guide/source-code">Get the Source Code</a></li>
+            <li><a href="/docs/developer-guide/development-environment">Setup a Development Environment</a></li>
+            <li><a href="/docs/developer-guide/unit-tests">Run the Unit Tests</a></li>
+            <li><a href="/docs/developer-guide/working-with-rules">Working with Rules</a></li>
+            <li><a href="/docs/developer-guide/working-with-plugins">Working with Plugins</a></li>
+            <li><a href="/docs/developer-guide/shareable-configs">Shareable Configs</a></li>
+            <li><a href="/docs/developer-guide/nodejs-api">Node.js API</a></li>
+            <li><a href="/docs/developer-guide/governance">Governance Model</a></li>
+          </ul>
+        </li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Demo<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/demo/">ESLint Demo</a></li>
+            <li><a href="/parser/">Espree Demo</a></li>
+          </ul>
+        </li>
+        <li><a href="/docs/about/">About</a></li>
+      </ul>
+
+      <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open">
+        <span class="sr-only">Open search</span>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </label>
+
+      <div class="navbar-form navbar-right eslint-search" role="search">
+        <div class="input-group">
+          <label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label>
+          <div class="eslint-search-input-wrapper">
+            <input type="text" class="form-control" id="eslint-search-input" accesskey="s" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search the docs...">
+            <label for="eslint-toggle-search" class="eslint-toggle-search-close">
+              <span class="sr-only">Close search</span>
+              <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+  </div><!-- /.container -->
+</header><!-- /.navbar -->
+
+<main class="blog">
+  <article class="container">
+    <script>
+if (document.documentElement.clientWidth > 870) {
+document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=eslintorg" id="_carbonads_js"><\/script>');
+}
+</script>
+
+    <h1>ESLint 0.17.0 released</h1>
+
+<p>We just pushed ESLint 0.17.0, which is a minor release upgrade. This release includes new features and bug fixes.</p>
+
+<h2>Highlights</h2>
+
+<p>This is a summary of the major changes you need to know about for this version of ESLint.</p>
+
+<h3>Changes to JSX/React handling</h3>
+
+<p>In this release, we made the decision to stop supporting React semantics of JSX. We had previously been checking JSX for identifiers in our rules and realized we could only do that correctly by building-in knowledge of how React works. Such knowledge already hurt us when the semantics changed a bit, and we really didn&#39;t want to find ourselves in that situation again.</p>
+
+<p>ESLint will continue to support JSX syntax but will no longer apply React semantics to that syntax. Since we know that many ESLint users want React semantics, we&#39;ve ensured there&#39;s a way for the excellent <a href="https://github.com/yannickcr/eslint-plugin-react">eslint-plugin-react</a> to fill this gap. Specifically, we&#39;ve added a new method that is available to rules that can indicate a variable has been used. Many of the React-based errors people were reporting related directly to interpretation of when variables had been used, and this change lets other plugin authors augment what ESLint thinks has been used.</p>
+
+<h3>More ECMAScript 6 fixes</h3>
+
+<p>As a result of being the first tool to fully support ECMAScript 6, we&#39;ve found a lot of bugs and issues both in ESLint and our dependencies. We&#39;ve been working as quickly as possible to fix issues and work with other projects to fix their issues as well.</p>
+
+<h3>Deprioritizing new rules</h3>
+
+<p>Because we are so focused on ECMAScript 6 support, we are deprioritizing adding new rules right now. You may still file issues for rules you&#39;d like, but they likely won&#39;t be addressed by the ESLint team until after 1.0.0 is released. We will still accept pull requests for new rules, we just won&#39;t be spending much time on implementing new rules ourselves until after 1.0.0.</p>
+
+<h3>1.0.0 Update</h3>
+
+<p>We had hoped this next release would be 1.0.0, but we aren&#39;t quite there yet. The biggest remaining task is to use the finalized AST node structure for rest and default parameters as well as switching to use the new <code>handler</code> property of <code>TryStatement</code>. Espree needs to be updated with the new nodes before we can start that integration process.</p>
+
+<p>We are preparing a list of breaking changes that will be coming in v1.0.0 and are tracking them on <a href="https://github.com/eslint/eslint/issues/1898">#1898</a>. Stay tuned to that issue so you know what to expect.</p>
+
+<h2>Breaking Changes</h2>
+
+<ul>
+<li>Breaking: Stop checking JSX variable use, expose API instead (fixes <a href="https://github.com/eslint/eslint/issues/1911">#1911</a>) (Glen Mailer)</li>
+</ul>
+
+<h2>Bug Fixes</h2>
+
+<ul>
+<li>Fix: Add comma-dangle allow-multiline (fixes <a href="https://github.com/eslint/eslint/issues/1984">#1984</a>) (Keith Cirkel)</li>
+<li>Fix: Check spacing of class methods (fixes <a href="https://github.com/eslint/eslint/issues/1989">#1989</a>) (Nicholas C. Zakas)</li>
+<li>Fix: destructured arguments should work in block-scoped-var (fixes <a href="https://github.com/eslint/eslint/issues/1996">#1996</a>) (Nicholas C. Zakas)</li>
+<li>Fix: Don&#39;t explode on default export function (fixes <a href="https://github.com/eslint/eslint/issues/1985">#1985</a>) (Nicholas C. Zakas)</li>
+<li>Fix: Ignore super in no-undef (refs <a href="https://github.com/eslint/eslint/issues/1968">#1968</a>) (Nicholas C. Zakas)</li>
+<li>Fix: Line breaking with just carriage return (fixes <a href="https://github.com/eslint/eslint/issues/2005">#2005</a>) (Nicholas C. Zakas)</li>
+<li>Fix: location of new-cap error messages (fixes <a href="https://github.com/eslint/eslint/issues/2025">#2025</a>) (Mathias Schreck)</li>
+<li>Fix: module import specifiers should be defined (refs <a href="https://github.com/eslint/eslint/issues/1978">#1978</a>) (Nicholas C. Zakas)</li>
+</ul>
+
+<h2>Features</h2>
+
+<ul>
+<li>New: generator-star-spacing rule (fixes <a href="https://github.com/eslint/eslint/issues/1680">#1680</a>, fixes <a href="https://github.com/eslint/eslint/issues/1949">#1949</a>) (Brandon Mills)</li>
+<li>New: no-duplicate-case rule to disallow a duplicate case label (fixes <a href="https://github.com/eslint/eslint/issues/2015">#2015</a>) (Dieter Oberkofler)</li>
+</ul>
+
+<h2>Enhancements</h2>
+
+<ul>
+<li>Update: Add AST node exceptions to comma-style. (fixes <a href="https://github.com/eslint/eslint/issues/1932">#1932</a>) (Evan Simmons)</li>
+</ul>
+
+<h2>Dependency Upgrades</h2>
+
+<ul>
+<li>Upgrade: Espree to v0.12.0 (refs <a href="https://github.com/eslint/eslint/issues/1968">#1968</a>) (Nicholas C. Zakas)</li>
+</ul>
+
+<h2>Documentation</h2>
+
+<ul>
+<li>Clarify issue requirement for doc pull requests (Ian)</li>
+<li>Docs: Add spread operator to available language options (Nicholas C. Zakas)</li>
+</ul>
+
+  </article>
+</main>
+
+    <hr>
+
+    <div class="container">
+
+      <footer>
+        <ul class="list-inline">
+          <li><a href="https://groups.google.com/group/eslint">Mailing List</a></li>
+          <li><a href="https://github.com/eslint/eslint">GitHub</a></li>
+          <li><a href="https://twitter.com/geteslint">Twitter</a></li>
+          <li>Copyright &copy; 2013-2015 Nicholas C. Zakas. All rights reserved.</li>
+        </ul>
+      </footer>
+    </div><!-- /.container -->
+
+
+  <script id="suggestion-item-template" type="text/template">
+  
+  {{#isCategoryHeader}}<div class="suggestion-category">{{{category}}}</div>{{/isCategoryHeader}}
+  <div class="suggestion {{#isCategoryHeader}}suggestion-is-category-header{{/isCategoryHeader}}">
+    <div class="suggestion-subcategory-main">{{#isSubcategoryHeader}}{{{subcategory}}}{{/isSubcategoryHeader}}</div>
+    <div class="suggestion-content">
+      <div class="suggestion-subcategory-secondary">{{{subcategory}}}</div>
+      <div class="suggestion-title">{{{title}}}</div>
+      <div class="suggestion-text">{{{text}}}</div>
+    </div>
+  </div>
+  
+  </script>
+
+  <script src="/js/vendor/jquery-1.10.2.min.js"></script>
+  <script src="/js/vendor/bootstrap.min.js"></script>
+  <script src="/js/vendor/anchor.min.js"></script>
+  <script src="/js/app/search.js"></script>
+  <script>
+    $(document).ready(function() {
+      anchors.add('.doc h2, .doc h3, .doc h4, .blog h2, .blog h3, .blog h4');
+      
+    });
+  </script>
+</body>
+</html>
+

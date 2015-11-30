@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="keywords" content="JavaScript, Linter, Linting, Pluggable, Configurable, Code Quality">
+  <meta name="description" content="A pluggable and configurable linter tool for identifying and reporting on patterns in JavaScript. Maintain your code quality with ease.">
+
+    
+        <title>ESLint 0.6.0 released - ESLint - Pluggable JavaScript linter</title>
+    
+
+
+  <link href="http://eslint.org/blog/2014/05/eslint-0.6.0-released" rel="canonical" />
+  <link rel="stylesheet" href="/styles/main.936b04d2.css"/>
+  <link rel="stylesheet" href="/styles/ads.css"/>
+  <link rel="stylesheet" href="/styles/search.css"/>
+  <link rel="stylesheet" href="/styles/overrides.css"/>
+  <link rel="icon" href="/img/favicon.512x512.png">
+  <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-60915033-1', 'eslint.org');
+  ga('send', 'pageview');
+
+</script>
+  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
+
+</head>
+<body>
+
+
+
+<input type="checkbox" id="eslint-toggle-search" class="eslint-toggle-search-checkbox" />
+<header class="navbar navbar-default navbar-demo navbar-fixed-top eslint-nav" id="top" role="banner">
+  <div class="container">
+
+    <a href="/" class="navbar-brand"><img alt="ESLint" src="/img/logo.svg" itemprop="image">ESLint</a>
+
+    <div class="eslint-navbar-toggles">
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#eslint-navbar" aria-controls="eslint-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open">
+        <span class="sr-only">Open search</span>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </label>
+    </div>
+
+    <nav id="eslint-navbar" class="collapse navbar-collapse eslint-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User guide<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/docs/user-guide/configuring">Configuring ESLint</a></li>
+            <li><a href="/docs/user-guide/command-line-interface">Command Line Interface</a></li>
+            <li><a href="/docs/rules/">Rules</a></li>
+            <li class="divider"></li>
+            <li><a href="/docs/user-guide/migrating-to-1.0.0">Migrating to v1.0.0</a></li>
+            <li><a href="/docs/user-guide/integrations">Integrations</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Developer guide<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/docs/developer-guide/architecture">Architecture</a></li>
+            <li><a href="/docs/developer-guide/contributing">Contributing</a></li>
+            <li><a href="/docs/developer-guide/source-code">Get the Source Code</a></li>
+            <li><a href="/docs/developer-guide/development-environment">Setup a Development Environment</a></li>
+            <li><a href="/docs/developer-guide/unit-tests">Run the Unit Tests</a></li>
+            <li><a href="/docs/developer-guide/working-with-rules">Working with Rules</a></li>
+            <li><a href="/docs/developer-guide/working-with-plugins">Working with Plugins</a></li>
+            <li><a href="/docs/developer-guide/shareable-configs">Shareable Configs</a></li>
+            <li><a href="/docs/developer-guide/nodejs-api">Node.js API</a></li>
+            <li><a href="/docs/developer-guide/governance">Governance Model</a></li>
+          </ul>
+        </li>
+        <li><a href="/blog/">Blog</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Demo<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/demo/">ESLint Demo</a></li>
+            <li><a href="/parser/">Espree Demo</a></li>
+          </ul>
+        </li>
+        <li><a href="/docs/about/">About</a></li>
+      </ul>
+
+      <label for="eslint-toggle-search" class="navbar-toggle eslint-toggle-search-open">
+        <span class="sr-only">Open search</span>
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </label>
+
+      <div class="navbar-form navbar-right eslint-search" role="search">
+        <div class="input-group">
+          <label class="sr-only" aria-label="Search" for="eslint-search-input">Search</label>
+          <div class="eslint-search-input-wrapper">
+            <input type="text" class="form-control" id="eslint-search-input" accesskey="s" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search the docs...">
+            <label for="eslint-toggle-search" class="eslint-toggle-search-close">
+              <span class="sr-only">Close search</span>
+              <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+  </div><!-- /.container -->
+</header><!-- /.navbar -->
+
+<main class="blog">
+  <article class="container">
+    <script>
+if (document.documentElement.clientWidth > 870) {
+document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=eslintorg" id="_carbonads_js"><\/script>');
+}
+</script>
+
+    <h1>ESLint 0.6.0 released</h1>
+
+<p>We just pushed ESLint 0.6.0, which is a significant release with new features, new rules, and of course, some bug fixes.</p>
+
+<h2>Deprecation Notices</h2>
+
+<ul>
+<li>The 0.6.x ESLint will be the last to support the deprecated JSON format for <code>.eslintignore</code>. This was deprecated in 0.5.1 and will be removed in 0.7.0. Please change your <code>.eslintignore</code> files to the new plain-text format. See <a href="https://github.com/eslint/eslint/issues/761">#761</a>.</li>
+</ul>
+
+<h2>Breaking Changes</h2>
+
+<ul>
+<li><a href="http://eslint.org/docs/rules/brace-style">brace-style</a> now disallows block statements where curlies are on the same line. While not strictly a breaking change, it is a significant enough change to warrant being called out in this way. (<a href="https://github.com/eslint/eslint/issues/758">#758</a>)</li>
+<li>Node 0.8.x is no longer officially supported as of 0.6.0. We will no longer accept or fix bugs for Node 0.8.x.</li>
+</ul>
+
+<h2>Rules</h2>
+
+<ul>
+<li><strong>Breaking:</strong> <a href="http://eslint.org/docs/rules/brace-style">brace-style</a> now disallows block statements where curlies are on the same line. While not strictly a breaking change, it is a significant enough change to warrant being called out in this way. (<a href="https://github.com/eslint/eslint/issues/758">#758</a>)</li>
+<li><strong>New:</strong> <a href="http://eslint.org/docs/rules/default-case">default-case</a> (<a href="https://github.com/eslint/eslint/issues/787">#787</a>)</li>
+<li><strong>New:</strong> <a href="http://eslint.org/docs/rules/no-new-require">no-new-require</a> (<a href="https://github.com/eslint/eslint/issues/847">#847</a>)</li>
+<li><strong>New:</strong> <a href="http://eslint.org/docs/rules/space-after-keywords">space-after-keywords</a>  (<a href="https://github.com/eslint/eslint/issues/807">#807</a>)</li>
+<li><strong>New:</strong> <a href="http://eslint.org/docs/rules/no-lonely-if">no-lonely-if</a> (fixes <a href="https://github.com/eslint/eslint/issues/790">#790</a>) (Brandon Mills)</li>
+<li><strong>New:</strong> <a href="http://eslint.org/docs/rules/no-restricted-modules">no-restricted-modules</a> (<a href="https://github.com/eslint/eslint/issues/791">#791</a>)</li>
+<li><strong>New:</strong> <a href="http://eslint.org/docs/rules/no-inner-declarations">no-inner-declarations</a> (<a href="https://github.com/eslint/eslint/issues/587">#587</a>)</li>
+<li><strong>Update:</strong> The default value for the <code>vars</code> option of <a href="http://eslint.org/docs/rules/no-unused-vars">no-unused-vars</a> was changed to &quot;all&quot;. This addresses the issue where some were unexpectedly seeing unused global variables missed. (<a href="https://github.com/eslint/eslint/issues/760">#760</a>)</li>
+<li><strong>Update:</strong> <a href="http://eslint.org/docs/rules/valid-jsdoc">valid-jsdoc</a> now allows you to optionally turn off parameter description checks (<a href="https://github.com/eslint/eslint/issues/822">#822</a>)</li>
+<li><strong>Update:</strong> <a href="http://eslint.org/docs/rules/no-extra-parens">no-extra-parens</a> now doesn&#39;t flag IIFEs (<a href="https://github.com/eslint/eslint/issues/655">#655</a>)</li>
+<li><strong>Fix:</strong> <a href="http://eslint.org/docs/rules/semi">semi</a> rule was incorrectly flagging extra semicolon (<a href="https://github.com/eslint/eslint/issues/840">#840</a>)</li>
+<li><strong>Update:</strong> Add &quot;nofunc&quot; option to <a href="http://eslint.org/docs/rules/no-use-before-define">no-use-before-define</a> (<a href="https://github.com/eslint/eslint/issues/829">#829</a>)</li>
+<li><strong>Fix:</strong> <a href="http://eslint.org/docs/rules/block-scoped-var">block-scoped-var</a> correct scope for functions, arguments (<a href="https://github.com/eslint/eslint/issues/832">#832</a>)</li>
+</ul>
+
+<h2>Configuration</h2>
+
+<ul>
+<li><strong>Update:</strong> You can now use comments to enable/disable rules around certain portions of a file (<a href="https://github.com/eslint/eslint/issues/305">#305</a>)</li>
+</ul>
+
+<h2>CLI</h2>
+
+<ul>
+<li><strong>Update:</strong> Added <code>--rule</code> flag to specify rules on the <a href="http://eslint.org/docs/user-guide/command-line-interface">command line</a>. (<a href="https://github.com/eslint/eslint/issues/692">#692</a>)</li>
+<li><strong>Update:</strong> Added <code>--force</code> to force ESLint to lint ignored files. Also, you&#39;ll now get a warning when ESLint is ignoring files that are explicitly passed on the command line.</li>
+</ul>
+
+<h2>Documentation</h2>
+
+<ul>
+<li><strong>Update:</strong> <a href="http://eslint.org/docs/developer-guide/contributing">Contribution Guidelines</a></li>
+<li><strong>Update:</strong> <a href="http://eslint.org/docs/developer-guide/development-environment">Development Environment</a></li>
+</ul>
+
+<h2>Build</h2>
+
+<ul>
+<li>Add linting of Makefile.js. (<a href="https://github.com/eslint/eslint/issues/870">#870</a>)</li>
+<li>Add check so that documentation reflects the correct on/off default for each rule (<a href="https://github.com/eslint/eslint/issues/865">#865</a>)</li>
+</ul>
+
+<h2>Upgrades</h2>
+
+<ul>
+<li>Esprima to 1.2 (fixes <a href="https://github.com/eslint/eslint/issues/842">#842</a>) (Nicholas C. Zakas)</li>
+</ul>
+
+<h2>Complete Changelog</h2>
+
+<p>The following is the complete list of changes in this version:</p>
+
+<ul>
+<li>Fix: Remove -r alias for --rule (fixes <a href="https://github.com/eslint/eslint/issues/882">#882</a>) (Nicholas C. Zakas)</li>
+<li>Docs: Update dev setup, contributing, default-case descriptions (Nicholas C. Zakas)</li>
+<li>Update: valid-jsdoc now allows you to optionally turn off parameter description checks (fixes <a href="https://github.com/eslint/eslint/issues/822">#822</a>) (Nicholas C. Zakas)</li>
+<li>Breaking: brace-style now disallows block statements where curlies are on the same line (fixes <a href="https://github.com/eslint/eslint/issues/758">#758</a>) (Nicholas C. Zakas)</li>
+<li>Add linting Makefile.js (fixes <a href="https://github.com/eslint/eslint/issues/870">#870</a>) (icebox)</li>
+<li>add rule flag, closes <a href="https://github.com/eslint/eslint/issues/692">#692</a> (George Zahariev)</li>
+<li>Add check between rules doc and index (fixes <a href="https://github.com/eslint/eslint/issues/865">#865</a>) (icebox)</li>
+<li>Add Build Next mention in integrations README. (icebox)</li>
+<li>document new IIFE exception for no-extra parens added as part of <a href="https://github.com/eslint/eslint/issues/655">#655</a> (Michael Ficarra)</li>
+<li>(fixes <a href="https://github.com/eslint/eslint/issues/622">#622</a>) Add rule ID on documentation pages (Delapouite)</li>
+<li>fixes <a href="https://github.com/eslint/eslint/issues/655">#655</a>: add IIFE exception to no-extra-parens (Michael Ficarra)</li>
+<li>add new rule &quot;no-new-require&quot; (Wil Moore III)</li>
+<li>exit with non-zero status when tests fail (fixes <a href="https://github.com/eslint/eslint/issues/858">#858</a>) (Márton Salomváry)</li>
+<li>removed unicode zero width space character from messages (fixes <a href="https://github.com/eslint/eslint/issues/857">#857</a>) (Márton Salomváry)</li>
+<li>Change: --rulesdir now can be specified multiple times (fixes <a href="https://github.com/eslint/eslint/issues/830">#830</a>) (Nicholas C. Zakas)</li>
+<li>Update: Node 0.8 no longer supported (fixes <a href="https://github.com/eslint/eslint/issues/734">#734</a>) (Nicholas C. Zakas)</li>
+<li>Update: Add typed arrays into builtin environment globals (fixes <a href="https://github.com/eslint/eslint/issues/846">#846</a>) (Nicholas C. Zakas)</li>
+<li>Fix: Add prototype methods to global scope (fixes <a href="https://github.com/eslint/eslint/issues/700">#700</a>) (Nicholas C. Zakas)</li>
+<li>Rule: no-restricted-modules (fixes <a href="https://github.com/eslint/eslint/issues/791">#791</a>) (Christian)</li>
+<li>Upgrade: Esprima to 1.2 (fixes <a href="https://github.com/eslint/eslint/issues/842">#842</a>) (Nicholas C. Zakas)</li>
+<li>Docs: reporting level 2 is an error (fixes <a href="https://github.com/eslint/eslint/issues/843">#843</a>) (Brandon Mills)</li>
+<li>Upgrade: Esprima to 1.2, switch to using Esprima comment attachment (fixes <a href="https://github.com/eslint/eslint/issues/730">#730</a>) (Nicholas C. Zakas)</li>
+<li>Fix: Semi rule incorrectly flagging extra semicolon (fixes <a href="https://github.com/eslint/eslint/issues/840">#840</a>) (Nicholas C. Zakas)</li>
+<li>Build: Update Travis to only test Node 0.10 (refs <a href="https://github.com/eslint/eslint/issues/734">#734</a>) (Nicholas C. Zakas)</li>
+<li>Add &quot;nofunc&quot; option (fixes <a href="https://github.com/eslint/eslint/issues/829">#829</a>) (Conrad Zimmerman)</li>
+<li>Rule: no-inner-declarations (fixes <a href="https://github.com/eslint/eslint/issues/587">#587</a>) (Brandon Mills)</li>
+<li>Rule &#39;block-scoped-var&#39;: correct scope for functions, arguments (fixes <a href="https://github.com/eslint/eslint/issues/832">#832</a>) (Aliaksei Shytkin)</li>
+<li>Rule: default-case (fixes <a href="https://github.com/eslint/eslint/issues/787">#787</a>) (Aliaksei Shytkin)</li>
+<li>Ignored files are excluded unless --force is passed on the CLI (Nick Fisher)</li>
+<li>Fixes a typo and a broken link in the documentation (Nick Fisher)</li>
+<li>Replaces .some() with .indexOf() where appropriate (Nick Fisher)</li>
+<li>Fix correct config merge for array values (fixes <a href="https://github.com/eslint/eslint/issues/819">#819</a>) (Aliaksei Shytkin)</li>
+<li>Remove warning about ESLint being in Alpha (Nick Fisher)</li>
+<li>Adds <code>space-after-keywords</code> rule (fixes <a href="https://github.com/eslint/eslint/issues/807">#807</a>) (Nick Fisher)</li>
+<li>Rule: no-lonely-if (fixes <a href="https://github.com/eslint/eslint/issues/790">#790</a>) (Brandon Mills)</li>
+<li>Add ignore comments in file (fixes <a href="https://github.com/eslint/eslint/issues/305">#305</a>) (Aliaksei Shytkin)</li>
+<li>Change: no-unused-vars default to &#39;all&#39; (fixes <a href="https://github.com/eslint/eslint/issues/760">#760</a>) (Nicholas C. Zakas)</li>
+</ul>
+
+  </article>
+</main>
+
+    <hr>
+
+    <div class="container">
+
+      <footer>
+        <ul class="list-inline">
+          <li><a href="https://groups.google.com/group/eslint">Mailing List</a></li>
+          <li><a href="https://github.com/eslint/eslint">GitHub</a></li>
+          <li><a href="https://twitter.com/geteslint">Twitter</a></li>
+          <li>Copyright &copy; 2013-2015 Nicholas C. Zakas. All rights reserved.</li>
+        </ul>
+      </footer>
+    </div><!-- /.container -->
+
+
+  <script id="suggestion-item-template" type="text/template">
+  
+  {{#isCategoryHeader}}<div class="suggestion-category">{{{category}}}</div>{{/isCategoryHeader}}
+  <div class="suggestion {{#isCategoryHeader}}suggestion-is-category-header{{/isCategoryHeader}}">
+    <div class="suggestion-subcategory-main">{{#isSubcategoryHeader}}{{{subcategory}}}{{/isSubcategoryHeader}}</div>
+    <div class="suggestion-content">
+      <div class="suggestion-subcategory-secondary">{{{subcategory}}}</div>
+      <div class="suggestion-title">{{{title}}}</div>
+      <div class="suggestion-text">{{{text}}}</div>
+    </div>
+  </div>
+  
+  </script>
+
+  <script src="/js/vendor/jquery-1.10.2.min.js"></script>
+  <script src="/js/vendor/bootstrap.min.js"></script>
+  <script src="/js/vendor/anchor.min.js"></script>
+  <script src="/js/app/search.js"></script>
+  <script>
+    $(document).ready(function() {
+      anchors.add('.doc h2, .doc h3, .doc h4, .blog h2, .blog h3, .blog h4');
+      
+    });
+  </script>
+</body>
+</html>
+
