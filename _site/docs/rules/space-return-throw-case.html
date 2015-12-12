@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,13 +130,21 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Require spaces following <code>return</code>, <code>throw</code>, and <code>case</code> (space-return-throw-case)</h1>
 
+<h1>要求<code>return</code>, <code>throw</code>, 和 <code>case</code>后紧跟空格 (space-return-throw-case)</h1>
+
 <p>Require spaces following <code>return</code>, <code>throw</code>, and <code>case</code>.</p>
 
+<p>要求<code>return</code>, <code>throw</code>, 和 <code>case</code>后紧跟空格。</p>
+
 <p><strong>Fixable:</strong> This rule is automatically fixable using the <code>--fix</code> flag on the command line.</p>
+
+<p><strong>Fixable:</strong> 该规则可以通过<code>--fix</code>命令行进行自动修复。</p>
 
 <h2>Rule Details</h2>
 
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-return-throw-case: 2*/</span>
 
 <span class="k">throw</span><span class="p">{</span><span class="na">a</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>                   <span class="cm">/*error Keyword "throw" must be followed by whitespace.*/</span>
@@ -146,6 +154,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="k">switch</span><span class="p">(</span><span class="nx">a</span><span class="p">){</span> <span class="k">case</span><span class="s1">'a'</span><span class="err">:</span> <span class="k">break</span><span class="p">;</span> <span class="p">}</span> <span class="cm">/*error Keyword "case" must be followed by whitespace.*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-return-throw-case: 2*/</span>
 
 <span class="k">throw</span> <span class="p">{</span><span class="na">a</span><span class="p">:</span> <span class="mi">0</span><span class="p">};</span>
@@ -157,6 +167,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.1.4.</p>
+
+<p>该规则在ESLint 0.1.4 中被引入。</p>
 
 <h2>Resources</h2>
 

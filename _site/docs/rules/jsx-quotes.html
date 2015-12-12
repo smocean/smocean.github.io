@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,40 +130,67 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Enforce JSX Quote Style (jsx-quotes)</h1>
 
+<h1>强制JSX引号风格 (jsx-quotes)</h1>
+
 <p>JSX attribute values can contain string literals, which are delimited with single or double quotes.</p>
+
+<p>JSX的属性可以包含由单引号或双引号分隔的字符串。</p>
 <div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;a</span> <span class="na">b=</span><span class="s">'c'</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;a</span> <span class="na">b=</span><span class="s">"c"</span> <span class="nt">/&gt;</span>
 </code></pre></div>
-<p>Unlike string literals in JavaScript, string literals within JSX attributes can’t contain escaped quotes.
-If you want to have e.g. a double quote within a JSX attribute value, you have to use single quotes as string delimiter.</p>
+<p>Unlike string literals in JavaScript, string literals within JSX attributes can’t contain escaped quotes.</p>
+
+<p>不同于Javascript中的字符串，JSX属性中字符串不能包含转义的引号</p>
+
+<p>If you want to have e.g. a double quote within a JSX attribute value, you have to use single quotes as string delimiter.</p>
+
+<p>如果你想在JSX的属性中使用双引号，你必须使用单引号作为字符串分隔符。</p>
 <div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;a</span> <span class="na">b=</span><span class="s">"'"</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;a</span> <span class="na">b=</span><span class="s">'"'</span> <span class="nt">/&gt;</span>
 </code></pre></div>
 <h2>Rule Details</h2>
 
-<p>This rule takes one argument.
-If it is <code>&quot;prefer-double&quot;</code> then the rule enforces the usage of double quotes for all JSX attribute values which doesn’t contain a double quote.
+<p>This rule takes one argument.</p>
+
+<p>该规则只有一个参数。</p>
+
+<p>If it is <code>&quot;prefer-double&quot;</code> then the rule enforces the usage of double quotes for all JSX attribute values which doesn’t contain a double quote.
 If <code>&quot;prefer-single&quot;</code> is configured then the rule enforces the usage of single quotes for all JSX attribute values which doesn’t contain a single quote.</p>
+
+<p>如果是<code>&quot;prefer-double&quot;</code>，该规则强制在JSX属性中使用双引号，其中不能再包含双引号。
+如果设置为 <code>&quot;prefer-single&quot;</code>，该规则强制在JSX属性中使用单引号，其中不能再包含单引号。</p>
 
 <p>The default is <code>&quot;prefer-double&quot;</code>.</p>
 
+<p>默认为<code>&quot;prefer-double&quot;</code>。</p>
+
 <p>The following patterns are considered problems when set to <code>&quot;prefer-double&quot;</code>:</p>
+
+<p>当设置为<code>&quot;prefer-double&quot;</code>，以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;a</span> <span class="na">b=</span><span class="s">'c'</span> <span class="nt">/&gt;</span>
 </code></pre></div>
 <p>The following patterns are not considered problems when set to <code>&quot;prefer-double&quot;</code>:</p>
+
+<p>当设置为<code>&quot;prefer-double&quot;</code>，以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;a</span> <span class="na">b=</span><span class="s">"c"</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;a</span> <span class="na">b=</span><span class="s">'"'</span> <span class="nt">/&gt;</span>
 </code></pre></div>
 <p>The following patterns are considered problems when set to <code>&quot;prefer-single&quot;</code>:</p>
+
+<p>当设置为<code>&quot;prefer-single&quot;</code>，以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;a</span> <span class="na">b=</span><span class="s">"c"</span> <span class="nt">/&gt;</span>
 </code></pre></div>
 <p>The following patterns are not considered problems when set to <code>&quot;prefer-single&quot;</code>:</p>
+
+<p>当设置为<code>&quot;prefer-single&quot;</code>，以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;a</span> <span class="na">b=</span><span class="s">'c'</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;a</span> <span class="na">b=</span><span class="s">"'"</span> <span class="nt">/&gt;</span>
 </code></pre></div>
 <h2>When Not To Use It</h2>
 
 <p>You can turn this rule off if you don’t use JSX or if you aren’t concerned with a consistent usage of quotes within JSX attributes.</p>
+
+<p>如果你不使用JSX或者不关心JSX属性中引号使用的的一致性，关闭此规则即可。</p>
 
 <h2>Related Rules</h2>
 
@@ -174,6 +201,8 @@ If <code>&quot;prefer-single&quot;</code> is configured then the rule enforces t
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 1.4.0.</p>
+
+<p>该规则在ESLint 1.4.0 中被引入。</p>
 
 <h2>Resources</h2>
 

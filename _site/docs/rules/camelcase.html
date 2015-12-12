@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,15 +130,23 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Require Camelcase (camelcase)</h1>
 
+<h1>骆驼拼写法要求</h1>
+
 <p>When it comes to naming variables, styleguides generally fall into one of two camps: camelcase (<code>variableName</code>) and underscores (<code>variable_name</code>). This rule focuses on using the camelcase approach. If your styleguide calls for camelcasing your variable names, then this rule is for you!</p>
+
+<p>当命名变量时，风格指南一般会分会骆驼拼写法 (<code>variableName</code>) 和 下划线拼写法 (<code>variable_name</code>)两大阵营。该规则主要关注于骆驼拼写法的用法。如果你的风格指南要求变量名称以驼峰的形式书写，此规则正适合于你。</p>
 
 <h2>Rule Details</h2>
 
 <p>This rule looks for any underscores (<code>_</code>) located within the source code. It ignores leading and trailing underscores and only checks those in the middle of a variable name. If ESLint decides that the variable is a constant (all uppercase), then no warning will be thrown. Otherwise, a warning will be thrown. This rule only flags definitions and assignments but not function calls.</p>
 
+<p>此规则在源码中查找下划线 (<code>_</code>) 。它忽略前导和尾部的下划线，只检查在变量名称中间的下划线。如果ESLint判断定某个变量是个常量(全部大写)，将不会发出警告。反正则会发出警告。该规则仅仅标记定义和赋值，不适用于方法调用。</p>
+
 <h3>Options</h3>
 
 <p>This rule accepts a single options argument with the following defaults:</p>
+
+<p>该规则只接受下列默认值这么一个可选项参数：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
     </span><span class="nt">"rules"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"camelcase"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="s2">"always"</span><span class="p">}]</span><span class="w">
@@ -147,12 +155,18 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </span></code></pre></div>
 <p><code>Properties</code> can have the following values:</p>
 
+<p><code>Properties</code> 可以有以下两个值:</p>
+
 <ol>
-<li><code>always</code> is the default and checks all property names</li>
-<li><code>never</code> does not check property names at all</li>
+<li><p><code>always</code> is the default and checks all property names</p></li>
+<li><p><code>always</code> 是默认值，检查所有的属性名称</p></li>
+<li><p><code>never</code> does not check property names at all</p></li>
+<li><p><code>never</code> 完全不检查属性名称</p></li>
 </ol>
 
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint camelcase: 2*/</span>
 <span class="kd">var</span> <span class="nx">my_favorite_color</span> <span class="o">=</span> <span class="s2">"#112C85"</span><span class="p">;</span> <span class="cm">/*error Identifier 'my_favorite_color' is not in camel case.*/</span>
 
@@ -169,6 +183,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">};</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint camelcase: 2*/</span>
 <span class="kd">var</span> <span class="nx">myFavoriteColor</span>   <span class="o">=</span> <span class="s2">"#112C85"</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">_myFavoriteColor</span>  <span class="o">=</span> <span class="s2">"#112C85"</span><span class="p">;</span>
@@ -188,9 +204,13 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>If you have established coding standards using a different naming convention (separating words with underscores), turn this rule off.</p>
 
+<p>如果你已经建立了编码标准，使用了不同的命名约定(用下划线分隔单词)，关闭此规则即可。</p>
+
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.0.2.</p>
+
+<p>该规则在ESLint 0.0.2 被引入。</p>
 
 <h2>Resources</h2>
 

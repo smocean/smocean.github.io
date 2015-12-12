@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,7 +130,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Require or disallow spaces following keywords (space-after-keywords)</h1>
 
+<h1>要求或禁止在关键字后存在空格 (space-after-keywords)</h1>
+
 <p>Some style guides will require or disallow spaces following the certain keywords.</p>
+
+<p>一些风格指南在特定的关键字后要求或禁止存在空格。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">doSomething</span><span class="p">();</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -145,14 +149,22 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </code></pre></div>
 <p><strong>Fixable:</strong> This rule is automatically fixable using the <code>--fix</code> flag on the command line.</p>
 
+<p><strong>Fixable:</strong> 该规则可以通过<code>--fix</code>命令行进行自动修复。</p>
+
 <h2>Rule Details</h2>
 
 <p>This rule will enforce consistency of spacing after the keywords <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>, <code>do</code>, <code>switch</code>, <code>try</code>, <code>catch</code>, <code>finally</code>, and <code>with</code>.</p>
 
+<p>该规则强制<code>if</code>, <code>else</code>, <code>for</code>, <code>while</code>, <code>do</code>, <code>switch</code>, <code>try</code>, <code>catch</code>, <code>finally</code>, 和 <code>with</code>这些关键字后空格的一致性。</p>
+
 <p>This rule takes one argument. If it is <code>&quot;always&quot;</code> then the keywords must be followed by at least one space. If <code>&quot;never&quot;</code>
 then there should be no spaces following. The default is <code>&quot;always&quot;</code>.</p>
 
+<p>该规则有一个参数。如果是<code>&quot;always&quot;</code>，这些关键字后至少跟随一个空格。如果是<code>&quot;never&quot;</code>，这些关键字后不要有空格。默认为<code>&quot;always&quot;</code>。</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-after-keywords: 2*/</span>
 
 <span class="k">if</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{}</span>         <span class="cm">/*error Keyword "if" must be followed by whitespace.*/</span>
@@ -165,6 +177,8 @@ then there should be no spaces following. The default is <code>&quot;always&quot
 <span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{}</span>        <span class="cm">/*error Keyword "if" must not be followed by whitespace.*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-after-keywords: 2*/</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{}</span>
@@ -177,6 +191,8 @@ then there should be no spaces following. The default is <code>&quot;always&quot
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.6.0.</p>
+
+<p>该规则在ESLint 0.6.0 中被引入。</p>
 
 <h2>Resources</h2>
 

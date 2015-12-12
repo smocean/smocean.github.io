@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,7 +130,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Limit Maximum Depth (max-depth)</h1>
 
+<h1>限制最大深度 (max-depth)</h1>
+
 <p>The <code>max-depth</code> rule allows you to specify the maximum depth blocks can be nested.</p>
+
+<p>该规则允许你指定一个可以嵌套的最大深度。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(;;)</span> <span class="p">{</span> <span class="c1">// Nested 1 deep.</span>
     <span class="k">if</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Nested 2 deep.</span>
@@ -145,12 +149,18 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>This rule aims to reduce the complexity of your code by allowing you to configure the maximum depth blocks can be nested in a function. As such, it will warn when blocks are nested too deeply.</p>
 
+<p>此规则旨在通过允许你配置在一个函数中可以嵌套的最大深度来减少你的代码的复杂性。因此，如果块嵌套太深，该规则会发出警告。</p>
+
 <h3>Options</h3>
 
 <p>The default depth above which this rule will warn is <code>4</code>.  You can configure the depth as an option by using the second argument in your configuration. For example, this sets the rule as an error with a maximum depth of 10:</p>
+
+<p>默认最大深度为<code>3</code>。你可以在设置这个最大深度可选项，在你的配置中将它作为第二个参数。例如，以下设置为最大深度为10的错误级别的规则：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"max-depth"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint max-depth: [2, 2]*/</span>
 
 <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
@@ -164,6 +174,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint max-depth: [2, 2]*/</span>
 
 <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
@@ -187,6 +199,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.0.9.</p>
+
+<p>该规则在ESLint 0.0.9 中被引入。</p>
 
 <h2>Resources</h2>
 

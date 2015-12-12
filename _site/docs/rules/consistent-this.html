@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,7 +130,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Require Consistent This (consistent-this)</h1>
 
+<h1>要求一致的this</h1>
+
 <p>It is often necessary to capture the current execution context in order to make it available subsequently. A prominent example of this are jQuery callbacks:</p>
+
+<p>通常，非常有必要获取当前执行环境的上下文以便在后续过长中继续使用。一个常见的例子就是jQuery的回调函数：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 <span class="nx">jQuery</span><span class="p">(</span><span class="s1">'li'</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// here, "this" is the HTMLElement where the click event occurred</span>
@@ -139,25 +143,37 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </code></pre></div>
 <p>There are many commonly used aliases for <code>this</code> such as <code>self</code>, <code>that</code> or <code>me</code>. It is desirable to ensure that whichever alias the team agrees upon is used consistently throughout the application.</p>
 
+<p><code>this</code>有多常用的别名例如<code>self</code>, <code>that</code> 或 <code>me</code>。在整个应用中，团队认可的别名应确保在使用过程中保持一致。</p>
+
 <h2>Rule Details</h2>
 
 <p>This rule designates a variable as the chosen alias for <code>this</code>. It then enforces two things:</p>
 
+<p>该规则指定一个变量作为<code>this</code>的别名。它将强制两件事情：</p>
+
 <ul>
-<li>if a variable with the designated name is declared or assigned to, it <em>must</em> explicitly be assigned the current execution context, i.e. <code>this</code></li>
-<li>if <code>this</code> is explicitly assigned to a variable, the name of that variable must be the designated one</li>
+<li><p>if a variable with the designated name is declared or assigned to, it <em>must</em> explicitly be assigned the current execution context, i.e. <code>this</code></p></li>
+<li><p>如果一个指定名称的变量被声明或赋值，它<em>必须</em>显示的被赋值为当前执行环境的上下文，比如<code>this</code>。</p></li>
+<li><p>if <code>this</code> is explicitly assigned to a variable, the name of that variable must be the designated one</p></li>
+<li><p>如果<code>this</code>被显示的赋值给一个变量，该变量必须是指定的那个名称。</p></li>
 </ul>
 
 <h3>Options</h3>
 
 <p>This rule takes one option, a string, which is the designated <code>this</code> variable.</p>
 
+<p>该规则有一个可选项，是个字符串，用来指定<code>this</code>的别名。</p>
+
 <h4>Usage</h4>
 
 <p>You can set the rule configuration like this:</p>
+
+<p>你可以在配置文件中这样设置：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"consistent-this"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"self"</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint consistent-this: [2, "self"]*/</span>
 
 <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>   <span class="cm">/*error Designated alias 'self' is not assigned to 'this'.*/</span>
@@ -169,6 +185,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>     <span class="cm">/*error Unexpected alias 'that' for 'this'.*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint consistent-this: [2, "self"]*/</span>
 
 <span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
@@ -182,6 +200,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="nx">foo</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 </code></pre></div>
 <p>A declaration of an alias does not need to assign <code>this</code> in the declaration, but it must perform an appropriate assignment in the same scope as the declaration. The following patterns are also considered okay:</p>
+
+<p>别名没有必要在声明是就赋值为<code>this</code>，但必须在同样的作用域下完成赋值。以下模式被认为是可以的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint consistent-this: [2, "self"]*/</span>
 
 <span class="kd">var</span> <span class="nx">self</span><span class="p">;</span>
@@ -192,6 +212,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 </code></pre></div>
 <p>But the following pattern is considered a warning:</p>
+
+<p>但以下模式被认为是个警告：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint consistent-this: [2, "self"]*/</span>
 
 <span class="kd">var</span> <span class="nx">self</span><span class="p">;</span>        <span class="cm">/*error Designated alias 'self' is not assigned to 'this'.*/</span>
@@ -203,9 +225,13 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>If you need to capture nested context, <code>consistent-this</code> is going to be problematic. Code of that nature is usually difficult to read and maintain and you should consider refactoring it.</p>
 
+<p>如果你需要获取嵌套的上下文，<code>consistent-this</code>是会有问题的。这种类型的代码通常很难阅读和维护，你应该考虑重构它。</p>
+
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.0.9.</p>
+
+<p>该规则在ESLint 0.0.9 被引入。</p>
 
 <h2>Resources</h2>
 

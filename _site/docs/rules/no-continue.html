@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,7 +130,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow continue (no-continue)</h1>
 
+<h1>禁用continue (no-continue)</h1>
+
 <p>The <code>continue</code> statement terminates execution of the statements in the current iteration of the current or labeled loop, and continues execution of the loop with the next iteration. When used incorrectly it makes code less testable, less readable and less maintainable. Structured control flow statements such as <code>if</code> should be used instead.</p>
+
+<p><code>continue</code>终止当前的循环的此次迭代或带标签的循环，执行循环中的下一个迭代。不正确的使用会降低代码可测性、可读性和可维护性。应使用结构化的控制语句如<code>if</code>来代替。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="nx">i</span><span class="p">;</span>
 
@@ -147,7 +151,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <p>This rule is aimed at preventing the use of <code>continue</code> statement.
 As such it warns whenever it sees <code>continue</code> statement.</p>
 
+<p>该规则旨在防止<code>continue</code>语句的使用。因此，当遇到<code>continue</code>语句时，该规则将发出提醒。</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-continue: 2*/</span>
 
 <span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -174,6 +182,8 @@ As such it warns whenever it sees <code>continue</code> statement.</p>
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-continue: 2*/</span>
 
 <span class="kd">var</span> <span class="nx">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -194,6 +204,8 @@ As such it warns whenever it sees <code>continue</code> statement.</p>
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.19.0.</p>
+
+<p>该规则在ESLint 0.19.0 被引入。</p>
 
 <h2>Resources</h2>
 

@@ -7,6 +7,129 @@
     <atom:link href="http://eslint.org/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>Espree v3.0.0 Alpha 1 released</title>
+        <description>&lt;h1&gt;Espree v3.0.0 Alpha 1 released&lt;/h1&gt;
+
+&lt;p&gt;We are pleased to share that we&amp;#39;ve just pushed the first alpha release of Espree v3.0.0. This is a major release with breaking changes, so please be sure to read this post thoroughly.&lt;/p&gt;
+
+&lt;h2&gt;Installation&lt;/h2&gt;
+
+&lt;p&gt;Since Espree v3.0.0 is a prerelease version, you&amp;#39;ll need to install it using the &lt;code&gt;@next&lt;/code&gt; tag:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;$ npm install espree@next
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;@latest&lt;/code&gt; tag is still on the latest v2.x version of Espree.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; We are providing this release to gather feedback. Help out by &lt;a href=&quot;https://github.com/eslint/espree/issues/new&quot;&gt;filing issues&lt;/a&gt; if you find a problem.&lt;/p&gt;
+
+&lt;h2&gt;Highlights&lt;/h2&gt;
+
+&lt;p&gt;Here are some highlights of changes in this release.&lt;/p&gt;
+
+&lt;h3&gt;Based on Acorn&lt;/h3&gt;
+
+&lt;p&gt;It was never our intention to maintain another JavaScript parser. When Espree was first introduced, Esprima development had stopped and it seemed like something need to fill that void. We forked Esprima to start Espree, and development went on from there. However, Esprima started development again and we resolved to fold Espree back into Esprima at some point. One of the big sticking points was the ability to switch on and off different language features. While such a capability was on the roadmap, it was very far off in the future, and we needed to make a decision.&lt;/p&gt;
+
+&lt;p&gt;Ultimately, we found that Acorn already supported the hooks we&amp;#39;d need to generate the same output as Esprima and Espree. Since we didn&amp;#39;t want to continue maintaining a standalone parser, the decision was made to build Espree on top of Acorn. Effectively, Espree is an adapter that produces Esprima output directly from Acorn. This allows us to both continue development on Espree to turn off and on the language features individually as well as to contribute back to one of primary open source JavaScript parsers.&lt;/p&gt;
+
+&lt;p&gt;This switch took a lot of time and effort, and huge thanks go to &lt;a href=&quot;https://twitter.com/rreverser&quot;&gt;Ingvar Stepanyan&lt;/a&gt; for all of his help in making this happen by both contributing code directly to Espree and for helping to fix bugs on Acorn.&lt;/p&gt;
+
+&lt;h3&gt;AST and Output Differences&lt;/h3&gt;
+
+&lt;p&gt;Because Acorn works a bit differently than Esprima, there are some changes to the output. These changes are relatively minor and have been verified to not cause problems in ESLint, so we are hopeful that these changes also will have little effect on other consumers.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Additional &lt;code&gt;start&lt;/code&gt; and &lt;code&gt;end&lt;/code&gt; properties on nodes and tokens. Acorn uses these internally as part of the parsing routine and attempts to remove or make them nonenumerable resulted in a performance hit. As such, we decided to just leave these properties. They correspond exactly to the two values in the &lt;code&gt;range&lt;/code&gt; array.&lt;/li&gt;
+&lt;li&gt;The end of each node is now considered the location of the last token. Esprima and Espree v2.x included trailing whitespace in the range of a node, but Acorn and Espree v3.x don&amp;#39;t.&lt;/li&gt;
+&lt;li&gt;Error messages are different. Instead of trying to replicate the error messages from Esprima, Espree v3.x just uses the Acorn messages. The error object formats are the same, it&amp;#39;s just the actual text of the message that is different.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;Bug Fixes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fix: (&amp;#39;...&amp;#39;) should parse &lt;a href=&quot;https://github.com/eslint/espree/issues/202&quot;&gt;#202&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix: MetaProperty should have two Identifiers &lt;a href=&quot;https://github.com/eslint/espree/issues/206&quot;&gt;#206&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix: generator + computed property method is parsed as none computed. &lt;a href=&quot;https://github.com/eslint/espree/issues/207&quot;&gt;#207&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix: parse unicode escapes in identifiers (fixes &lt;a href=&quot;https://github.com/eslint/espree/issues/181&quot;&gt;#181&lt;/a&gt;) (Nicholas C. Zakas)&lt;/li&gt;
+&lt;li&gt;Fix: Ensure object rest works in destructed arg (fixes &lt;a href=&quot;https://github.com/eslint/espree/issues/213&quot;&gt;#213&lt;/a&gt;) (Nicholas C. Zakas)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 01 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://eslint.org//blog/2015/12/espree-3-alpha-1-released</link>
+        <guid isPermaLink="true">http://eslint.org//blog/2015/12/espree-3-alpha-1-released</guid>
+      </item>
+    
+      <item>
+        <title>ESLint v1.10.3 released</title>
+        <description>&lt;h1&gt;ESLint v1.10.3 released&lt;/h1&gt;
+
+&lt;p&gt;We just pushed ESLint v1.10.3, which is a patch release upgrade of ESLint. This release  fixes several bugs found in the previous release.&lt;/p&gt;
+
+&lt;h2&gt;Bug Fixes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fix: Add for-of to &lt;code&gt;curly&lt;/code&gt; rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4571&quot;&gt;#4571&lt;/a&gt;) (Kai Cataldo)&lt;/li&gt;
+&lt;li&gt;Fix: Ignore space before function in array start (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4569&quot;&gt;#4569&lt;/a&gt;) (alberto)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Documentation&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Docs: Update strict rule docs (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4583&quot;&gt;#4583&lt;/a&gt;) (Nicholas C. Zakas)&lt;/li&gt;
+&lt;li&gt;Docs: Reference .eslintrc.* in contributing docs (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4532&quot;&gt;#4532&lt;/a&gt;) (Kai Cataldo)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Tue, 01 Dec 2015 00:00:00 +0800</pubDate>
+        <link>http://eslint.org//blog/2015/12/eslint-v1.10.3-released</link>
+        <guid isPermaLink="true">http://eslint.org//blog/2015/12/eslint-v1.10.3-released</guid>
+      </item>
+    
+      <item>
+        <title>ESLint v1.10.2 released</title>
+        <description>&lt;h1&gt;ESLint v1.10.2 released&lt;/h1&gt;
+
+&lt;p&gt;We just pushed ESLint v1.10.2, which is a patch release upgrade of ESLint. This release  fixes several bugs found in the previous release.&lt;/p&gt;
+
+&lt;h2&gt;Bug Fixes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fix: lines-around-comment with multiple comments (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3509&quot;&gt;#3509&lt;/a&gt;) (alberto)&lt;/li&gt;
+&lt;li&gt;Fix: Bugfix for eqeqeq autofix (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4540&quot;&gt;#4540&lt;/a&gt;) (Kevin Partington)&lt;/li&gt;
+&lt;li&gt;Fix: Add for-in to &lt;code&gt;curly&lt;/code&gt; rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4436&quot;&gt;#4436&lt;/a&gt;) (Kai Cataldo)&lt;/li&gt;
+&lt;li&gt;Fix: &lt;code&gt;valid-jsdoc&lt;/code&gt; unneeded require check fix (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4527&quot;&gt;#4527&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
+&lt;li&gt;Fix: &lt;code&gt;brace-style&lt;/code&gt; ASI fix for if-else condition (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4520&quot;&gt;#4520&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
+&lt;li&gt;Fix: Incorrect location in no-fallthrough (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4516&quot;&gt;#4516&lt;/a&gt;) (alberto)&lt;/li&gt;
+&lt;li&gt;Fix: &lt;code&gt;no-spaced-func&lt;/code&gt; had been crashed (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4508&quot;&gt;#4508&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
+&lt;li&gt;Fix: Add a RestProperty test of &lt;code&gt;no-undef&lt;/code&gt; (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3271&quot;&gt;#3271&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Documentation&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Docs: Load badge from HTTPS (Brian J Brennan)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Dependency Upgrades&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Upgrade: escope@3.3.0 (refs &lt;a href=&quot;https://github.com/eslint/eslint/issues/4485&quot;&gt;#4485&lt;/a&gt;) (Nicholas C. Zakas)&lt;/li&gt;
+&lt;li&gt;Upgrade: Pinned down js-yaml to avoid breaking dep (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4553&quot;&gt;#4553&lt;/a&gt;) (alberto)&lt;/li&gt;
+&lt;li&gt;Upgrade: doctrine@0.7.1 (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4545&quot;&gt;#4545&lt;/a&gt;) (Kevin Partington)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Build Related&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Build: Add branch update during release process (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4491&quot;&gt;#4491&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
+&lt;li&gt;Build: Allow revert commits in commit messages (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4452&quot;&gt;#4452&lt;/a&gt;) (alberto)&lt;/li&gt;
+&lt;li&gt;Build: Update eslint bot messages (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4497&quot;&gt;#4497&lt;/a&gt;) (Nicholas C. Zakas)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Fri, 27 Nov 2015 00:00:00 +0800</pubDate>
+        <link>http://eslint.org//blog/2015/11/eslint-v1.10.2-released</link>
+        <guid isPermaLink="true">http://eslint.org//blog/2015/11/eslint-v1.10.2-released</guid>
+      </item>
+    
+      <item>
         <title>ESLint v1.10.1 released</title>
         <description>&lt;h1&gt;ESLint v1.10.1 released&lt;/h1&gt;
 
@@ -339,251 +462,6 @@
         <pubDate>Fri, 16 Oct 2015 00:00:00 +0800</pubDate>
         <link>http://eslint.org//blog/2015/10/eslint-v1.7.1-released</link>
         <guid isPermaLink="true">http://eslint.org//blog/2015/10/eslint-v1.7.1-released</guid>
-      </item>
-    
-      <item>
-        <title>ESLint v1.7.0 released</title>
-        <description>&lt;h1&gt;ESLint v1.7.0 released&lt;/h1&gt;
-
-&lt;p&gt;We just pushed ESLint v1.7.0, which is a minor release upgrade of ESLint. This release adds some new features and fixes several bugs found in the previous release.&lt;/p&gt;
-
-&lt;h2&gt;Highlights&lt;/h2&gt;
-
-&lt;p&gt;Here are some highlights of changes in this release.&lt;/p&gt;
-
-&lt;h3&gt;New Rules&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://eslint.org/docs/rules/no-empty-pattern&quot;&gt;&lt;code&gt;no-empty-pattern&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://eslint.org/docs/rules/no-magic-numbers&quot;&gt;&lt;code&gt;no-magic-numbers&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Extending JavaScript configs&lt;/h3&gt;
-
-&lt;p&gt;You&amp;#39;ve always been able to use npm packages in the &lt;code&gt;extends&lt;/code&gt; field of your configuration file. Now, you can directly link to JavaScript files in &lt;code&gt;extends&lt;/code&gt;, allowing you to reference JavaScript configuration files directly even when they are not part of an npm package.&lt;/p&gt;
-
-&lt;h2&gt;Features&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;New: Create eslint-config-eslint (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3525&quot;&gt;#3525&lt;/a&gt;) (Nicholas C. Zakas)&lt;/li&gt;
-&lt;li&gt;New: add &amp;quot;consistent&amp;quot; option to the &amp;quot;curly&amp;quot; rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/2390&quot;&gt;#2390&lt;/a&gt;) (Benoît Zugmeyer)&lt;/li&gt;
-&lt;li&gt;New: no-empty-pattern rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3668&quot;&gt;#3668&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;New: no-magic-numbers rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4027&quot;&gt;#4027&lt;/a&gt;) (Vincent Lemeunier)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Enhancements&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Update: Support .js files for config (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3102&quot;&gt;#3102&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Update: RuleTester allows string errors in invalid cases (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4117&quot;&gt;#4117&lt;/a&gt;) (Kevin Partington)&lt;/li&gt;
-&lt;li&gt;Update: added exceptions to &lt;code&gt;lines-around-comment&lt;/code&gt; rule. (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/2965&quot;&gt;#2965&lt;/a&gt;) (Mathieu M-Gosselin)&lt;/li&gt;
-&lt;li&gt;Update: Add &lt;code&gt;matchDescription&lt;/code&gt; option to &lt;code&gt;valid-jsdoc&lt;/code&gt; (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/2449&quot;&gt;#2449&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Update: Add &lt;code&gt;allow&lt;/code&gt; option for &lt;code&gt;no-underscore-dangle&lt;/code&gt; rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/2135&quot;&gt;#2135&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Update: &lt;code&gt;allowArrowFunctions&lt;/code&gt; option for &lt;code&gt;func-style&lt;/code&gt; rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/1897&quot;&gt;#1897&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Update: Ignore end of function in newline-after-var (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3682&quot;&gt;#3682&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Update: Option to ignore for loops in init-declarations (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3641&quot;&gt;#3641&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Update: Add webextensions environment (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4051&quot;&gt;#4051&lt;/a&gt;) (Blake Winton)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Bug Fixes&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Fix: array-bracket-spacing for empty array (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4141&quot;&gt;#4141&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;indent&lt;/code&gt; arrow function check fix (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4142&quot;&gt;#4142&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Fix: Make eslint-config-eslint work (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4145&quot;&gt;#4145&lt;/a&gt;) (Nicholas C. Zakas)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;prefer-arrow-callback&lt;/code&gt; had been wrong at arguments (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4095&quot;&gt;#4095&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
-&lt;li&gt;Fix: check for objects or arrays in array-bracket-spacing (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4083&quot;&gt;#4083&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Fix: message templates fail when no parameters are passed (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4080&quot;&gt;#4080&lt;/a&gt;) (Ilya Volodin)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;indent&lt;/code&gt; multi-line function call (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4073&quot;&gt;#4073&lt;/a&gt;, fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4075&quot;&gt;#4075&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Fix: no-mixed-tabs-and-spaces fails with some comments (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4086&quot;&gt;#4086&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;semi&lt;/code&gt; to check for do-while loops (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4090&quot;&gt;#4090&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;no-unused-vars&lt;/code&gt; had been missing some parameters (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4047&quot;&gt;#4047&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
-&lt;li&gt;Fix: no-mixed-spaces-and-tabs with comments and templates (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4077&quot;&gt;#4077&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Fix: Ignore template literals in no-mixed-tabs-and-spaces (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4054&quot;&gt;#4054&lt;/a&gt;) (Nicholas C. Zakas)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;no-cond-assign&lt;/code&gt; had needed double parens in &lt;code&gt;for&lt;/code&gt; (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4023&quot;&gt;#4023&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
-&lt;li&gt;Fix: id-match bug incorrectly errors on &lt;code&gt;NewExpression&lt;/code&gt; (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4042&quot;&gt;#4042&lt;/a&gt;) (Burak Yigit Kaya)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;no-trailing-spaces&lt;/code&gt; autofix to handle linebreaks (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4050&quot;&gt;#4050&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Fix: renamed no-magic-number to no-magic-numbers (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4053&quot;&gt;#4053&lt;/a&gt;) (Vincent Lemeunier)&lt;/li&gt;
-&lt;li&gt;Fix: no-cond-assign should report assignment location (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4040&quot;&gt;#4040&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;no-redeclare&lt;/code&gt; and &lt;code&gt;no-sahadow&lt;/code&gt; for builtin globals (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3971&quot;&gt;#3971&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Documentation&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Docs: Update various rules docs (Nicholas C. Zakas)&lt;/li&gt;
-&lt;li&gt;Docs: Reference no-unexpected-multiline in semi (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4114&quot;&gt;#4114&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Docs: Alphabetize Rules lists (Kenneth Chung)&lt;/li&gt;
-&lt;li&gt;Docs: Improve comma-dangle documentation (Gilad Peleg)&lt;/li&gt;
-&lt;li&gt;Docs: Re-tag JSX code fences (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4020&quot;&gt;#4020&lt;/a&gt;) (Brandon Mills)&lt;/li&gt;
-&lt;li&gt;Docs: Remove list of users from README (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3881&quot;&gt;#3881&lt;/a&gt;) (Brandon Mills)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Dependency Upgrades&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Upgrade: Upgrade globals to 8.11.0 (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3599&quot;&gt;#3599&lt;/a&gt;) (Burak Yigit Kaya)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Build Related&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Build: Fix path related failures on Windows in tests (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4061&quot;&gt;#4061&lt;/a&gt;) (Burak Yigit Kaya)&lt;/li&gt;
-&lt;li&gt;Build: Enable CodeClimate (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4068&quot;&gt;#4068&lt;/a&gt;) (Nicholas C. Zakas)&lt;/li&gt;
-&lt;li&gt;Build: Performance perf to not ignore jshint file (refs &lt;a href=&quot;https://github.com/eslint/eslint/issues/3765&quot;&gt;#3765&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Build: Add &lt;code&gt;.eslintignore&lt;/code&gt; file for the project (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3765&quot;&gt;#3765&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Fri, 16 Oct 2015 00:00:00 +0800</pubDate>
-        <link>http://eslint.org//blog/2015/10/eslint-v1.7.0-released</link>
-        <guid isPermaLink="true">http://eslint.org//blog/2015/10/eslint-v1.7.0-released</guid>
-      </item>
-    
-      <item>
-        <title>ESLint v1.6.0 released</title>
-        <description>&lt;h1&gt;ESLint v1.6.0 released&lt;/h1&gt;
-
-&lt;p&gt;We just pushed ESLint v1.6.0, which is a minor release upgrade of ESLint. This release adds some new features and fixes several bugs found in the previous release.&lt;/p&gt;
-
-&lt;h2&gt;Highlights&lt;/h2&gt;
-
-&lt;p&gt;Here are some highlights of changes in this release.&lt;/p&gt;
-
-&lt;h3&gt;Autofixing of more rules&lt;/h3&gt;
-
-&lt;p&gt;ESLint v1.6.0 introduces several more autofixing rules to use with the &lt;code&gt;--fix&lt;/code&gt; command line argument. In this release, we have implemented autofixing in these rules:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;space-unary-ops&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;computed-property-spacing&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;no-multi-spaces&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;object-curly-spacing&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;array-bracket-spacing&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;generator-star-spacing&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;arrow-spacing&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;block-spacing&lt;/code&gt;
-*&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;When you run ESLint on the command line with the &lt;code&gt;--fix&lt;/code&gt; flag, it will automatically fix any problems that it can (not all problems are fixable at once) and will not report the problems that were fixed.&lt;/p&gt;
-
-&lt;p&gt;This feature is still considered experimental but is backed up by a lot of unit tests verifying correctness. Still, we expect to find some edge cases that we didn&amp;#39;t anticipate, so we&amp;#39;d appreciate your feedback.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Limitations:&lt;/strong&gt; the &lt;code&gt;--fix&lt;/code&gt; flag does not work for piped-in text and has no effect on code that uses ESLint processors.&lt;/p&gt;
-
-&lt;h2&gt;Features&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;New: no-negated-condition rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3740&quot;&gt;#3740&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Enhancements&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Update: Implement auto fix for space-unary-ops rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3976&quot;&gt;#3976&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Update: Implement auto fix for computed-property-spacing (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3975&quot;&gt;#3975&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Update: Implement auto fix for no-multi-spaces rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3979&quot;&gt;#3979&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Update: ESLint reports parsing errors with clear prefix. (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3555&quot;&gt;#3555&lt;/a&gt;) (Kevin Partington)&lt;/li&gt;
-&lt;li&gt;Update: &lt;code&gt;no-mixed-require&lt;/code&gt; to have non boolean option (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3922&quot;&gt;#3922&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Update: Add &lt;code&gt;typeof&lt;/code&gt; option to &lt;code&gt;no-undef&lt;/code&gt; rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3684&quot;&gt;#3684&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Update: Implement auto fix for object-curly-spacing (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3857&quot;&gt;#3857&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Update: Implement auto fix for array-bracket-spacing rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3858&quot;&gt;#3858&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Update: Apply lazy loading for rules (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3930&quot;&gt;#3930&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Update:warn message use @return when prefer.returns=return (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3889&quot;&gt;#3889&lt;/a&gt;) (闲耘™)&lt;/li&gt;
-&lt;li&gt;Update: Implement auto fix for generator-star-spacing rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3873&quot;&gt;#3873&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Update: Implement auto fix for arrow-spacing rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3860&quot;&gt;#3860&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Update: Implement auto fix for block-spacing rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3859&quot;&gt;#3859&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Update: Add env &amp;#39;nashorn&amp;#39; to support Java 8 Nashorn Engine (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3874&quot;&gt;#3874&lt;/a&gt;) (Benjamin Winterberg)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Bug Fixes&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Fix: cache is basically not working (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4008&quot;&gt;#4008&lt;/a&gt;) (Richard Hansen)&lt;/li&gt;
-&lt;li&gt;Fix: a test failure on Windows (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3968&quot;&gt;#3968&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;no-invalid-this&lt;/code&gt; had been missing globals in node (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3961&quot;&gt;#3961&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;curly&lt;/code&gt; with &lt;code&gt;multi&lt;/code&gt; had false positive (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3856&quot;&gt;#3856&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
-&lt;li&gt;Fix: space-before-keywords fails with super keyword (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3946&quot;&gt;#3946&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Fix: CLI should not fail on account of ignored files (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3978&quot;&gt;#3978&lt;/a&gt;) (Dominic Barnes)&lt;/li&gt;
-&lt;li&gt;Fix: brace-style rule incorrectly flagging switch (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/4002&quot;&gt;#4002&lt;/a&gt;) (Aparajita Fishman)&lt;/li&gt;
-&lt;li&gt;Fix: Report shorthand method names in complexity rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3955&quot;&gt;#3955&lt;/a&gt;) (Tijn Kersjes)&lt;/li&gt;
-&lt;li&gt;Fix: trailing spaces auto fix to check for line breaks (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3940&quot;&gt;#3940&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Fix: Add schema to &lt;code&gt;global-require&lt;/code&gt; rule (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3923&quot;&gt;#3923&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Fix: no-trailing-spaces autofix to account for blank lines (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3912&quot;&gt;#3912&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Fix: Support allman style for switch statement (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3903&quot;&gt;#3903&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Documentation&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Docs: Add note about typeof check for isNaN (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3985&quot;&gt;#3985&lt;/a&gt;) (Daniel Lo Nigro)&lt;/li&gt;
-&lt;li&gt;Docs: Fix explanation and typos for accessor-pairs (alberto)&lt;/li&gt;
-&lt;li&gt;Docs: Fix typos for camelcase (alberto)&lt;/li&gt;
-&lt;li&gt;Docs: Fix typos for max-statements (Danny Guo)&lt;/li&gt;
-&lt;li&gt;Docs: Fix typo for arrow-spacing (Danny Guo)&lt;/li&gt;
-&lt;li&gt;Docs: Fix typos for wrap-regex (Danny Guo)&lt;/li&gt;
-&lt;li&gt;Docs: Fix explanation for space-before-keywords (Danny Guo)&lt;/li&gt;
-&lt;li&gt;Docs: Fix typos for operator-linebreak (Danny Guo)&lt;/li&gt;
-&lt;li&gt;Docs: Fix typos for callback-return (Danny Guo)&lt;/li&gt;
-&lt;li&gt;Docs: Fix example in no-negated-condition.md (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3908&quot;&gt;#3908&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Docs: Fix typo in blog post template (Nicholas C. Zakas)&lt;/li&gt;
-&lt;li&gt;Docs: Prepare for rule doc linting (refs &lt;a href=&quot;https://github.com/eslint/eslint/issues/2271&quot;&gt;#2271&lt;/a&gt;) (Ian VanSchooten)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Build Related&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Build: Add load performance check inside perf function (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3994&quot;&gt;#3994&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Build: Update markdownlint dependency (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3954&quot;&gt;#3954&lt;/a&gt;) (David Anson)&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Fri, 02 Oct 2015 00:00:00 +0800</pubDate>
-        <link>http://eslint.org//blog/2015/10/eslint-v1.6.0-released</link>
-        <guid isPermaLink="true">http://eslint.org//blog/2015/10/eslint-v1.6.0-released</guid>
-      </item>
-    
-      <item>
-        <title>ESLint v1.5.1 released</title>
-        <description>&lt;h1&gt;ESLint v1.5.1 released&lt;/h1&gt;
-
-&lt;p&gt;We just pushed ESLint v1.5.1, which is a patch release upgrade of ESLint. This release  and fixes several bugs found in the previous release.&lt;/p&gt;
-
-&lt;h2&gt;Bug Fixes&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Fix: valid-jsdoc fix for param with properties (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3476&quot;&gt;#3476&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Fix: valid-jsdoc error with square braces (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/2270&quot;&gt;#2270&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;space-before-keywords&lt;/code&gt; had been wrong on getters (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3854&quot;&gt;#3854&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;no-dupe-args&lt;/code&gt; had been wrong for nested destructure (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3867&quot;&gt;#3867&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
-&lt;li&gt;Fix: don’t ignore config if cwd is the home dir (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3846&quot;&gt;#3846&lt;/a&gt;) (Mathias Schreck)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;func-style&lt;/code&gt; had been warning arrows with &lt;code&gt;this&lt;/code&gt; (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3819&quot;&gt;#3819&lt;/a&gt;) (Toru Nagashima)&lt;/li&gt;
-&lt;li&gt;Fix: &lt;code&gt;space-before-keywords&lt;/code&gt;; allow opening curly braces (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3789&quot;&gt;#3789&lt;/a&gt;) (Marko Raatikka)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Documentation&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Docs: io.js is the new Node.js (thefourtheye)&lt;/li&gt;
-&lt;li&gt;Docs: Fix method signature on working-with-rules docs (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3862&quot;&gt;#3862&lt;/a&gt;) (alberto)&lt;/li&gt;
-&lt;li&gt;Docs: Add related ternary links (refs &lt;a href=&quot;https://github.com/eslint/eslint/issues/3835&quot;&gt;#3835&lt;/a&gt;) (Ian VanSchooten)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Dependency Upgrades&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Upgrade: &lt;code&gt;doctrine&lt;/code&gt; to 0.7.0 (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3891&quot;&gt;#3891&lt;/a&gt;) (Gyandeep Singh)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;Build Related&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Build: Fix broken .gitattributes generation (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3566&quot;&gt;#3566&lt;/a&gt;) (Nicholas C. Zakas)&lt;/li&gt;
-&lt;li&gt;Build: Fix formatter docs generation (fixes &lt;a href=&quot;https://github.com/eslint/eslint/issues/3847&quot;&gt;#3847&lt;/a&gt;) (Nicholas C. Zakas)&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Tue, 22 Sep 2015 00:00:00 +0800</pubDate>
-        <link>http://eslint.org//blog/2015/09/eslint-v1.5.1-released</link>
-        <guid isPermaLink="true">http://eslint.org//blog/2015/09/eslint-v1.5.1-released</guid>
       </item>
     
   </channel>

@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,9 +130,15 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Enforce newline before and after dot (dot-location)</h1>
 
+<h1>在点符号前后强制新行</h1>
+
 <p>JavaScript allows you to place newlines before or after a dot in a member expression.</p>
 
+<p>JavaScript允许你在成员表达式中的点符号的前面或者后面放置一个换行符</p>
+
 <p>Consistency in placing a newline before or after the dot can greatly increase readability.</p>
+
+<p>点符号前面或者后面放置统一的换行符，能增强代码可读性。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">universe</span><span class="p">.</span>
         <span class="nx">galaxy</span><span class="p">;</span>
 
@@ -143,26 +149,40 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>This rule aims to enforce newline consistency in member expressions. This rule prevents the use of mixed newlines around the dot in a member expression.</p>
 
+<p>此规则目的在于，在成员表达式中，强制换行的一致性。此规则防止在成员表达式中的点符号周围使用多个换行符。</p>
+
 <h3>Options</h3>
 
 <p>The rule takes one option, a string, which can be either <code>object</code> or <code>property</code>.
 If it is <code>object</code>, the dot in a member expression should be on the same line as the object portion.
 If it is <code>property</code>, the dot in a member expression should be on the same line as the property portion.</p>
 
+<p>规则中带有一个选项，字符类型，可以为<code>object</code> 或者 <code>property</code>。</p>
+
+<p>如果是<code>object</code>，成员表达式中的点符号应该作为对象部分放在同一行。如果是<code>property</code>，成员表达式中的点符号应该作为属性部分放在同一行。</p>
+
 <p>If unset, the default behavior is <code>&quot;object&quot;</code>.</p>
+
+<p>如果不设置，默认值为<code>&quot;object&quot;</code>。</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="w">    </span><span class="s2">"dot-location"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"object"</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <h4>&quot;object&quot;</h4>
 
 <p>This is the default option. It requires the dot to be on the same line as the object.</p>
 
+<p>这是默认选项，他需要点符号作为对象部分放在同一行.</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint dot-location: [2, "object"]*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">object</span>
 <span class="p">.</span><span class="nx">property</span><span class="p">;</span>       <span class="cm">/*error Expected dot to be on same line as object.*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint dot-location: [2, "object"]*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">object</span><span class="p">.</span>
@@ -173,13 +193,19 @@ If it is <code>property</code>, the dot in a member expression should be on the 
 
 <p>This option requires the dot to be on the same line as the property.</p>
 
+<p>此选项需要点符号作为property放在同一行。</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint dot-location: [2, "property"]*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">object</span><span class="p">.</span> <span class="cm">/*error Expected dot to be on same line as property.*/</span>
 <span class="nx">property</span><span class="p">;</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint dot-location: [2, "property"]*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">object</span>
@@ -189,6 +215,8 @@ If it is <code>property</code>, the dot in a member expression should be on the 
 <h2>When Not To Use It</h2>
 
 <p>You can turn this rule off if you are not concerned with the consistency of newlines before or after dots in member expressions.</p>
+
+<p>如果你不关心成员表达式中点符号前面或者后面换行符的一致性，可以关掉此规则</p>
 
 <h2>Related Rules</h2>
 
@@ -200,6 +228,8 @@ If it is <code>property</code>, the dot in a member expression should be on the 
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.21.0.</p>
+
+<p>此规则在ESLint 0.21.0中被引入</p>
 
 <h2>Resources</h2>
 

@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,15 +130,25 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Suggest using <code>const</code> (prefer-const)</h1>
 
+<h1>建议使用<code>const</code> (prefer-const)</h1>
+
 <p>If a variable is never modified, using the <code>const</code> declaration is better.</p>
 
+<p>如果一个变量从没有被修改过，最好使用<code>const</code>进行声明。</p>
+
 <p><code>const</code> declaration tells readers, &quot;this variable is never modified,&quot; reducing cognitive load and improving maintainability.</p>
+
+<p><code>const</code>声明告诉读者，”这个变量从没有被修改过“，可以减少了认知负荷，提高可维护性。</p>
 
 <h2>Rule Details</h2>
 
 <p>This rule is aimed at flagging variables that are declared using <code>let</code> keyword, but never modified after the initial assignment.</p>
 
+<p>该规则旨在标记那些使用<code>let</code>声明，挡在初始化赋值后从未被修改过过的变量。</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint prefer-const: 2*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -156,6 +166,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint prefer-const: 2*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -175,6 +187,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>If you don&#39;t want to be notified about variables that are never modified after initial assignment, you can safely disable this rule.</p>
 
+<p>如果你不想被通知哪些变量初始化赋值后再没有被修改过，禁用此规则即可。</p>
+
 <h2>Related</h2>
 
 <ul>
@@ -184,6 +198,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.23.0.</p>
+
+<p>该规则在ESLint 0.23.0 中被引入。</p>
 
 <h2>Resources</h2>
 

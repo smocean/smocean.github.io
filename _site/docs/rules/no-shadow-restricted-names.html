@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,14 +130,22 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow Shadowing of Restricted Names (no-shadow-restricted-names)</h1>
 
+<h1>关键字不能被遮蔽</h1>
+
 <p>ES5 §15.1.1 Value Properties of the Global Object (<code>NaN</code>, <code>Infinity</code>, <code>undefined</code>) as well as strict mode restricted identifiers <code>eval</code> and <code>arguments</code> are considered to be restricted names in JavaScript. Defining them to mean something else can have unintended consequences and confuse others reading the code. For example, there&#39;s nothing prevent you from writing:</p>
+
+<p>ES5 §15.1.1中全局属性值(<code>NaN</code>, <code>Infinity</code>, <code>undefined</code>)和严格模式下被限定的标示符<code>eval</code>，<code>arguments</code>是深思熟虑后被限制的关键字。重定义关键字会产生意想不到的后果且易迷惑其他读者。比如：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="kc">undefined</span> <span class="o">=</span> <span class="s2">"foo"</span><span class="p">;</span>
 </code></pre></div>
 <p>Then any code used within the same scope would not get the global <code>undefined</code>, but rather the local version with a very different meaning.</p>
 
+<p>以上不能得到全局<code>undefined</code>，但在本作用域中却具有不同于全局的意思。</p>
+
 <h2>Rule Details</h2>
 
 <p>The following patterns are considered problems:</p>
+
+<p>错误：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-shadow-restricted-names: 2*/</span>
 
 <span class="kd">function</span> <span class="kc">NaN</span><span class="p">(){}</span>       <span class="cm">/*error Shadowing of global property "NaN".*/</span>
@@ -148,7 +156,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <span class="k">try</span> <span class="p">{}</span> <span class="k">catch</span><span class="p">(</span><span class="nb">eval</span><span class="p">){}</span>   <span class="cm">/*error Shadowing of global property "eval".*/</span>
 </code></pre></div>
-<p>The following patterns are not considered problems:</p>
+<p>The following patterns are not considered problems:
+正确：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-shadow-restricted-names: 2*/</span>
 
 <span class="kd">var</span> <span class="nb">Object</span><span class="p">;</span>
@@ -164,7 +173,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h2>Version</h2>
 
-<p>This rule was introduced in ESLint 0.1.4.</p>
+<p>This rule was introduced in ESLint 0.1.4.
+此规则在ESLint 0.1.4中被引入。</p>
 
 <h2>Resources</h2>
 

@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,7 +130,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Limit Maximum Length of Line (max-len)</h1>
 
+<h1>限制行的最大长度 (max-len)</h1>
+
 <p>Very long lines of code in any language can be difficult to read. In order to aid in readability and maintainability many coders have developed a convention to limit lines of code to X number of characters (traditionally 80 characters).</p>
+
+<p>代码中非常长的行在任何语言中都很难约定。为了提高可读性和可维护性，许多程序员制定了一项约定，来限制一行代码的字符数量(按照惯例80个字符)。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// max-len: [1, 80, 4]; // maximum length of 80 characters</span>
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"bar"</span><span class="p">:</span> <span class="s2">"This is a bar."</span><span class="p">,</span> <span class="s2">"baz"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"qux"</span><span class="p">:</span> <span class="s2">"This is a qux"</span> <span class="p">},</span> <span class="s2">"difficult"</span><span class="err">:</span> <span class="s2">"to read"</span> <span class="p">};</span> <span class="c1">// too long</span>
 </code></pre></div>
@@ -138,14 +142,22 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>This rule is aimed at increasing code readability and maintainability by enforcing a line length convention. As such it will warn on lines that exceed the configured maximum.</p>
 
+<p>该规则旨在通过强制代码行的长度来提高代码的可读性和可维护性。因此，如果超过了配置的最大值，该规则将发出警告。</p>
+
 <p><strong>Note:</strong> This rule calculates the length of a line via code points, not characters. That means if you use a double-byte character in your code, it will count as 2 code points instead of 1, and 2 will be used to calculate line length. This is a technical limitation of JavaScript that is made easier with ES2015, and we will look to update this when ES2015 is available in Node.js.</p>
 
+<p><strong>注意：</strong> 该规则是通过代码点而非字符来计算行的长度的。这就意味着如果你在代码中使用了一个双字节字符，它将计为2个代码点而不是1个，这个2将被用来计算行的长度。这是Javascript的一个技术上的局限性，使得它较ES2015容易一下，当ES2015在Node.js中可用时，我们将会升级这个问题。</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint max-len: [2, 80, 4]*/</span> <span class="c1">// maximum length of 80 characters</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"bar"</span><span class="p">:</span> <span class="s2">"This is a bar."</span><span class="p">,</span> <span class="s2">"baz"</span><span class="p">:</span> <span class="p">{</span> <span class="s2">"qux"</span><span class="p">:</span> <span class="s2">"This is a qux"</span> <span class="p">},</span> <span class="s2">"difficult"</span><span class="err">:</span> <span class="s2">"to read"</span> <span class="p">};</span> <span class="cm">/*error Line 3 exceeds the maximum line length of 80.*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint max-len: [2, 80, 4]*/</span> <span class="c1">// maximum length of 80 characters</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">{</span>
@@ -160,20 +172,32 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>The <code>max-len</code> rule has two required options:</p>
 
+<p>该规则有两个必须的选项：</p>
+
 <ul>
 <li>The total number of characters allowed on each line of code. This character count includes indentation.</li>
+<li>每行代码允许的字符总数。这里的字符计数包含缩进。</li>
 <li>The character count to use whenever a tab character is encountered.</li>
+<li>一个tab字符占用的字符数</li>
 </ul>
 
 <p>For example, to specify a maximum line length of 80 characters with each tab counting as 4 characters, use the following configuration:</p>
+
+<p>例如，指定行的最大字符数为80，每个tab记为4个字符，使用如下配置：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"max-len"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>There are additional optional arguments to ignore comments, lines with URLs, or lines matching a regular expression.</p>
+
+<p>有额外的可选参数用于忽略注释，包含URL的行或者匹配某个正则表达式的行。</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"max-len"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nt">"ignoreComments"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"ignoreUrls"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"ignorePattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"^\\s*var\\s.+=\\s*require\\s*\\("</span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>The <code>ignoreComments</code> option only ignores trailing comments and comments on their own line. For example, <code>function foo(/*string*/ bar) { /* ... */ }</code> isn&#39;t collapsed.</p>
 
+<p><code>ignoreComments</code>选项值忽略行尾注释和同一行上的注释(之前)。例如，<code>function foo(/*string*/ bar) { /* ... */ }</code> 是不折叠的。</p>
+
 <p>Be aware that regular expressions can only match a single line and need to be doubly escaped when written in YAML or JSON.</p>
+
+<p>请注意，正则表达式只能匹配单行，当写在YAML或JSON中时需要双重转义。</p>
 
 <h2>Related Rules</h2>
 
@@ -188,6 +212,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.0.9.</p>
+
+<p>该规则在ESLint 0.0.9 中被引入。</p>
 
 <h2>Resources</h2>
 

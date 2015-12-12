@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,7 +130,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow <code>if</code> as the Only Statement in an <code>else</code> Block (no-lonely-if)</h1>
 
+<h1>禁止<code>if</code>作为唯一的语句出现在<code>else</code>语句中 (no-lonely-if)</h1>
+
 <p>If an <code>if</code> statement is the only statement in the <code>else</code> block of a parent <code>if</code> statement, it is often clearer to combine the two to using <code>else if</code> form.</p>
+
+<p>在<code>if</code> <code>else</code> 语句中，如果<code>if</code>作为唯一的语句出现在<code>else</code>中，往往使用<code>else if</code>形式会使代码更清晰。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ...</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -140,6 +144,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>should be rewritten as</p>
+
+<p>应该被重写为：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ...</span>
 <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">bar</span><span class="p">)</span> <span class="p">{</span>
@@ -150,7 +156,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>This rule warns when an <code>if</code> statement&#39;s <code>else</code> block contains only another <code>if</code> statement.</p>
 
+<p>如果<code>if</code>语句的<code>else</code>块中只包含另一个<code>if</code>语句，该规则将会发出提醒。</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-lonely-if: 2*/</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
@@ -172,6 +182,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-lonely-if: 2*/</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="nx">condition</span><span class="p">)</span> <span class="p">{</span>
@@ -201,9 +213,13 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>Disable this rule if the code is clearer without requiring the <code>else if</code> form.</p>
 
+<p>如果不使用<code>else if</code>也能使代码比较清晰，禁用此规则即可。</p>
+
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.6.0.</p>
+
+<p>该规则在ESLint 0.6.0 中被引入。</p>
 
 <h2>Resources</h2>
 

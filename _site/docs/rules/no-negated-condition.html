@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,9 +130,15 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow use of negated expressions in conditions (no-negated-condition)</h1>
 
+<h1>不允许在条件语句中使用否定的表达式 (no-negated-condition)</h1>
+
 <p>Checks against the use of a negated expression in an if condition when the else branch is not empty or in a ternary operator. Negated conditions are more difficult to understand. Code can be made more readable by inverting the condition instead.</p>
 
+<p>检查在else分支不为空的if条件语句或三元操作符中否定表达式的使用。否定的条件语句让人更加难以理解。如果将条件反过来，代码会更具可读性。</p>
+
 <p>For example:</p>
+
+<p>例如：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">doSomething</span><span class="p">();</span>
 <span class="p">}</span>
@@ -141,6 +147,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>should instead be written as:</p>
+
+<p>应该被写为：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">doSomethingElse</span><span class="p">();</span>
 <span class="p">}</span>
@@ -152,7 +160,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>The rule is aimed at preventing the use of a negated expression in a condition.</p>
 
+<p>该规则旨在防止在条件语句中使用否定表达式。</p>
+
 <p>The following patterns are considered warnings:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-negated-condition: 2*/</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>               <span class="cm">/*error Unexpected negated condition.*/</span>
@@ -178,6 +190,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 </code></pre></div>
 <p>The following patterns are not warnings:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-negated-condition: 2*/</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
@@ -200,6 +214,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 1.6.0.</p>
+
+<p>该规则在ESLint 1.6.0 中被引入。</p>
 
 <h2>Resources</h2>
 

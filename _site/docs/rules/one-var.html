@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,16 +130,26 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Require or Disallow One Variable Declaration per Scope (one-var)</h1>
 
+<h1>每个作用域要求或禁止只有一个变量声明</h1>
+
 <p>Variables can be declared at any point in JavaScript code using <code>var</code>, <code>let</code>, or <code>const</code>. There are many styles and preferences related to the declaration of variables, and one of those is deciding on how many variable declarations should be allowed in a single function.</p>
+
+<p>变量可以在Javascript的任何地方通过使用<code>var</code>, <code>let</code>, 或 <code>const</code>进行声明。有很多风格和首选项于变量声明有关，其中之一就是决定在一个方法中应该允许多少个变量声明。</p>
 
 <p>There are two schools of thought in this regard:</p>
 
+<p>在这个方面有两个思想流派：</p>
+
 <ol>
 <li>There should be just one variable declaration for all variables in the function. That declaration typically appears at the top of the function.</li>
+<li>在方法中所有的变量应该只有一个声明。这个声明通常出现在方法顶部。</li>
 <li>You should use one variable declaration for each variable you want to define.</li>
+<li>你应该为每个你想定义的变量进行声明。</li>
 </ol>
 
 <p>For instance:</p>
+
+<p>例如：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// one variable declaration per function</span>
 <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">bar</span><span class="p">,</span> <span class="nx">baz</span><span class="p">;</span>
@@ -153,15 +163,23 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </code></pre></div>
 <p>The single-declaration school of thought is based in pre-ECMAScript 6 behaviors, where there was no such thing as block scope, only function scope. Since all <code>var</code> statements are hoisted to the top of the function anyway, some believe that declaring all variables in a single declaration at the top of the function removes confusion around scoping rules.</p>
 
+<p>单一声明的思想流派是基于ECMAScript 6之前版本的行为，没有块儿作用域，只有方法作用域。由于所有的<code>var</code>语句都会被提升到函数顶部，有些人认为将所有的变量一一条语句声明在函数顶部，避免了函数范围内的混乱。</p>
+
 <h2>Rule Details</h2>
 
 <p>This rule is aimed at enforcing the use of either one variable declaration or multiple declarations per function (for <code>var</code>) or block (for <code>let</code> and <code>const</code>) scope. As such, it will warn when it encounters an unexpected number of variable declarations.</p>
+
+<p>该规则旨在强制在函数(<code>var</code>)或块(<code>let</code> 和 <code>const</code>) 范围使用单一声明还是多条声明。因此，如果出现意外数目的声明语句，它将发出警告。</p>
 
 <h3>Options</h3>
 
 <p>There are two ways to configure this rule. The first is by using one string specified as <code>&quot;always&quot;</code> (the default) to enforce one variable declaration per scope or <code>&quot;never&quot;</code> to enforce multiple variable declarations per scope.  If you declare variables in your code with <code>let</code> and <code>const</code>, then <code>&quot;always&quot;</code> and <code>&quot;never&quot;</code> will apply to the block scope for those declarations, not the function scope.</p>
 
+<p>有两种方法配置规则。第一个是使用字符串，默认为<code>&quot;always&quot;</code>，在每个范围内强制只有一个变量声明或为<code>&quot;never&quot;</code>，在每个范围内强制使用多个变量声明。如果你在你的代码中，使用<code>let</code> 和 <code>const</code>声明变量，<code>&quot;always&quot;</code> 和 <code>&quot;never&quot;</code>将会作用于这些声明的块范围的顶部而不是函数范围的顶部。</p>
+
 <p>The second way to configure this rule is with an object. The keys are any of:</p>
+
+<p>第二种配置方法是使用一个对象。该对象的键是以下任意一个：</p>
 
 <ul>
 <li><code>var</code></li>
@@ -178,15 +196,25 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>and the values are either <code>&quot;always&quot;</code> or <code>&quot;never&quot;</code>. This allows you to set behavior differently for each type of declaration, or whether variables are initialized during declaration.</p>
 
+<p>对应的值为<code>&quot;always&quot;</code> 或 <code>&quot;never&quot;</code>。这允许你针对不同类型的声明，不管声明时是否初始化，都可以做出不同的设置。</p>
+
 <p>You can configure the rule as follows:</p>
 
+<p>你可以这样的配置规则：</p>
+
 <p>(default) Exactly one variable declaration per type per function (var) or block (let or const)</p>
+
+<p>(默认)每种类型、函数(var)或块(let 或 const)只有一个声明</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"one-var"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"always"</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>Exactly one declarator per declaration per function (var) or block (let or const)</p>
+
+<p>每个函数 (var) 或块 (let 或 const) 中的每个声明都一个声明符</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"one-var"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"never"</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>Configure each declaration type individually. Defaults to &quot;always&quot; if key not present.</p>
+
+<p>单独配置每个声明类型。如果键不存在，默认为&quot;always&quot;。</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"one-var"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"var"</span><span class="p">:</span><span class="w"> </span><span class="s2">"always"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Exactly</span><span class="w"> </span><span class="err">one</span><span class="w"> </span><span class="err">var</span><span class="w"> </span><span class="err">declaration</span><span class="w"> </span><span class="err">per</span><span class="w"> </span><span class="err">function</span><span class="w">
     </span><span class="nt">"let"</span><span class="p">:</span><span class="w"> </span><span class="s2">"always"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Exactly</span><span class="w"> </span><span class="err">one</span><span class="w"> </span><span class="err">let</span><span class="w"> </span><span class="err">declaration</span><span class="w"> </span><span class="err">per</span><span class="w"> </span><span class="err">block</span><span class="w">
@@ -194,12 +222,16 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>Configure uninitialized and initialized seperately. Defaults to &quot;always&quot; if key not present.</p>
+
+<p>分开配置未初始化的和已初始化的变量声明。如果键不存在，默认为&quot;always&quot;。</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"one-var"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"uninitialized"</span><span class="p">:</span><span class="w"> </span><span class="s2">"always"</span><span class="p">,</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Exactly</span><span class="w"> </span><span class="err">one</span><span class="w"> </span><span class="err">declaration</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">uninitialized</span><span class="w"> </span><span class="err">variables</span><span class="w"> </span><span class="err">per</span><span class="w"> </span><span class="err">function</span><span class="w"> </span><span class="err">(var)</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">block</span><span class="w"> </span><span class="err">(let</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">const)</span><span class="w">
     </span><span class="nt">"initialized"</span><span class="p">:</span><span class="w"> </span><span class="s2">"never"</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">Exactly</span><span class="w"> </span><span class="err">one</span><span class="w"> </span><span class="err">declarator</span><span class="w"> </span><span class="err">per</span><span class="w"> </span><span class="err">initialized</span><span class="w"> </span><span class="err">variable</span><span class="w"> </span><span class="err">declaration</span><span class="w"> </span><span class="err">per</span><span class="w"> </span><span class="err">function</span><span class="w"> </span><span class="err">(var)</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">block</span><span class="w"> </span><span class="err">(let</span><span class="w"> </span><span class="err">or</span><span class="w"> </span><span class="err">const)</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>When configured with <code>&quot;always&quot;</code> as the first option (the default), the following patterns are considered problems:</p>
+
+<p>当配置<code>&quot;always&quot;</code>作为第一个选项时(默认)，以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint one-var: [2, "always"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -226,6 +258,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint one-var: [2, "always"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -261,6 +295,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>When configured with <code>&quot;never&quot;</code> as the first option, the following patterns are considered problems:</p>
+
+<p>当配置<code>&quot;never&quot;</code>做为第一个选项时，以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint one-var: [2, "never"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -286,6 +322,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint one-var: [2, "never"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -312,7 +350,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </code></pre></div>
 <p>When configured with an object as the first option, you can individually control how <code>var</code>, <code>let</code>, and <code>const</code> are handled, or alternatively how <code>uninitialized</code> and <code>initialized</code> variables are handled (which if used will override <code>var</code>, <code>let</code>, and <code>const</code>).</p>
 
+<p>当第一个选项配置为一个对象时，你可以单独控制如何处理<code>var</code>, <code>let</code>, 和 <code>const</code>，或者控制如何处理未声明的和已声明的变量(会覆盖<code>var</code>, <code>let</code>, 和 <code>const</code>)。</p>
+
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint one-var: [2, { var: "always", let: "never", const: "never" }]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -331,6 +373,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint one-var: [2, { uninitialized: "always", initialized: "never" }]*/</span>
 
 <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
@@ -340,6 +384,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>If you are configuring the rule with an object, by default, if you didn&#39;t specify declaration type it will not be checked. So the following pattern is not considered a warning when options are set to: <code>{ var: &quot;always&quot;, let: &quot;always&quot; }</code></p>
+
+<p>如果你正在使用一个对象进行配置规则，默认情况下，如果你不指定声明类型，它将不会被检查。所以，当选项设置为 <code>{ var: &quot;always&quot;, let: &quot;always&quot; }</code>，以下模式不认为是一个警告。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint one-var: [2, { var: "always", let: "always" }]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -354,7 +400,9 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <ul>
 <li><strong>JSHint</strong> - This rule maps to the <code>onevar</code> JSHint rule, but allows <code>let</code> and <code>const</code> to be configured separately.</li>
-<li><strong>JSCS</strong> - This rule roughly maps to <code>&quot;disallowMultipleVarDecl&quot;</code></li>
+<li><p><strong>JSHint</strong> - 该规则对应JSHint规则中的<code>onevar</code>, 但JSHint中允许<code>let</code> 和 <code>const</code>分开配置。</p></li>
+<li><p><strong>JSCS</strong> - This rule roughly maps to <code>&quot;disallowMultipleVarDecl&quot;</code></p></li>
+<li><p><strong>JSCS</strong> - 该规则对应 <code>&quot;disallowMultipleVarDecl&quot;</code></p></li>
 </ul>
 
 <h2>Further Reading</h2>
@@ -364,6 +412,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.0.9.</p>
+
+<p>该规则在ESLint 0.0.9 被引入。</p>
 
 <h2>Resources</h2>
 

@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,7 +130,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow return in else (no-else-return)</h1>
 
+<h1>禁止在else语句中return</h1>
+
 <p>If an <code>if</code> block contains a <code>return</code> statement, the <code>else</code> block becomes unnecessary. Its contents can be placed outside of the block.</p>
+
+<p>如果<code>if</code>区块包含 <code>return</code>语句，<code>else</code>区块的存在就显得冗余。可以将else中内容移至区块外。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">y</span><span class="p">;</span>
@@ -143,7 +147,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>This rule is aimed at highlighting an unnecessary block of code following an <code>if</code> containing a return statement. As such, it will warn when it encounters an <code>else</code> following a chain of <code>if</code>s, all of them containing a <code>return</code> statement.</p>
 
+<p>此规则目的在于，突出那些跟随在包含return的<code>if</code>语句后的冗余代码。因此，当<code>else</code>跟随在每个块都包含<code>return</code>语句的<code>if</code>链后时，会发生错误。</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>错误示例如下：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-else-return: 2*/</span>
 
 <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
@@ -188,6 +196,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>The follow patterns are not considered problems:</p>
+
+<p>正确示例如下：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-else-return: 2*/</span>
 
 <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
@@ -221,6 +231,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.0.9.</p>
+
+<p>这条规则在ESLint 0.0.9中被引入。</p>
 
 <h2>Resources</h2>
 

@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,8 +130,12 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow or enforce spaces inside of computed properties. (computed-property-spacing)</h1>
 
+<h1>禁止或强制在计算属性中使用空格。(computed-property-spacing)</h1>
+
 <p>While formatting preferences are very personal, a number of style guides require
 or disallow spaces between computed properties in the following situations:</p>
+
+<p>虽然格式首选项都非常个人化，大量的风格指南要求或禁止在下列情况的计算属性之间使用空格：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint-env es6*/</span>
 
 <span class="c1">// computed properties</span>
@@ -145,28 +149,42 @@ or disallow spaces between computed properties in the following situations:</p>
 </code></pre></div>
 <p><strong>Fixable:</strong> This rule is automatically fixable using the <code>--fix</code> flag on the command line.</p>
 
+<p><strong>Fixable:</strong> 该规则可以通过<code>--fix</code>命令行进行自动修复。</p>
+
 <h2>Rule Details</h2>
 
 <p>This rule aims to maintain consistency around the spacing inside of computed properties.</p>
 
+<p>该规则旨在保持计算属性的间距的一致性。</p>
+
 <p>It either requires or disallows spaces between the brackets and the values inside of them.
 Brackets that are separated from the adjacent value by a new line are exempt from this rule.</p>
+
+<p>它也要求或禁止在括号和其内部的值之间有空格。括号内相邻的值出现折行的，不适用此规则。</p>
 
 <h3>Options</h3>
 
 <p>There are two main options for the rule:</p>
 
+<p>该规则有两个主要可选项：</p>
+
 <ul>
-<li><code>&quot;always&quot;</code> enforces a space inside of computed properties</li>
-<li><code>&quot;never&quot;</code> disallows spaces inside of computed properties (default)</li>
+<li><p><code>&quot;always&quot;</code> enforces a space inside of computed properties</p></li>
+<li><p><code>&quot;always&quot;</code> 强制在计算属性内使用空格</p></li>
+<li><p><code>&quot;never&quot;</code> disallows spaces inside of computed properties (default)</p></li>
+<li><p><code>&quot;never&quot;</code> 禁止在计算属性内使用空格 (默认)</p></li>
 </ul>
 
 <p>Depending on your coding conventions, you can choose either option by specifying it in your configuration:</p>
+
+<p>根据您的编码约定，您可以在您的配置中选择使用任一选项：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"computed-property-spacing"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"never"</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <h4>never</h4>
 
 <p>When <code>&quot;never&quot;</code> is set, the following patterns will give a warning:</p>
+
+<p>当<code>&quot;never&quot;</code>被设置，以下模式将给出一个警告：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint computed-property-spacing: [2, "never"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -176,6 +194,8 @@ Brackets that are separated from the adjacent value by a new line are exempt fro
 <span class="nx">obj</span><span class="p">[</span><span class="nx">foo</span><span class="p">[</span> <span class="nx">bar</span> <span class="p">]]</span>    <span class="cm">/*error There should be no space after '['*/</span> <span class="cm">/*error There should be no space before ']'*/</span>
 </code></pre></div>
 <p>The following patterns are considered correct:</p>
+
+<p>以下模式被认为是正确的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint computed-property-spacing: [2, "never"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -187,6 +207,8 @@ Brackets that are separated from the adjacent value by a new line are exempt fro
 <h4>always</h4>
 
 <p>When <code>&quot;always&quot;</code> is used, the following patterns will give a warning:</p>
+
+<p>当<code>&quot;always&quot;</code>被设置，以下模式将给出一个警告：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint computed-property-spacing: [2, "always"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -199,6 +221,8 @@ Brackets that are separated from the adjacent value by a new line are exempt fro
 <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="p">{[</span> <span class="nx">b</span><span class="p">]:</span> <span class="nx">a</span><span class="p">}</span>                                         <span class="cm">/*error A space is required before ']'*/</span>
 </code></pre></div>
 <p>The following patterns are considered correct:</p>
+
+<p>以下模式被认为是正确的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint computed-property-spacing: [2, "always"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -212,6 +236,8 @@ Brackets that are separated from the adjacent value by a new line are exempt fro
 
 <p>You can turn this rule off if you are not concerned with the consistency of computed properties.</p>
 
+<p>如果你并不关注计算属性间距的一致性的话，关闭此规则即可。</p>
+
 <h2>Related Rules</h2>
 
 <ul>
@@ -224,6 +250,8 @@ Brackets that are separated from the adjacent value by a new line are exempt fro
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.23.0.</p>
+
+<p>该规则在ESLint 0.23.0 被引入。</p>
 
 <h2>Resources</h2>
 

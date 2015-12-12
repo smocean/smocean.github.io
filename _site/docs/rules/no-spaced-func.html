@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,16 +130,26 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow Spaces in Function Calls (no-spaced-func)</h1>
 
+<h1>禁止函数调用的空格</h1>
+
 <p>While it&#39;s possible to have whitespace between the name of a function and the parentheses that execute it, such patterns tend to look more like errors.</p>
 
+<p>虽然在函数名和执行它的圆括号之间有空格是合理的，但这种模式往往看起来更像错误。</p>
+
 <p><strong>Fixable:</strong> This rule is automatically fixable using the <code>--fix</code> flag on the command line.</p>
+
+<p><strong>Fixable:</strong> 该规则可以通过<code>--fix</code>命令行进行自动修复。</p>
 
 <h2>Rule Details</h2>
 
 <p>This rule does not allow gaps between the function identifier and application.</p>
+
+<p>该规则不允许函数标识符和应用程序之间有间隔。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">fn</span> <span class="p">()</span>
 </code></pre></div>
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-spaced-func: 2*/</span>
 
 <span class="nx">fn</span> <span class="p">()</span> <span class="cm">/*error Unexpected space between function name and paren.*/</span>
@@ -148,6 +158,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">()</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-spaced-func: 2*/</span>
 
 <span class="nx">fn</span><span class="p">()</span>
@@ -155,6 +167,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.1.2.</p>
+
+<p>该规则在ESLint 0.1.2 中被引入。</p>
 
 <h2>Resources</h2>
 

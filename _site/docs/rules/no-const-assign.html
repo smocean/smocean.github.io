@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,16 +130,27 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow modifying variables that are declared using <code>const</code> (no-const-assign)</h1>
 
+<h1>不允许改变用<code>const</code>声明的变量 (no-const-assign)</h1>
+
 <p>We cannot modify variables that are declared using <code>const</code> keyword.
 It will raise a runtime error.</p>
 
+<p>我们不能修改使用 const 关键字声明的变量。
+它会引发一个运行时错误。</p>
+
 <p>Under non ES2015 environment, it might be ignored merely.</p>
+
+<p>非ES2015环境下，它只是可能被忽略。</p>
 
 <h2>Rule Details</h2>
 
 <p>This rule is aimed to flag modifying variables that are declared using <code>const</code> keyword.</p>
 
+<p>该规则旨在标记修改用<code>const</code>关键字声明的变量。</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-const-assign: 2*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -157,6 +168,8 @@ It will raise a runtime error.</p>
 <span class="o">++</span><span class="nx">a</span><span class="p">;</span>         <span class="cm">/*error `a` is constant.*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-const-assign: 2*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -179,9 +192,13 @@ It will raise a runtime error.</p>
 
 <p>If you don&#39;t want to be notified about modifying variables that are declared using <code>const</code> keyword, you can safely disable this rule.</p>
 
+<p>如果你不想收到有关修改用 const 关键字声明的变量的通知，你可以禁用此规则。</p>
+
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 1.0.0-rc-1.</p>
+
+<p>该规则在ESLint 1.0.0-rc-1 中被引入。</p>
 
 <h2>Resources</h2>
 

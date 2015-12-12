@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,39 +130,68 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Requires or disallows a whitespace (space or tab) beginning a comment (spaced-comment)</h1>
 
-<p>Some style guides require or disallow a whitespace immediately after the initial <code>//</code> or <code>/*</code> of a comment.
-Whitespace after the <code>//</code> or <code>/*</code> makes it easier to read text in comments.
+<h1>要求或禁止在注释前有空格 (space 或 tab)</h1>
+
+<p>Some style guides require or disallow a whitespace immediately after the initial <code>//</code> or <code>/*</code> of a comment.</p>
+
+<p>一些风格指南要求或禁止注释<code>//</code> 或 <code>/*</code>后空格。</p>
+
+<p>Whitespace after the <code>//</code> or <code>/*</code> makes it easier to read text in comments.
 On the other hand, commenting out code is easier without having to put a whitespace right after the <code>//</code> or <code>/*</code>.</p>
+
+<p><code>//</code> 或 <code>/*</code>后的空格使注释中的文本更容易阅读。另一方面，<code>//</code> 或 <code>/*</code>后面没有空格的话，注释掉代码会变得更容易。</p>
 
 <h2>Rule Details</h2>
 
 <p>This rule will enforce consistency of spacing after the start of a comment <code>//</code> or <code>/*</code>. It also provides several
 exceptions for various documentation styles.</p>
 
+<p>该规则强制注释中<code>//</code> 或 <code>/*</code>后空格的一致性。它还为各种文档风格提供了一下例外情况。</p>
+
 <h3>Options</h3>
 
 <p>The rule takes two options. The first is a string which be either &quot;always&quot; or &quot;never&quot;. If you pass <code>&quot;always&quot;</code> then the <code>//</code> or <code>/*</code> must be followed by at least once whitespace. If <code>&quot;never&quot;</code> then there should be no whitespace following. The default is <code>&quot;always&quot;</code>.</p>
 
+<p>该规则有两个可选项。第一个是个字符串，值为&quot;always&quot; 或 &quot;never&quot;。如果你传递<code>&quot;always&quot;</code>，<code>//</code> 或 <code>/*</code>必须跟随至少一个空格。如果是<code>&quot;never&quot;</code>，其后不允许有空格。默认为 <code>&quot;always&quot;</code>。</p>
+
 <p>Here is an example of how to configure the rule with this option:</p>
+
+<p>下面是一个如何使用这个选项配置该规则的示例：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"spaced-comment"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"always"</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <h4>Exceptions</h4>
 
 <p>This rule can also take a 2nd option, an object with either of the following keys: <code>&quot;exceptions&quot;</code> and <code>&quot;markers&quot;</code>.</p>
 
-<p>The <code>&quot;exceptions&quot;</code> value is an array of string patterns which are considered exceptions to the rule.
-Please note that exceptions are ignored if the first argument is <code>&quot;never&quot;</code>.</p>
+<p>该规则可以设置第二个选项，是一个对象，其主键为<code>&quot;exceptions&quot;</code> 和 <code>&quot;markers&quot;</code>。</p>
+
+<p>The <code>&quot;exceptions&quot;</code> value is an array of string patterns which are considered exceptions to the rule.</p>
+
+<p><code>&quot;exceptions&quot;</code>的值是一个字符串形式的数组，这些字符串也就是该规则的例外。</p>
+
+<p>Please note that exceptions are ignored if the first argument is <code>&quot;never&quot;</code>.</p>
+
+<p>请注意，如果第一个参数是<code>&quot;never&quot;</code>，例外情况会被忽略。</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"spaced-comment"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"always"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"exceptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"-"</span><span class="p">,</span><span class="w"> </span><span class="s2">"+"</span><span class="p">]</span><span class="w"> </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>The <code>&quot;markers&quot;</code> value is an array of string patterns which are considered markers for docblock-style comments,
-such as an additional <code>/</code>, used to denote documentation read by doxygen, vsdoc, etc. which must have additional characters.
-The <code>&quot;markers&quot;</code> array will apply regardless of the value of the first argument, e.g. <code>&quot;always&quot;</code> or <code>&quot;never&quot;</code>.</p>
+such as an additional <code>/</code>, used to denote documentation read by doxygen, vsdoc, etc. which must have additional characters.</p>
+
+<p><code>&quot;markers&quot;</code>的值是一个字符串形式的数组，这些字符串也就是块级注释的标记，例如一个额外的<code>/</code>，被用来表示是由doxygen、vsdoc等系统读取的文档，这些系统必须有额外的字符。</p>
+
+<p>The <code>&quot;markers&quot;</code> array will apply regardless of the value of the first argument, e.g. <code>&quot;always&quot;</code> or <code>&quot;never&quot;</code>.</p>
+
+<p>不管第一个参数是<code>&quot;always&quot;</code> 还是 <code>&quot;never&quot;</code>，<code>&quot;markers&quot;</code>数组都会起作用。</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"spaced-comment"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"always"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"markers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"/"</span><span class="p">]</span><span class="w"> </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>The difference between a marker and an exception is that a marker only appears at the beginning of the comment whereas
 exceptions can occur anywhere in the comment string.</p>
 
+<p>标记和例外的区别是，标记值出现在注释的开头，而例外是可以出现在注释中任何地方。</p>
+
 <p>You can also define separate exceptions and markers for block and line comments:</p>
+
+<p>你可以为块级注释和单行注释定义不同的例外和标记：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"spaced-comment"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"always"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"markers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"/"</span><span class="p">],</span><span class="w">
@@ -177,6 +206,8 @@ exceptions can occur anywhere in the comment string.</p>
 <h4>Examples</h4>
 
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint spaced-comment: [2, "never"]*/</span>
 
 <span class="c1">// This is a comment with a whitespace at the beginning      /*error Unexpected space or tab after // in comment.*/</span>
@@ -214,6 +245,8 @@ exceptions can occur anywhere in the comment string.</p>
 <span class="cm">/*-+-+-+-+-+-+-+*/</span>     <span class="cm">/*error Expected space or tab after /* in comment.*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/* eslint spaced-comment: [2, "always"] */</span>
 
 <span class="c1">// This is a comment with a whitespace at the beginning</span>
@@ -285,6 +318,8 @@ subsequent lines are ignored
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.23.0.</p>
+
+<p>该规则在ESLint 0.23.0 中被引入。</p>
 
 <h2>Resources</h2>
 

@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,21 +130,35 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow the use of the Object constructor (no-new-object)</h1>
 
+<h1>禁止使用对象的构造函数 (no-new-object)</h1>
+
 <p>The <code>Object</code> constructor is used to create new generic objects in JavaScript, such as:</p>
+
+<p>在Javascript中<code>Object</code>的构造函数用来创建新的通用对象，例如：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span>
 </code></pre></div>
 <p>However, this is no different from using the more concise object literal syntax:</p>
+
+<p>然而，这与使用更为简洁的字面量没有什么区别：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{};</span>
 </code></pre></div>
 <p>For this reason, many prefer to always use the object literal syntax and never use the <code>Object</code> constructor.</p>
 
+<p>为此，很多人更青睐使用对象字面量而非<code>Object</code>的构造函数。</p>
+
 <p>While there are no performance differences between the two approaches, the byte savings and conciseness of the object literal form is what has made it the de facto way of creating new objects.</p>
+
+<p>虽然这两种方式没有性能上的差别，对象字面量节省字节、简洁的特点，让它成为事实上的创建新对象的方式。</p>
 
 <h2>Rule Details</h2>
 
 <p>This rule aims to eliminate use of the <code>Object</code> constructor. As such, it warns whenever <code>new Object</code> is found in code.</p>
 
+<p>该规则旨在消除<code>Object</code>构造函数的使用。因此，当在代码中遇到<code>new Object</code>，该规则将发出提醒。</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-new-object: 2*/</span>
 
 <span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">();</span> <span class="cm">/*error The object literal notation {} is preferrable.*/</span>
@@ -152,6 +166,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">;</span>   <span class="cm">/*error The object literal notation {} is preferrable.*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-new-object: 2*/</span>
 
 <span class="kd">var</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">CustomObject</span><span class="p">();</span>
@@ -161,6 +177,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>When Not To Use It</h2>
 
 <p>If you wish to allow the use of the <code>Object</code> constructor, you can safely turn this rule off.</p>
+
+<p>如果你允许<code>Object</code>构造函数的使用，你可以关闭此规则。</p>
 
 <h2>Related Rules</h2>
 
@@ -172,6 +190,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.0.9.</p>
+
+<p>该规则在ESLint 0.0.9 中被引入。</p>
 
 <h2>Resources</h2>
 

@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,11 +130,17 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow ++ and -- (no-plusplus)</h1>
 
+<h1>不允许使用 ++ 和 -- (no-plusplus)</h1>
+
 <p>The <code>no-plusplus</code> rule flags the use of unary operators, <code>++</code> and <code>--</code>.</p>
+
+<p>该规则标记一元操作符 ++ 和 -- 的使用。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="nx">foo</span><span class="o">++</span><span class="p">;</span>
 </code></pre></div>
 <p>The <code>++</code> and <code>--</code> operators are subject to automatic semicolon insertion. When their use is allowed, introducing whitespace may change semantics of source code. Enabling the rule may prevent this kind of errors.</p>
+
+<p><code>++</code> 和 <code>--</code>操作符会自动添加分号。当允许使用它们时，引入空格可能会改变源代码的语义。启用该规则, 可以防止类此错误的出现。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">j</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
 
@@ -153,15 +159,23 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>This rule is aimed at flagging the use of <code>++</code> and <code>--</code>. Some believe that the use of these unary operators reduces code quality and clarity. There are some programming languages that completely exclude these operators.</p>
 
+<p>该规则标记一元操作符<code>++</code> 和 <code>--</code>的使用。有些人认为这些一元操作符降低了代码的质量和清晰度。
+也有以下编程语言完全排除这些操作符。</p>
+
 <h3>Options</h3>
 
 <p>This rule, in it&#39;s default state, does not require any arguments. If you would like to enable one or more of the following you may pass an object with the options set as follows:</p>
 
+<p>该规则，默认情况下，不需要任何参数。如果你想启用下面的一个或多个，你可以传递一个对象，作为可选项，按如下所示进行设置：</p>
+
 <ul>
 <li><code>allowForLoopAfterthoughts</code> set to <code>true</code> will allow you to use the unary operators <code>++</code> and <code>--</code> in the afterthought (final expression) of a <code>for</code> loop.</li>
+<li><code>allowForLoopAfterthoughts</code> 设置为 <code>true</code> 将允许你在<code>for</code>循环的中(最后面的表达式)使用一元操作符 <code>++</code> 和 <code>--</code>。</li>
 </ul>
 
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-plusplus: 2*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -175,6 +189,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-plusplus: 2*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -188,6 +204,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems if <code>allowForLoopAfterthoughts</code> is set to true:</p>
+
+<p>如果 <code>allowForLoopAfterthoughts</code> 设置为true, 以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-plusplus: 2, [{ allowForLoopAfterthoughts: true }]*/</span>
 
 <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -201,6 +219,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.0.9.</p>
+
+<p>该规则在ESLint 0.0.9 中被引入。</p>
 
 <h2>Resources</h2>
 

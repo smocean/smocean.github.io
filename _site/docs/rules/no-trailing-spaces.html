@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,13 +130,21 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow trailing spaces at the end of lines (no-trailing-spaces)</h1>
 
+<h1>禁用行尾空格 (no-trailing-spaces)</h1>
+
 <p>Sometimes in the course of editing files, you can end up with extra whitespace at the end of lines. These whitespace differences can be picked up by source control systems and flagged as diffs, causing frustration for developers. While this extra whitespace causes no functional issues, many code conventions require that trailing spaces be removed before checkin.</p>
 
+<p>有时在编辑文件的过程中，你可以在行的末尾以额外的空格作为结束。这些空格差异可以被源码控制系统识别出并被标记为差异，给开发人员带来挫败感。虽然这种额外的空格并不会造成功能性的问题，许多编码规范要求在checkin之前删除尾部空格。</p>
+
 <p><strong>Fixable:</strong> This rule is automatically fixable using the <code>--fix</code> flag on the command line.</p>
+
+<p><strong>Fixable:</strong> 该规则可以通过<code>--fix</code>命令行进行自动修复。</p>
 
 <h2>Rule Details</h2>
 
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-trailing-spaces: 2*/</span>
 
 <span class="c1">// spaces, tabs and unicode whitespaces</span>
@@ -145,6 +153,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="kd">var</span> <span class="nx">baz</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span><span class="c1">//••     /*error Trailing spaces not allowed.*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-trailing-spaces: 2*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -155,12 +165,18 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>There is one option for this rule, <code>skipBlankLines</code>. When set to true, the rule will not flag any lines that are made up purely of whitespace. In short, if a line is zero-length after being trimmed of whitespace, then the rule will not flag that line when <code>skipBlankLines</code> is enabled.</p>
 
+<p>该规则有一个可选项， <code>skipBlankLines</code>。当设置为true时，该规则将不会标记任何空行。简而言之，如果删除空格后，某一行的长度为0，那么在<code>skipBlankLines</code> 启用的情况下，该规将不会标记该行。</p>
+
 <p>You can enable this option in your config like this:</p>
+
+<p>你可以在你的配置中像下面这样启用该可选项：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
     </span><span class="nt">"no-trailing-spaces"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"skipBlankLines"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>With this option enabled, The following patterns are not considered problems:</p>
+
+<p>当该选项启用后，以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-trailing-spaces: [2, { "skipBlankLines": true }]*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -170,6 +186,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.7.1.</p>
+
+<p>该规则在ESLint 0.7.1 中被引入。</p>
 
 <h2>Resources</h2>
 

@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,27 +130,43 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Require or disallow spaces before/after unary operators (space-unary-ops)</h1>
 
-<p>Some styleguides require or disallow spaces before or after unary operators. This is mainly a stylistic issue, however, some JavaScript expressions can be written without spacing which makes it harder to read and maintain.</p>
+<h1>要求或禁止在一元操作符之前或之后存在空格 (space-unary-ops)</h1>
+
+<p>Some style guides require or disallow spaces before or after unary operators. This is mainly a stylistic issue, however, some JavaScript expressions can be written without spacing which makes it harder to read and maintain.</p>
+
+<p>一些风格指南要求或禁止在一元操作符之前或之后存在空格。这主要是一个风格问题，然而，一些Javascript表达式如果不写空格将会使其难以阅读和维护。</p>
 
 <p><strong>Fixable:</strong> This rule is automatically fixable using the <code>--fix</code> flag on the command line.</p>
+
+<p><strong>Fixable:</strong> 该规则可以通过<code>--fix</code>命令行进行自动修复。</p>
 
 <h2>Rule Details</h2>
 
 <p>This rule enforces consistency regarding the spaces after <code>words</code> unary operators and after/before <code>nonwords</code> unary operators.</p>
 
+<p>该规则强制<code>words</code>一元操作符后空格和<code>nonwords</code>一元操作符之前或之后的空格的一致性。</p>
+
 <h3>Options</h3>
 
 <p>This rule has two options: <code>words</code> and <code>nonwords</code>:</p>
 
+<p>该规则有两个可选项：<code>words</code> 和 <code>nonwords</code></p>
+
 <ul>
 <li><code>words</code> - applies to unary word operators such as: <code>new</code>, <code>delete</code>, <code>typeof</code>, <code>void</code>, <code>yield</code></li>
+<li><code>words</code> - 适用于单词类一元操作符，例如： <code>new</code>, <code>delete</code>, <code>typeof</code>, <code>void</code>, <code>yield</code></li>
 <li><code>nonwords</code> - applies to unary operators such as: <code>-</code>, <code>+</code>, <code>--</code>, <code>++</code>, <code>!</code>, <code>!!</code></li>
+<li><code>nonwords</code> - 适用于这些一元操作符: <code>-</code>, <code>+</code>, <code>--</code>, <code>++</code>, <code>!</code>, <code>!!</code></li>
 </ul>
 
 <p>Default values are:</p>
+
+<p>默认值为：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"space-unary-ops"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"words"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nt">"nonwords"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>Examples of unary <code>words</code> operators:</p>
+
+<p>一元<code>words</code>操作符的例子：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// new</span>
 <span class="kd">var</span> <span class="nx">joe</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
 
@@ -167,6 +183,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="k">void</span> <span class="mi">0</span> <span class="c1">// undefined</span>
 </code></pre></div>
 <p>Examples of unary <code>nonwords</code> operators:</p>
+
+<p>一元<code>nonwords</code>操作符的例子：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">if</span> <span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">].</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{};</span>
 <span class="nx">foo</span> <span class="o">=</span> <span class="o">--</span><span class="nx">foo</span><span class="p">;</span>
 <span class="nx">bar</span> <span class="o">=</span> <span class="nx">bar</span><span class="o">++</span><span class="p">;</span>
@@ -176,6 +194,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h3>Examples</h3>
 
 <p>Given the default values <code>words</code>: <code>true</code>, <code>nonwords</code>: <code>false</code>, the following patterns are considered problems:</p>
+
+<p>使用默认设置 <code>words</code>: <code>true</code>, <code>nonwords</code>: <code>false</code>， 以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-unary-ops: 2*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -200,6 +220,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="o">+</span> <span class="s2">"3"</span><span class="p">;</span>             <span class="cm">/*error Unexpected space after unary operator "+".*/</span>
 </code></pre></div>
 <p>Given the default values <code>words</code>: <code>true</code>, <code>nonwords</code>: <code>false</code>, the following patterns are not considered problems:</p>
+
+<p>使用默认设置 <code>words</code>: <code>true</code>, <code>nonwords</code>: <code>false</code>， 以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint space-unary-ops: 2*/</span>
 
 <span class="c1">// Word unary operator "delete" is followed by a whitespace.</span>
@@ -226,6 +248,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.10.0.</p>
+
+<p>该规则在ESLint 0.10.0 中被引入。</p>
 
 <h2>Resources</h2>
 

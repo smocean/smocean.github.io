@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,7 +130,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Enforce/Disallow Variable Initializations (init-declarations)</h1>
 
+<h1>强制/禁止变量初始化（初始化声明）</h1>
+
 <p>In JavaScript, variables can be assigned during declaration, or at any point afterwards using an assignment statement. For example, in the following code, <code>foo</code> is initialized during declaration, while <code>bar</code> is initialized later.</p>
+
+<p>在JavaScript中，变量可在声明时初始化，或者在赋值语句中初始化。例如，在下面的代码中， <code>foo</code> 在声明时被初始化，然而 <code>bar</code> 在之后被初始化。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">bar</span><span class="p">;</span>
 
@@ -143,12 +147,16 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Rule Details</h2>
 
 <p>This rule is aimed at enforcing or eliminating variable initializations during declaration. For example, in the following code, <code>foo</code> is initialized during declaration, while <code>bar</code> is not.</p>
+
+<p>此规则旨在声明的过程中强制或限制变量初始化。例如，在下面的代码， <code>foo</code> 在声明过程中初始化，然而 <code>bar</code> 不是。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">bar</span><span class="p">;</span>
 
 <span class="nx">bar</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 </code></pre></div>
 <p>This rule aims to bring consistency to variable initializations and declarations.</p>
+
+<p>这一规则的目的是使变量初始化和声明一致。</p>
 
 <h3>Options</h3>
 
@@ -159,28 +167,47 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <li>An object that further controls the behavior of this rule. Currently, the only available parameter is <code>ignoreForLoopInit</code>, which indicates if initialization at declaration is allowed in <code>for</code> loops when <code>&quot;never&quot;</code> is set, since it is a very typical use case.</li>
 </ol>
 
+<p>此规则有两个配置项：</p>
+
+<ol>
+<li>字符串，必须是二者之一， <code>&quot;always&quot;</code> （默认值）：强制在声明时初始化，或 <code>&quot;never&quot;</code> ：声明时不允许初始化。此规则适用于 <code>var</code>， <code>let</code> ，和 <code>const</code> 变量，但是 <code>&quot;never&quot;</code> 被 <code>const</code> 变量忽略，而未初始化 <code>const</code> 会产生解析错误。</li>
+<li>对象，进一步控制该规则的行为。目前，唯一可用的参数是 <code>ignoreForLoopInit</code> ，这表明是否允许在 <code>for</code> 循环语句中声明并初始化变量， 即使设置 <code>&quot;nerver&quot;</code>，这是一个非常典型的用例。</li>
+</ol>
+
 <h3>Options</h3>
 
 <p>This rule is configured by passing in the string <code>&quot;always&quot;</code> (the default)</p>
 
+<p>这条规则是通过传字符串 <code>&quot;always&quot;</code> （默认）配置的</p>
+
 <p>You can configure the rule as follows:</p>
 
+<p>您可以配置规则，如下：</p>
+
 <p>(default) All variables must be initialized at declaration</p>
+
+<p>（默认值）所有变量必须在声明时初始化</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
     </span><span class="nt">"init-declarations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"always"</span><span class="p">],</span><span class="w">
 </span><span class="err">}</span><span class="w">
 </span></code></pre></div>
 <p>Variables must not be initialized at declaration</p>
+
+<p>变量不能在声明时初始化</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
     </span><span class="nt">"init-declarations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"never"</span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>Variables must not be initialized at declaration, except in for loops, where it is allowed</p>
+
+<p>变量不能在声明时初始化，除在for循环中，在那里它被允许</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="p">{</span><span class="w">
     </span><span class="nt">"init-declarations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"never"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"ignoreForLoopInit"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>When configured with <code>&quot;always&quot;</code> (the default), the following patterns are considered problems:</p>
+
+<p>当配置了  <code>&quot;always&quot;</code> (默认值） ，以下模式被认为有问题：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint init-declarations: [2, "always"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -190,6 +217,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems with <code>&quot;always&quot;</code>.</p>
+
+<p>下面的模式不被视为有问题 <code>&quot;always&quot;</code>。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint init-declarations: [2, "always"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -200,6 +229,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>When configured with <code>&quot;never&quot;</code>, the following patterns are considered problems.</p>
+
+<p>当配置 <code>&quot;never&quot;</code>，以下模式被认为有问题。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint init-declarations: [2, "never"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -211,6 +242,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems with <code>&quot;never&quot;</code>. Note that <code>const</code> variable initializations are ignored with <code>&quot;never&quot;</code>.</p>
+
+<p>下面的模式不被视有问题 <code>&quot;never&quot;</code>。需要注意的是 <code>const</code> 变量初始化忽略 <code>&quot;never&quot;</code>。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint init-declarations: [2, "never"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -221,6 +254,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">}</span>
 </code></pre></div>
 <p>With <code>&quot;ignoreForLoopInit&quot;</code> enabled, the following pattern is not considered a problem.</p>
+
+<p>随着 <code>&quot;ignoreForLoopInit&quot;</code> 启用，下面的模式不被视为有问题。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint init-declarations: [2, "never", { "ignoreForLoopInit": true }]*/</span>
 <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{}</span>
 </code></pre></div>
@@ -228,9 +263,13 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>When you are indifferent as to how your variables are initialized.</p>
 
+<p>你还会对于怎样初始化变量莫不关心。</p>
+
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 1.0.0-rc-1.</p>
+
+<p>此规则在ESLint 1.0.0-rc-1中被引入。</p>
 
 <h2>Resources</h2>
 

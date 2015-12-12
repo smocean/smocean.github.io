@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,34 +130,50 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallows multiple blank lines (no-multiple-empty-lines)</h1>
 
+<h1>不允许多重空行 (no-multiple-empty-lines)</h1>
+
 <p>Some developers prefer to have multiple blank lines removed, while others feel that it helps improve readability. Whitespace is useful for separating logical sections of code, but excess whitespace takes up more of the screen.</p>
+
+<p>一些开发者喜欢删除多重空行，然而其他人认为多重空行可以提高可读性。空白对于分离代码代码段逻辑是有帮助的，但过量的空白会占用更多的屏幕。</p>
 
 <h2>Rule Details</h2>
 
 <p>This rule aims to reduce the scrolling required when reading through your code. It will warn when the maximum amount of empty lines has been exceeded.</p>
 
+<p>该规则目的在于，当你读代码时，减少滚动。当超过最大空行数，该规则将发出警告。</p>
+
 <h3>Options</h3>
 
 <p>The second argument can be used to configure this rule:</p>
 
+<p>第二个参数被用来配置该规则：</p>
+
 <ul>
 <li><code>max</code> sets the maximum number of consecutive blank lines.</li>
+<li><code>max</code> 设置连续的空行的最大数量。</li>
 <li><code>maxEOF</code> can be used to set a different number for the end of file. The last
 blank lines will then be treated differently. If omitted, the <code>max</code> option is
 applied everywhere.</li>
+<li><code>maxEOF</code> 用来设置文件末尾空行数。最后的空行将被区分对待。如果省略，<code>max</code>选项被应用到任何地方。</li>
 </ul>
 
 <p>For example, this sets the rule as an error (code is 2) with a maximum
 tolerated blank lines of 2 (for the whole file):</p>
+
+<p>例如：设置规则为错误级别，最大可允许的空行数为2(整个文件)：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"no-multiple-empty-lines"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nt">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>While this tolerates three consecutive blank lines within the file, but only
 one at the end:</p>
+
+<p>在一个文件中当忽略耽搁连续的空行，但行尾保留一行空行，如下设置：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"no-multiple-empty-lines"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nt">"max"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nt">"maxEOF"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <h3>Examples</h3>
 
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-multiple-empty-lines: [2, {max: 2}]*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
@@ -173,6 +189,8 @@ one at the end:</p>
                   <span class="cm">/*error Too many blank lines at the end of file.*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-multiple-empty-lines: [2, {max: 2}]*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
@@ -200,9 +218,13 @@ one at the end:</p>
 
 <p>If you do not care about extra blank lines, turn this off.</p>
 
+<p>如果你不关心额外的空行，关闭此规则即可。</p>
+
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.9.0.</p>
+
+<p>该规则在ESLint 0.9.0 中被引入。</p>
 
 <h2>Resources</h2>
 

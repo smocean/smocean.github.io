@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,19 +130,31 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Enforce Property Spacing (key-spacing)</h1>
 
+<h1>强制属性空格 (key-spacing)</h1>
+
 <p>This rule enforces spacing around the colon in object literal properties. It can verify each property individually, or it can ensure vertical alignment of groups of properties in an object literal.</p>
+
+<p>该规则强制对象属性的冒号左右的空格的有无。它可以单独验证每一个属性，或它可以确保一个对象中所有 属性垂直对齐。</p>
 
 <h2>Rule Details</h2>
 
 <p>This rule will warn when spacing in properties does not match the specified options. In the case of long lines, it is acceptable to add a new line wherever whitespace is allowed. There are three modes:</p>
 
+<p>当属性中的空格与指定的选项不匹配时，该规则将发出警告。如果某一行很长的话，在允许空白出现的情况下，可以增加一空行，这种情况是该规则可以接受的。该规则有三种模式：</p>
+
 <h3>1. Individual</h3>
 
 <p>Use the <code>beforeColon</code>, <code>afterColon</code> and <code>mode</code> options to enforce having one space or zero spaces on each side, using <code>true</code> or <code>false</code>, respectively. The default is no whitespace between the key and the colon and one space between the colon and the value.</p>
 
+<p>使用<code>beforeColon</code>，<code>afterColon</code> 和 <code>mode</code>选项确保没冒号每一边有一个或零个空格，对应的值为<code>true</code> 或 <code>false</code>。默认情况下，在键和冒号之间没有空白，在冒号和值之间有一个空格。</p>
+
 <p><code>mode</code> option can be either <code>&quot;strict&quot;</code> or <code>&quot;minimum&quot;</code> and defaults to <code>&quot;strict&quot;</code>. In <code>strict</code> mode, it enforces exactly 1 space before or after the colon where as in <code>minimum</code> mode, it enforces at least 1 space but more are okay.</p>
 
+<p><code>mode</code>可以是 <code>&quot;strict&quot;</code> 或者 <code>&quot;minimum&quot;</code>，默认为<code>&quot;strict&quot;</code>。在<code>strict</code>模式下，它强制在冒号左右只有一个空格，在<code>minimum</code>模式下，它强制至少要有一个空格，多个空格也是可以的。</p>
+
 <p>The following patterns are considered valid:</p>
+
+<p>以下模式被认为是有效的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="c1">// DEFAULT</span>
 <span class="cm">/*eslint key-spacing: [2, {"beforeColon": false, "afterColon": true}]*/</span>
 
@@ -164,6 +176,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">});</span>
 </code></pre></div>
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint key-spacing: [2, {"beforeColon": false, "afterColon": false}]*/</span>
 
 <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span> <span class="na">foo</span><span class="p">:</span> <span class="mi">42</span> <span class="p">};</span>          <span class="cm">/*error Extra space before value for key "foo".*/</span>
@@ -192,7 +206,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>Use the <code>align</code> option to enforce vertical alignment of values in an object literal. This mode still respects <code>beforeColon</code> and <code>afterColon</code> where possible, but it will pad with spaces after the colon where necessary. Groups of properties separated by blank lines are considered distinct and can have different alignment than other groups. Single line object literals will not be checked for vertical alignment, but each property will still be checked for <code>beforeColon</code> and <code>afterColon</code>.</p>
 
+<p>使用<code>align</code>选项强制一个对象的值在垂直方向对齐。该模式下<code>beforeColon</code> 和 <code>afterColon</code>仍然起作用，但它将在必要的时候在冒号后面填充空格。被空行分开的属性分组被认为是彼此不相同的，可以有不同的对其方式。对于单行对象，不会检查其对其方式，但其每个属性仍将被检查<code>beforeColon</code> 和 <code>afterColon</code>。</p>
+
 <p>The following patterns are considered valid:</p>
+
+<p>以下模式被认为是有效的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint key-spacing: [2, { "align": "value" }]*/</span>
 <span class="c1">// beforeColon and afterColon default to false and true, respectively</span>
 
@@ -216,6 +234,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">});</span>
 </code></pre></div>
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint key-spacing: [2, { "align": "value" }]*/</span>
 
 <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
@@ -228,7 +248,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>The <code>align</code> option can also vertically align colons and values together. Whereas with <code>&quot;value&quot;</code> alignment, padding belongs right of the colon, with <code>&quot;colon&quot;</code> alignment, padding goes to the left of the colon. Except in the case of padding, it still respects <code>beforeColon</code> and <code>afterColon</code>. As with <code>&quot;value&quot;</code> alignment, groups of properties separated by blank lines are considered distinct and can have different alignment than other groups.</p>
 
+<p><code>align</code>选项可以同时支持冒号和值的垂直对其。然而，<code>&quot;value&quot;</code>对齐方式，将在冒号右侧进行填充，<code>&quot;colon&quot;</code>对齐方式将在冒号左侧进行填充。除了填充，对<code>beforeColon</code> 和 <code>afterColon</code>仍起作用。与<code>&quot;value&quot;</code>对其方式一样，被空行分开的属性分组被认为是彼此不相同的，可以有不同的对其方式。</p>
+
 <p>The following patterns are considered valid:</p>
+
+<p>以下模式被认为是有效的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint key-spacing: [2, { "align": "colon" }]*/</span>
 
 <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
@@ -248,6 +272,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="p">};</span>
 </code></pre></div>
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint key-spacing: [2, { "align": "colon" }]*/</span>
 
 <span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
@@ -260,9 +286,13 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>If you have another convention for property spacing that might not be consistent with the available options, or if you want to permit multiple styles concurrently you can safely disable this rule.</p>
 
+<p>关于属性间隔，如果你有其他的约定规范，而且与以上可用的选项不相符或者你允许多种风格同时出现，刮板此规则即可。</p>
+
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.9.0.</p>
+
+<p>该规则在ESLint 0.9.0 中被引入。</p>
 
 <h2>Resources</h2>
 

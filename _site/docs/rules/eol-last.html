@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,21 +130,32 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Require file to end with single newline (eol-last)</h1>
 
+<h1>要求文件末尾保留一行空行(eol-last)</h1>
+
 <p>Trailing newlines in non-empty files are a common UNIX idiom. Benefits of
 trailing newlines include the ability to concatenate or append to files as well
 as output files to the terminal without interfering with shell prompts. This
 rule enforces newlines for all non-empty programs.</p>
+
+<p>非空文件的尾部空行常见于UNIX风格中。可以同输出文件到终端一样，方便在串联和追加文件时不会打断shell的提示。该规则强制在所有非空程序中使用末尾空行。</p>
 
 <p>Prior to v0.16.0 this rule also enforced that there was only a single line at
 the end of the file. If you still want this behaviour, consider enabling
 <a href="no-multiple-empty-lines">no-multiple-empty-lines</a> with <code>maxEOF</code> and/or
 <a href="no-trailing-spaces">no-trailing-spaces</a>.</p>
 
+<p>在 v0.16.0 之前此规则还强制在文件末尾只有一行空行。如果你仍然想要这样，可以考虑开启<a href="no-multiple-empty-lines">no-multiple-empty-lines</a> 使用 <code>maxEOF</code> 和/或
+<a href="no-trailing-spaces">no-trailing-spaces</a>。</p>
+
 <p><strong>Fixable:</strong> This rule is automatically fixable using the <code>--fix</code> flag on the command line.</p>
+
+<p><strong>Fixable:</strong> 该规则可以通过<code>--fix</code>命令行进行自动修复。</p>
 
 <h2>Rule Details</h2>
 
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint eol-last: 2*/</span>
 
 <span class="kd">function</span> <span class="nx">doSmth</span><span class="p">()</span> <span class="p">{</span>
@@ -152,6 +163,8 @@ the end of the file. If you still want this behaviour, consider enabling
 <span class="p">}</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint eol-last: 2*/</span>
 
 <span class="kd">function</span> <span class="nx">doSmth</span><span class="p">()</span> <span class="p">{</span>
@@ -163,9 +176,13 @@ the end of the file. If you still want this behaviour, consider enabling
 
 <p>This rule may take one option which is either <code>unix</code> (LF) or <code>windows</code> (CRLF). When omitted <code>unix</code> is assumed.</p>
 
+<p>该规则有一个可选项：<code>unix</code> (LF) 或 <code>windows</code> (CRLF)。如果省略的话，默认设置为<code>unix</code>。</p>
+
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.7.1.</p>
+
+<p>该规则在ESLint 0.7.1 被引入。</p>
 
 <h2>Resources</h2>
 

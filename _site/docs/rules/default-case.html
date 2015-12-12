@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,7 +130,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Require Default Case in Switch Statements (default-case)</h1>
 
+<h1>在switch语句中，需要有default分支</h1>
+
 <p>Some code conventions require that all <code>switch</code> statements have a <code>default</code> case, even if the default case is empty, such as:</p>
+
+<p>一些编码规范中，要求所有的<code>switch</code> 语句中必须包含<code>default</code>分支，即使default分支中没有任何代码，如下所示：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">switch</span> <span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">case</span> <span class="mi">1</span><span class="err">:</span>
         <span class="nx">doSomething</span><span class="p">();</span>
@@ -146,7 +150,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </code></pre></div>
 <p>The thinking is that it&#39;s better to always explicitly state what the default behavior should be so that it&#39;s clear whether or not the developer forgot to include the default behavior by mistake.</p>
 
+<p>考虑到，开发人员可能会误将默认分支忘记定义而导致程序发生错误，所以总是明确定义默认分支是很好的行为。</p>
+
 <p>Other code conventions allow you to skip the <code>default</code> case so long as there is a comment indicating the omission is intentional, such as:</p>
+
+<p>还有些代码规范中，允许省略掉<code>default</code>分支，但是要写明注释以说明是故意为之。如下：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="k">switch</span> <span class="p">(</span><span class="nx">foo</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">case</span> <span class="mi">1</span><span class="err">:</span>
         <span class="nx">doSomething</span><span class="p">();</span>
@@ -161,11 +169,17 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </code></pre></div>
 <p>Once again, the intent here is to show that the developer intended for there to be no default behavior.</p>
 
+<p>再次指出，以上示例主要表明开发者并没有默认分支的情况需要处理。</p>
+
 <h2>Rule Details</h2>
 
 <p>This rule aims to require <code>default</code> case in <code>switch</code> statements. You may optionally include a <code>// no default</code> after the last <code>case</code> if there is no <code>default</code> case.</p>
 
+<p>此规则的目的是，在<code>switch</code>语句中，需要有<code>default</code>分支。或者你也可以在最后一个<code>case</code>分支下，使用<code>// no default</code>来表明此处不需要<code>default</code>分支。</p>
+
 <p>The following pattern is considered a warning:</p>
+
+<p>错误示例如下：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint default-case: 2*/</span>
 
 <span class="k">switch</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>       <span class="cm">/*error Expected a default case.*/</span>
@@ -176,6 +190,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>正确示例如下：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint default-case: 2*/</span>
 
 <span class="k">switch</span> <span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
@@ -201,6 +217,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>When Not To Use It</h2>
 
 <p>If you don&#39;t want to enforce a <code>default</code> case for <code>switch</code> statements, you can safely disable this rule.</p>
+
+<p>如果不想要求<code>switch</code>中必须要有<code>default</code>分支，禁用此规则即可。</p>
 
 <h2>Related Rules</h2>
 

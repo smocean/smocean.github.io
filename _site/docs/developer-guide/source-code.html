@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -135,6 +135,15 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </code></pre></div>
 <p>If you&#39;re planning on contributing to ESLint, then it&#39;s a good idea to fork the repository. You can find instructions for forking a repository at <a href="http://help.github.com/fork-a-repo/">http://help.github.com/fork-a-repo/</a>. After forking the ESLint repository, you&#39;ll want to create a local copy of your fork.</p>
 
+<h1>源码</h1>
+
+<p>ESLint 被托管在 <a href="http://www.github.com">GitHub</a>，使用 <a href="http://git-scm.com/">Git</a> 作为版本控制工具。你需要在操作系统中安装 <a href="http://git-scm.com/">Git</a> ，才能获取到源码。可以在 <a href="http://help.github.com/set-up-git-redirect">http://help.github.com/set-up-git-redirect</a> 找到安装和配置 Git 的说明。</p>
+
+<p>如果你仅仅想创建一个源码的本地副本，你可以使用此命令 clone 主干仓库。</p>
+<div class="highlight"><pre><code class="language-" data-lang="">git clone git://github.com/eslint/eslint.git
+</code></pre></div>
+<p>如果你计划向 ESLint 贡献代码，那么 fork 此仓库是一个好的选择。你可以在 <a href="http://help.github.com/fork-a-repo/">http://help.github.com/fork-a-repo/</a> 找到关于如何 fork 仓库的说明。在你 fork  ESLint 仓库后，你可以创建一个 fork 仓库的本地副本。</p>
+
 <h2>Start Developing</h2>
 
 <p>Before you can get started developing, you&#39;ll need to have a couple of things installed:</p>
@@ -151,6 +160,23 @@ npm install
 <p>Now when you run <code>eslint</code>, it will be running your local copy and showing your changes.</p>
 
 <p><strong>Note:</strong> It&#39;s a good idea to re-rerun <code>npm install</code> whenever you pull from the main repository to ensure you have the latest development dependencies.</p>
+
+<h2>开始开发</h2>
+
+<p>在你开始开发之前，你需要安装一些软件。</p>
+
+<ul>
+<li><a href="http://nodejs.org">Node.JS</a></li>
+<li><a href="http://npmjs.org">npm</a></li>
+</ul>
+
+<p>一旦你有一个本地的副本并且已经安装了 Node.JS and npm。你需要安装 ESLint 的依赖:</p>
+<div class="highlight"><pre><code class="language-" data-lang="">cd eslint
+npm install
+</code></pre></div>
+<p>现在当你运行 <code>eslint</code> 命令，将会运行本地的副本并显示你的更改。</p>
+
+<p><strong>Note:</strong> 当你从主干仓库上 pull 代码后请重新运行 <code>npm install</code>，确保安装最新的开发者依赖。</p>
 
 <h2>Directory structure</h2>
 

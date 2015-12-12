@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,14 +130,22 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Disallow Nested Ternaries (no-nested-ternary)</h1>
 
+<h1>不允许使用嵌套的三元表达式  (no-nested-ternary)</h1>
+
 <p>Nesting ternary expressions makes code unclear. The <code>no-nested-ternary</code> rule disallows the use of nested ternary expressions.</p>
+
+<p>嵌套的三元表达式使代码不清晰。该规则不允许使用嵌套的三元表达式。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="nx">bar</span> <span class="p">?</span> <span class="nx">baz</span> <span class="p">:</span> <span class="nx">qux</span> <span class="o">===</span> <span class="nx">quxx</span> <span class="p">?</span> <span class="nx">bing</span> <span class="p">:</span> <span class="nx">bam</span><span class="p">;</span>
 </code></pre></div>
 <h2>Rule Details</h2>
 
 <p>The <code>no-nested-ternary</code> rule aims to increase the clarity and readability of code by disallowing the use of nested ternary expressions.</p>
 
+<p>该规则旨在通过禁用嵌套的三元表达式，提高代码的清晰度和可读性。</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-nested-ternary: 2*/</span>
 
 <span class="kd">var</span> <span class="nx">thing</span> <span class="o">=</span> <span class="nx">foo</span> <span class="p">?</span> <span class="nx">bar</span> <span class="p">:</span> <span class="nx">baz</span> <span class="o">===</span> <span class="nx">qux</span> <span class="p">?</span> <span class="nx">quxx</span> <span class="p">:</span> <span class="nx">foobar</span><span class="p">;</span> <span class="cm">/*error Do not nest ternary expressions*/</span>
@@ -145,6 +153,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="nx">foo</span> <span class="p">?</span> <span class="nx">baz</span> <span class="o">===</span> <span class="nx">qux</span> <span class="p">?</span> <span class="nx">quxx</span><span class="p">()</span> <span class="p">:</span> <span class="nx">foobar</span><span class="p">()</span> <span class="p">:</span> <span class="nx">bar</span><span class="p">();</span>       <span class="cm">/*error Do not nest ternary expressions*/</span>
 </code></pre></div>
 <p>The following patterns are considered okay and could be used alternatively:</p>
+
+<p>以下模式被认为是可以的，可以替代使用：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint no-nested-ternary: 2*/</span>
 
 <span class="kd">var</span> <span class="nx">thing</span><span class="p">;</span>
@@ -167,6 +177,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.2.0.</p>
+
+<p>该规则在ESLint 0.2.0 中被引入。</p>
 
 <h2>Resources</h2>
 

@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,17 +130,25 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Enforce Function Style (func-style)</h1>
 
+<h1>强制函数风格 (func-style)</h1>
+
 <p>There are two ways of defining functions in JavaScript: function declarations and function expressions. Declarations have the <code>function</code> keyword first, followed by a name, followed by its arguments and the function body, such as:</p>
+
+<p>在Javascript中，有两种方法定义函数：函数声明和函数表达式。函数声明是以<code>function</code>关键字开头，然后是函数的名字，其次是它的参数和函数主体，例如：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">doSomething</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// ...</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>Equivalent function expressions begin with the <code>var</code> keyword, followed by a name, and then the function itself, such as:</p>
+
+<p>函数表达式以<code>var</code>关键字开头，后面是函数的名称，然后是函数本身，例如：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">doSomething</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// ...</span>
 <span class="p">};</span>
 </code></pre></div>
 <p>The primary difference between function declarations and function expressions is that declarations are <em>hoisted</em> to the top of the scope in which they are defined, which allows you to write code that uses the function before the declaration. For example:</p>
+
+<p>函数声明和函数表达式的主要区别是：所有的声明都被<em>提升</em>到当前作用域的顶部，这就意味着可以把调用它的语句放在函数声明之前。例如：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">doSomething</span><span class="p">();</span>
 
 <span class="kd">function</span> <span class="nx">doSomething</span><span class="p">()</span> <span class="p">{</span>
@@ -149,7 +157,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </code></pre></div>
 <p>Although this code might seem like an error, it actually works fine because JavaScript engines hoist the function declarations to the top of the scope. That means this code is treated as if the declaration came before the invocation.</p>
 
+<p>虽然这段代码可能看起来像一个错误，但实际上由于Javascript引擎将函数声明提升到了作用域顶部，这段代码是可以运行的。这就意味着这段代码被视为在调用之前进行了声明。</p>
+
 <p>For function expressions, you must define the function before it is used, otherwise it causes an error. Example:</p>
+
+<p>对于函数表达式，必须在使用它之进行定义，否则将会导致错误。例如：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">doSomething</span><span class="p">();</span>  <span class="c1">// error!</span>
 
 <span class="kd">var</span> <span class="nx">doSomething</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
@@ -158,13 +170,21 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </code></pre></div>
 <p>In this case, <code>doSomething()</code> is undefined at the time of invocation and so causes a runtime error.</p>
 
+<p>在这个例子中，<code>doSomething()</code>在调用时是没有定义的，所以导致运行时错误。</p>
+
 <p>Due to these different behaviors, it is common to have guidelines as to which style of function should be used. There is really no correct or incorrect choice here, it is just a preference.</p>
+
+<p>由于这些不同的行为，关于应该使用哪种类型的函数，一般要制定一些准则。这种选择没有正确或错误之分，只是一种偏好而已。</p>
 
 <h2>Rule Details</h2>
 
-<p>This error is aimed at enforcing a particular type of function style throughout a JavaScript file, either declarations or expressions. You can specify which you prefer in the configuration.</p>
+<p>This rule is aimed at enforcing a particular type of function style throughout a JavaScript file, either declarations or expressions. You can specify which you prefer in the configuration.</p>
+
+<p>该规则目的在于在一个Javascript文件中强制使用一种特定的函数风格，函数声明或函数表达式。你可以在配置文件中指定你喜欢的。</p>
 
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint func-style: [2, "declaration"]*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>  <span class="cm">/*error Expected a function declaration.*/</span>
@@ -180,6 +200,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{};</span>  <span class="cm">/*error Expected a function declaration.*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式本认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint func-style: [2, "declaration"]*/</span>
 
 <span class="kd">function</span> <span class="nx">foo</span><span class="p">()</span> <span class="p">{</span>
@@ -203,16 +225,24 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"func-style"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"declaration"</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This reports an error if any function expressions are used where function declarations are expected. You can specify to use expressions instead:</p>
+
+<p>在函数声明的地方使用了函数表达式，将会导致错误。你可以指定函数表达式来代替：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"func-style"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"expression"</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>This configuration reports an error when function declarations are used instead of function expressions.</p>
+
+<p>在应该使用函数表达式时使用了函数声明，此配置将会导致错误。</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"func-style"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"expression"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"allowArrowFunctions"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>This configuration works as expression setting works but does not check for arrow functions.</p>
 
+<p>此配置同函数表达式配置一样运行，但不检测数组函数。</p>
+
 <h2>When Not To Use It</h2>
 
 <p>If you want to allow developers to each decide how they want to write functions on their own, then you can disable this rule.</p>
+
+<p>如果你允许每个开发者自己决定使用那种风格的函数，则可以禁用此规则。</p>
 
 <h2>Further Reading</h2>
 
@@ -223,6 +253,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 0.2.0.</p>
+
+<p>该规则在ESLint 0.2.0 被引入。</p>
 
 <h2>Resources</h2>
 

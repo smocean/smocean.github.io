@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -130,11 +130,17 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <h1>Suggest using the spread operator instead of <code>.apply()</code>. (prefer-spread)</h1>
 
+<h1>建议使用扩展运算符而非<code>.apply()</code>。 (prefer-spread)</h1>
+
 <p>Before ES2015, one must use <code>Function.prototype.apply()</code> to call variadic functions.</p>
+
+<p>在ES2015之前，必须使用“Function.prototype.apply()调用可变函数。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
 <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nb">Math</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
 </code></pre></div>
 <p>In ES2015, one can use the spread operator to call variadic functions.</p>
+
+<p>在ES2015中，可以使用扩展运算符调用可变函数。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint-env es6*/</span>
 
 <span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
@@ -144,7 +150,11 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 
 <p>This rule is aimed to flag usage of <code>Function.prototype.apply()</code> that can be replaced with the spread operator.</p>
 
+<p>该规则旨在标记可以被扩展运算符代替的<code>Function.prototype.apply()</code>的使用情况。</p>
+
 <p>The following patterns are considered problems:</p>
+
+<p>以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint prefer-spread: 2*/</span>
 
 <span class="nx">foo</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="kc">undefined</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span> <span class="cm">/*error use the spread operator instead of the ".apply()".*/</span>
@@ -154,6 +164,8 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <span class="nx">obj</span><span class="p">.</span><span class="nx">foo</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>   <span class="cm">/*error use the spread operator instead of the ".apply()".*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint prefer-spread: 2*/</span>
 
 <span class="c1">// The `this` binding is different.</span>
@@ -169,8 +181,15 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 </code></pre></div>
 <p>Known limitations:</p>
 
-<p>This rule analyzes code statically to check whether or not the <code>this</code> argument is changed.
-So if the <code>this</code> argument is computed in a dynamic expression, this rule cannot detect a violation.</p>
+<p>已知的限制：</p>
+
+<p>This rule analyzes code statically to check whether or not the <code>this</code> argument is changed.</p>
+
+<p>该规则分析代码静态的检查<code>this</code>参数是否有改变。</p>
+
+<p>So if the <code>this</code> argument is computed in a dynamic expression, this rule cannot detect a violation.</p>
+
+<p>如果在动态表达式中<code>this</code>是就计算出来的，该规则无法检检测到。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint prefer-spread: 2*/</span>
 
 <span class="c1">// This warns.</span>
@@ -183,7 +202,11 @@ So if the <code>this</code> argument is computed in a dynamic expression, this r
 
 <p>This rule should not be used in ES3/5 environments.</p>
 
+<p>此规则不应在 ES3/5 环境中使用。</p>
+
 <p>In ES2015 (ES6) or later, if you don&#39;t want to be notified about <code>Function.prototype.apply()</code> callings, you can safely disable this rule.</p>
+
+<p>在ES2015 (ES6)或以后的版本，如果你不希望收到关于<code>Function.prototype.apply()</code>调用的通知，关闭此规则即可。</p>
 
 <h2>Related rules</h2>
 
@@ -194,6 +217,8 @@ So if the <code>this</code> argument is computed in a dynamic expression, this r
 <h2>Version</h2>
 
 <p>This rule was introduced in ESLint 1.0.0-rc-1.</p>
+
+<p>该规则在ESLint 1.0.0-rc-1 中被引入。</p>
 
 <h2>Resources</h2>
 

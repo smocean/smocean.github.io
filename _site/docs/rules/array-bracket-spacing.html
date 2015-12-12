@@ -20,16 +20,16 @@
   <link rel="icon" href="/img/favicon.512x512.png">
   <link rel="alternate" type="application/rss+xml" title="ESLint - Pluggable JavaScript linter" href="http://eslint.org/feed.xml">
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  /*(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-60915033-1', 'eslint.org');
-  ga('send', 'pageview');
+  ga('send', 'pageview');*/
 
 </script>
-  <script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>
+  <!--<script src="//use.edgefonts.net/source-sans-pro:n3,n4,n6,n7.js"></script>-->
   <script src="https://cdn.jsdelivr.net/g/lodash@3.10.1,hogan.js@3.0.2,algoliasearch@3.8.1,autocomplete.js@0.12.0(autocomplete.min.js)"></script>
 
 </head>
@@ -135,7 +135,7 @@ document.write('<script async src="//cdn.carbonads.com/carbon.js?zoneid=1673&ser
 <p>A number of style guides require or disallow spaces between array brackets. This rule
 applies to both array literals and destructuring assignment (EcmaScript 6) using arrays.</p>
 
-<p>一些代码风格指南要求或禁止在数组的方括号内留有空格。该规则适用于数组和数组的解构赋值 (EcmaScript 6) </p>
+<p>一些代码风格指南要求或禁止在数组的方括号内留有空格。该规则适用于数组和数组的解构赋值 (EcmaScript 6)。</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint-env es6*/</span>
 
 <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span> <span class="p">];</span>
@@ -146,28 +146,38 @@ applies to both array literals and destructuring assignment (EcmaScript 6) using
 </code></pre></div>
 <p><strong>Fixable:</strong> This rule is automatically fixable using the <code>--fix</code> flag on the command line.</p>
 
+<p><strong>Fixable:</strong> 该规则可以通过<code>--fix</code>命令行进行自动修复。</p>
+
 <h2>Rule Details</h2>
 
-<p>This rule aims to maintain consistency around the spacing inside of array brackets, either by disallowing
-spaces inside of brackets between the brackets and other tokens or enforcing spaces. Brackets that are
-separated from the adjacent value by a new line are excepted from this rule, as this is a common pattern.
-  Object literals that are used as the first or last element in an array are also ignored.</p>
+<p>This rule aims to maintain consistency around the spacing inside of array brackets, either by disallowing spaces inside of brackets between the brackets and other tokens or enforcing spaces. Brackets that are separated from the adjacent value by a new line are excepted from this rule, as this is a common pattern.Object literals that are used as the first or last element in an array are also ignored.</p>
+
+<p>该规则旨在保持数组括号内间距的一致性， 要么不允许在括号和其他标记出现空格，要么强制使用空格。
+括号内相邻的值出现折行的，不适用此规则，因为这是一种常见模式。数组中第一个或最后一个元素是对象的话，也不适用此规则。</p>
 
 <h3>Options</h3>
 
 <p>There are two options for this rule:</p>
 
+<p>该规则有两个可选项：</p>
+
 <ul>
 <li><code>&quot;always&quot;</code> enforces a space inside of array brackets</li>
-<li><code>&quot;never&quot;</code> enforces no space inside of array brackets (default)</li>
+<li><p><code>&quot;always&quot;</code> 在数组括号内强制使用1个空格</p></li>
+<li><p><code>&quot;never&quot;</code> enforces no space inside of array brackets (default)</p></li>
+<li><p><code>&quot;never&quot;</code> 在数组括号内不允许出现空格 (默认)</p></li>
 </ul>
 
 <p>Depending on your coding conventions, you can choose either option by specifying it in your configuration:</p>
+
+<p>根据你的编码约定，你可以在你的配置中选择任一选项：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"array-bracket-spacing"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"always"</span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <h4>never</h4>
 
 <p>When <code>&quot;never&quot;</code> is set, the following patterns are considered problems:</p>
+
+<p>当设置了<code>&quot;never&quot;</code>，以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint array-bracket-spacing: [2, "never"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -184,6 +194,8 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 <span class="kd">var</span> <span class="p">[</span> <span class="p">,,</span><span class="nx">x</span><span class="p">,</span> <span class="p">]</span> <span class="o">=</span> <span class="nx">z</span><span class="p">;</span>             <span class="cm">/*error There should be no space after '['*/</span> <span class="cm">/*error There should be no space before ']'*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint array-bracket-spacing: [2, "never"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -207,6 +219,8 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 <h4>always</h4>
 
 <p>When <code>&quot;always&quot;</code> is used, the following patterns are considered problems:</p>
+
+<p>当设置了 <code>&quot;always&quot;</code>, 以下模式被认为是有问题的:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint array-bracket-spacing: [2, "always"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -226,6 +240,8 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 <span class="kd">var</span> <span class="p">[,,</span><span class="nx">x</span><span class="p">,]</span> <span class="o">=</span> <span class="nx">z</span><span class="p">;</span>                <span class="cm">/*error A space is required after '['*/</span> <span class="cm">/*error A space is required before ']'*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint array-bracket-spacing: [2, "always"]*/</span>
 <span class="cm">/*eslint-env es6*/</span>
 
@@ -249,9 +265,15 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 
 <p>An object literal may be used as a third array item to specify spacing exceptions. These exceptions work in the context of the first option. That is, if <code>&quot;always&quot;</code> is set to enforce spacing and an exception is set to <code>false</code>, it will disallow spacing for cases matching the exception. Likewise, if <code>&quot;never&quot;</code> is set to disallow spacing and an exception is set to <code>true</code>, it will enforce spacing for cases matching the exception.</p>
 
+<p>数组的第三个参数是个对象，用来指定例外情况。这些例外作用在第一个选项的基础上。如果<code>&quot;always&quot;</code>设置为强制使用空格但例外情况被设置为<code>false</code>，那么符合这个例外的将禁止使用空格。同样的，如果<code>&quot;never&quot;</code>设置为禁止试用空格但例外情况被设为<code>true</code>，那么符合这个例外的将强制使用空格。</p>
+
 <p>You can add exceptions like so:</p>
 
+<p>你可以像这样添加例外情况：</p>
+
 <p>In case of <code>&quot;always&quot;</code> option, set an exception to <code>false</code> to enable it:</p>
+
+<p>在<code>&quot;always&quot;</code>选项的情况下，设置例外为<code>false</code>来启用该规则：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"array-bracket-spacing"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"always"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="nt">"singleValue"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
   </span><span class="nt">"objectsInArrays"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
@@ -259,6 +281,8 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 </span><span class="p">}]</span><span class="w">
 </span></code></pre></div>
 <p>In case of <code>&quot;never&quot;</code> option, set an exception to <code>true</code> to enable it:</p>
+
+<p>在<code>&quot;never&quot;</code>选项的情况下，设置例外为<code>true</code>来启用该规则：</p>
 <div class="highlight"><pre><code class="language-json" data-lang="json"><span class="s2">"array-bracket-spacing"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="s2">"never"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="nt">"singleValue"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"objectsInArrays"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -267,15 +291,25 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 </span></code></pre></div>
 <p>The following exceptions are available:</p>
 
+<p>以下例外都可用：</p>
+
 <ul>
-<li><code>singleValue</code> sets the spacing of a single value inside of square brackets of an array.</li>
-<li><code>objectsInArrays</code> sets the spacings between the curly braces and square brackets of object literals that are the first or last element in an array.</li>
-<li><code>arraysInArrays</code> sets the spacing between the square brackets of array literals that are the first or last element in an array.</li>
+<li><p><code>singleValue</code> sets the spacing of a single value inside of square brackets of an array.</p></li>
+<li><p><code>singleValue</code> 为数组内单一元素添加空格。</p></li>
+<li><p><code>objectsInArrays</code> sets the spacings between the curly braces and square brackets of object literals that are the first or last element in an array.</p></li>
+<li><p><code>objectsInArrays</code> 数组中第一个元素或最后一个元素是对象的，在方括号和、
+                大括号之间设置空格。</p></li>
+<li><p><code>arraysInArrays</code> sets the spacing between the square brackets of array literals that are the first or last element in an array.</p></li>
+<li><p><code>arraysInArrays</code> 数组中第一个元素或最后一个元素是数组的，在方括号之间设置空格</p></li>
 </ul>
 
 <p>In each of the following examples, the <code>&quot;always&quot;</code> option is assumed.</p>
 
+<p>下面的例子中，假定是<code>&quot;always&quot;</code>选项。</p>
+
 <p>When <code>&quot;singleValue&quot;</code> is set to <code>false</code>, the following patterns are considered problems:</p>
+
+<p>当<code>&quot;singleValue&quot;</code>被设置为<code>false</code>，以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint array-bracket-spacing: [2, "always", { singleValue: false }]*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">'foo'</span> <span class="p">];</span>             <span class="cm">/*error There should be no space after '['*/</span> <span class="cm">/*error There should be no space before ']'*/</span>
@@ -288,6 +322,8 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="s1">'foo'</span><span class="p">:</span> <span class="s1">'bar'</span> <span class="p">}</span> <span class="p">];</span>  <span class="cm">/*error There should be no space after '['*/</span> <span class="cm">/*error There should be no space before ']'*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint array-bracket-spacing: [2, "always", { singleValue: false }]*/</span>
 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'foo'</span><span class="p">];</span>
@@ -296,6 +332,8 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 <span class="kd">var</span> <span class="nx">foo</span> <span class="o">=</span> <span class="p">[{</span> <span class="s1">'foo'</span><span class="p">:</span> <span class="s1">'bar'</span> <span class="p">}];</span>
 </code></pre></div>
 <p>When <code>&quot;objectsInArrays&quot;</code> is set to <code>false</code>, the following patterns are considered problems:</p>
+
+<p>当<code>&quot;objectsInArrays&quot;</code>被设置为<code>false</code>时，以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint array-bracket-spacing: [2, "always", { objectsInArrays: false }]*/</span>
 
 <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span> <span class="s1">'foo'</span><span class="p">:</span> <span class="s1">'bar'</span> <span class="p">}</span> <span class="p">];</span>   <span class="cm">/*error There should be no space after '['*/</span> <span class="cm">/*error There should be no space before ']'*/</span>
@@ -304,6 +342,8 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 <span class="p">}</span> <span class="p">]</span>                                                                            <span class="cm">/*error There should be no space before ']'*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint array-bracket-spacing: [2, "always", { objectsInArrays: false }]*/</span>
 
 <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[{</span> <span class="s1">'foo'</span><span class="p">:</span> <span class="s1">'bar'</span> <span class="p">}];</span>
@@ -312,12 +352,16 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 <span class="p">}];</span>
 </code></pre></div>
 <p>When <code>&quot;arraysInArrays&quot;</code> is set to <code>false</code>, the following patterns are considered problems:</p>
+
+<p>当设置<code>&quot;arraysInArrays&quot;</code>为<code>false</code>时，以下模式被认为是有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint array-bracket-spacing: [2, "always", { arraysInArrays: false }]*/</span>
 
 <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">];</span>     <span class="cm">/*error There should be no space after '['*/</span>
 <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="p">[</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">]</span> <span class="p">];</span> <span class="cm">/*error There should be no space after '['*/</span> <span class="cm">/*error There should be no space before ']'*/</span>
 </code></pre></div>
 <p>The following patterns are not considered problems:</p>
+
+<p>以下模式被认为是没有问题的：</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="cm">/*eslint array-bracket-spacing: [2, "always", { arraysInArrays: false }]*/</span>
 
 <span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[[</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">],</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">];</span>
@@ -327,7 +371,7 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 
 <p>You can turn this rule off if you are not concerned with the consistency of spacing between array brackets.</p>
 
-<p>如果你不关心数组括号之间的间距的一致性的话，可以把这个规则关掉。</p>
+<p>如果你并不关心数组括号内间距的一致性，可以关闭此规则。</p>
 
 <h2>Related Rules</h2>
 
@@ -339,9 +383,9 @@ separated from the adjacent value by a new line are excepted from this rule, as 
 
 <h2>Version</h2>
 
-<p>This rule was introduced in ESLint 0.24.</p>
+<p>This rule was introduced in ESLint 0.24.0.</p>
 
-<p>该规则是在ESLint 0.24引入的。</p>
+<p>该规则在ESLint 0.24.0 被引入。</p>
 
 <h2>Resources</h2>
 
