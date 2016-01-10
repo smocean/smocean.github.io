@@ -1,19 +1,21 @@
 ---
 title: Rule accessor-pairs
 layout: doc
+translator: fengnana
+proofreader: ILFront-End
 ---
 <!-- Note: No pull requests accepted for this file. See README.md in the root directory for details. -->
 # Enforces getter/setter pairs in objects (accessor-pairs)
 
-# 强制 getter/setter成对出现在对象中 (accessor-pairs)
+# 强制getter/setter成对出现在对象中 (accessor-pairs)
 
 It's a common mistake in JavaScript to create an object with just a setter for a property but never have a corresponding getter defined for it. Without a getter, you cannot read the property, so it ends up not being used.
 
-在JavaScript中这是一个常见的错误，创建一个对象只有属性的设置但是没有为它定义一个对应的获取属性的方法。没有getter,你不能读取属性，所以它将终不会被使用。
+创建一个对象，其某个属性只有 setter 而没有对应的 getter，这在 Javascript 中 是个常犯的错误。没有 getter ，你不能读取这个属性，该属性也就不会被用到。（译者注： Javascript 中不一定非要同时指定 getter 和 setter ，原文将此表述为"错误"并非是指语法上的错误）
 
 Here are some examples:
 
-以下有些例子：
+例如：
 
 ```js
 // Bad
@@ -37,30 +39,34 @@ var o = {
 
 This rule warns if setters are defined without getters. Using an option `getWithoutSet`, it will warn if you have a getter without a setter also.
 
-此规则会给出警告如果setter被定义而getter却没有。使用`getWithoutSet`选项，它同样会给出警告如果存在getter而没有setter。
+如果只定义 setter 而没有定义 getter，该规则会发出警告。设置了 `getWithoutSet` 选项，如果只有 getter 而没有 setter，该规则同样会发出警告。
 
 ## Rule Details
 
 This rule enforces a style where it requires to have a getter for every property which has a setter defined.
 
-这个规则执行一个风格,它需要有一个getter对应每个属性的setter的定义。
+该规则强制一种编码风格：对于每个属性，如果定义了setter，也必须定义相应的 getter。
 
 By activating the option `getWithoutSet` it enforces the presence of a setter for every property which has a getter defined.
 
-通过激活选项`getWithoutSet`强制执行为每个定义了getter的属性提供对应的setter。
+通过激活 `getWithoutSet` 选项，强制为每个定义了 getter 的属性提供对应的 setter。
+
 
 ### Options
 
 `getWithoutSet` set to `true` will warn for getters without setters (Default `false`).
+
+当 `getWithoutSet` 设置为`true`时，如果只定义 getter 而不定义 setter，该规则将发出警告（默认为 `false`）。
+
 `setWithoutGet` set to `true` will warn for setters without getters (Default `true`).
 
-`getWithoutSet`设置为`true`，会给出警告当有getter而没有setter（默认为`false`）。`setWithoutGet`设置为`true`，会给出警告当有setter而没有getter（默认为`true`）。
+当 `setWithoutGet ` 设置为`true`时，如果只定义 setter 而不定义 getter，该规则将发出警告（默认为 `true`）。
 
 #### Usage
 
 By default `setWithoutGet` option is always set to `true`.
 
-默认的`setWithoutGet`选择总是被设置为`true`。
+默认情况下，`setWithoutGet` 总是被设置为  `true`。
 
 ```json
 {
@@ -70,7 +76,7 @@ By default `setWithoutGet` option is always set to `true`.
 
 The following patterns are considered problems by default:
 
-默认的以下模式被认为是有问题的：
+默认情况下，以下模式被认为是有问题的：
 
 ```js
 /*eslint accessor-pairs: 2*/
@@ -91,7 +97,7 @@ Object.defineProperty(o, 'c', { /*error Getter is not present*/
 
 The following patterns are not considered problems by default:
 
-默认的以下模式被认为是没有问题的：
+默认情况下，以下模式被认为是没有问题的：
 
 ```js
 /*eslint accessor-pairs: 2*/
@@ -121,7 +127,7 @@ Object.defineProperty(o, 'c', {
 
 The following patterns are considered problems with option `getWithoutSet` set:
 
-在`getWithoutSet`设置下，以下模式被认为是有问题的：
+设置 `getWithoutSet` 选项为 `true` 时，以下模式被认为是有问题的：
 
 ```js
 /*eslint accessor-pairs: [2, { getWithoutSet: true }]*/
@@ -155,7 +161,7 @@ Object.defineProperty(o, 'c', { /*error Setter is not present*/
 
 The following patterns are not considered problems with option `getWithoutSet` set:
 
-在`getWithoutSet`设置下，以下模式被认为是没有问题的：
+设置 `getWithoutSet` 选项为 `true` 时，以下模式被认为是没有问题的：
 
 ```js
 /*eslint accessor-pairs: [2, { getWithoutSet: true }]*/
@@ -184,7 +190,7 @@ Object.defineProperty(o, 'c', {
 
 You can turn this rule off if you are not concerned with the simultaneous presence of setters and getters on objects.
 
-你可以关掉这个规则如果你不关心对象同时出现setter和getter。
+如果你不关心对象里同时出现 setter 和 getter，你可以关闭这个规则。
 
 ## Further Reading
 
@@ -196,7 +202,7 @@ You can turn this rule off if you are not concerned with the simultaneous presen
 
 This rule was introduced in ESLint 0.22.0.
 
-此规则在ESLint 0.22.0中被引入。
+此规则在 ESLint 0.22.0 中被引入。
 
 ## Resources
 
