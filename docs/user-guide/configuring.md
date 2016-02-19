@@ -376,9 +376,9 @@ ESLint 带来了大量的规则。你可以使用配置文件或者注释修改�
 * 0 - turn the rule off
 * 0 - 关闭规则
 * 1 - turn the rule on as a warning (doesn't affect exit code)
-* 1 - 开启规则，使用警告级别的错误：`warn`(不会导致程序退出)
+* 1 - 开启规则，设置为警告级别 (不影响 exit code)
 * 2 - turn the rule on as an error (exit code is 1 when triggered)
-* 2 - 开启规则，使用错误级别的错误：`error`(当被触发的时候，程序会退出)
+* 2 - 开启规则，设置为错误级别 (当被触发的时候，exit code 为1)
 
 To configure rules inside of a file using configuration comments, use a comment in the following format:
 
@@ -390,7 +390,7 @@ To configure rules inside of a file using configuration comments, use a comment 
 
 In this example, [`eqeqeq`](../rules/eqeqeq) is turned off and [`curly`](../rules/curly) is turned on as an error. If a rule has additional options, you can specify them using array literal syntax, such as:
 
-在这个例子里，[`eqeqeq`](../rules/eqeqeq) 规则被关闭，[`curly`](../rules/curly) 规则被打开，并且会报错。如果一个规则有别的选项，你可以用数组字面量配置它们，比如：
+在这个例子里，[`eqeqeq`](../rules/eqeqeq) 规则被关闭，[`curly`](../rules/curly) 规则被启用，设置为错误级别。如果一个规则有别的选项，你可以用数组字面量配置它们，比如：
 
 ```js
 /*eslint quotes: [2, "double"], curly: 2*/
@@ -624,7 +624,7 @@ your-project
 
 The configuration cascade works by using the closest `.eslintrc` file to the file being linted as the highest priority, then any configuration files in the parent directory, and so on. When you run ESLint on this project, all files in `lib/` will use the `.eslintrc` file at the root of the project as their configuration. When ESLint traverses into the `tests/` directory, it will then use `your-project/tests/.eslintrc` in addition to `your-project/.eslintrc`. So `your-project/tests/test.js` is linted based on the combination of the two `.eslintrc` files in its directory hierarchy, with the closest one taking priority. In this way, you can have project-level ESLint settings and also have directory-specific overrides.
 
-层叠配置是这样工作的：关联文件使用最近的`.eslintrc`文件作为最高优先级，然后才是父目录里的配置信息。当你在项目中跑 ESLint 的时候，`lib/`下面的所有文件将使用项目根目录里的`.eslintrc`文件作为它的配置文件。当 ESLint 扫描到`test/`目录下，它就会用`your-project/tests/.eslintrc` 而不是 `your-project/.eslintrc`。所以`your-project/tests/test.js`是基于它的目录层次结构中的两个`.eslintrc`文件的组合去检查的，并且最近的一个优先级更高。通过这种方式，你可以有项目级ESLint设置，也有覆盖特定目录的ESLint设置。
+层叠配置是这样工作的：关联文件使用最近的`.eslintrc`文件作为最高优先级，然后才是父目录里的配置信息。当你在项目中运行 ESLint 的时候，`lib/`下面的所有文件将使用项目根目录里的`.eslintrc`文件作为它的配置文件。当 ESLint 扫描到`test/`目录下，它就会用`your-project/tests/.eslintrc`，而不仅仅是`your-project/.eslintrc`。所以`your-project/tests/test.js`是基于它的目录层次结构中的两个`.eslintrc`文件的组合去检查的，并且最近的一个优先级更高。通过这种方式，你可以有项目级ESLint设置，也有覆盖特定目录的ESLint设置。
 
 
 In the same way, if there is a `package.json` file in the root directory with an `eslintConfig` field, the configuration it describes will apply to all subdirectories beneath it, but the configuration described by the `.eslintrc` file in the tests directory will override it where there are conflicting specifications.
