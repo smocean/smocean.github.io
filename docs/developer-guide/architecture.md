@@ -100,7 +100,7 @@ This object may not:
 
 The main method of the `eslint` object is `verify()` and accepts two arguments: the source text to verify and a configuration object (the baked configuration of the given configuration file plus command line options). The method first parses the given text with Esprima and retrieves the AST. The AST is produced with both line/column and range locations which are useful for reporting location of issues and retrieving the source text related to an AST node, respectively.
 
-`eslint`对象的主要方法是`verify()`，接收两个参数：要验证的源码文本和一个配置对象（）。该方法首先使用Esprima解析获取的文本，检索AST。AST用来产生行/列和范围的位置，对报告问题的位置和检索与AST节点有关的源文本很有帮助。
+`eslint`对象的主要方法是`verify()`，接收两个参数：要验证的源码文本和一个配置对象（the baked configuration of the given configuration file plus command line options）。该方法首先使用Esprima解析获取的文本，检索AST。AST用来产生行/列和范围的位置，对报告问题的位置和检索与AST节点有关的源文本很有帮助。
 
 Once the AST is available, `estraverse` is used to traverse the AST from top to bottom. At each node, the `eslint` object emits an event that has the same name as the node type (i.e., "Identifier", "WithStatement", etc.). On the way back up the subtree, an event is emitted with the AST type name and suffixed with ":after", such as "Identifier:after" - this allows rules to take action both on the way down and on the way up in the traversal. Each event is emitted with the appropriate AST node available.
 
@@ -140,7 +140,7 @@ This object may not:
 
 Individual rules are the most specialized part of the ESLint architecture. Rules can do very little, they are simply a set of instructions executed against an AST that is provided. They do get some context information passed in, but the primary responsibility of a rule is to inspect the AST and report warnings.
 
-独特的规则是ESLint 架构中最专业的部分。规则能做的很少，它们只是对提供的AST执行的一组指令。它们获取以下传入的上下文信息，但主要职责是家常AST，报告警告。
+独特的规则是ESLint 架构中最专业的部分。规则能做的很少，它们只是对提供的AST执行的一组指令。它们获取以下传入的上下文信息，但主要职责是检索AST，报告警告。
 
 These objects' responsibilities are:
 
