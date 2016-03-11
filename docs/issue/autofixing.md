@@ -27,11 +27,12 @@ Today's autofix is based on text and is latched onto how ESLint has always worke
 自动修复是基于文本的，而且强烈依赖于ESLint的工作机制:
 
 1. ESLint makes a single traversal through the AST of the file.
-2. ESLint 通过文件的AST只做一次遍历。
+
+1. ESLint 通过文件的AST只做一次遍历。
 
 2. Rules listen for different nodes and evaluate the AST as it goes, producing messages when it finds something wrong.
 
-3. 遍历过程中，这些规则监听不同的节点和评估当前的AST，当发现错误时，就产出消息。
+2. 遍历过程中，这些规则监听不同的节点和评估当前的AST，当发现错误时，就产出消息。
 
 3. Rules can optionally specify a way to fix each message it reports. The fix is indicated by range offsets (the same as used in the range object on AST nodes). This fix is not guaranteed to be applied and will not even be attempted until after the complete traversal is finished.
 
@@ -51,12 +52,11 @@ Today's autofix is based on text and is latched onto how ESLint has always worke
 
 7. The remaining lint results are presented to the user.
 
-7. 剩下的lint结果将展现给用户
+7. 剩下的lint结果将展现给用户。
 
 Because of the single traversal, we can't apply the fixes as we go because it would affect other rules as it goes. For instance, if we changed a let to a const, that then pushes the ranges of everything in the tree by two, so when does that calculation happen? Also, each rule is triggered multiple times at different nodes, and many of the rules try to track things in between those triggers - the built-in assumption is that the tree looks the same as the first time the rule is triggered.
 
-
-由于只会遍历一次，我们无法随意地进行修复，因为那些会影响到其他规则。比如，如果我们将let声明的变量改为了一个常量，然后将树中的所有范围记录两次，那么，什么时候进行计算呢？同时，每个规则在不同的节点上被多次触发，很多规则试图定位这些触发器之间的事情 -- 内置的假设是，这颗树看起来和这条规则第一次被触发一样。
+由于只会遍历一次，我们无法随意地进行修复，因为那些会影响到其他规则。比如，如果我们将let声明的变量改为了一个常量，然后将树中的所有范围记录两次，那么，什么时候进行计算呢？同时，每个规则在不同的节点上被多次触发，很多规则试图定位这些触发器之间的事情 -- 假定这颗树看起来和这条规则第一次被触发一样。
 
 ### Problems
 ### 存在的问题
@@ -112,7 +112,7 @@ Looking back, I think I made several design decisions that were incorrect. These
 
 So now that I've explained the current state of stuff, I think we have an opportunity to fix it (no pun intended). This will likely be a big breaking change, but hopefully will be better for what people really want to use autofix for. I don't know the implementation details, but I have a high-level of idea of where I'd like to see autofix go.
 
-所以，现在我已经解释了自动修复的现状，我想我们有机会去修复它。这可能会是一个突破性的改变，但希望比用户真正想使用自动修复去做的要更好。我还不知道具体实现的细节，但是我对自动修复的走向有一个高层次的想法。
+现在我已经解释了自动修复的现状，我想我们有机会去修复它。这可能会是一个突破性的改变，但希望比用户真正想使用自动修复去做的要更好。我还不知道具体实现的细节，但是我对自动修复的走向有一个高层次的想法。
 
 ### Requirements
 ### 要求
@@ -167,7 +167,7 @@ I think this would be a big win because it gives us a good idea about how to sav
 
 Open Question: When not running in fix mode, what does "fix" mean? Is it "warn" or "error"?
 
-疑问：什么时候不运行在修复模式下？“fix” 是什么意思？ “warn” 还是 “error” ?
+**疑问：** 什么时候不运行在修复模式下？“fix” 是什么意思？ “warn” 还是 “error” ?
 
 ### Concerns
 ### 关注点

@@ -523,7 +523,7 @@ CLIEngine.outputFixes(report);
 
 ## Deprecated APIs
 
-## 启用的API
+## 弃用的API
 
 * `cli` - the `cli` object has been deprecated in favor of `CLIEngine`. As of v1.0.0, `cli` is no longer exported and should not be used by external tools.
 
