@@ -5,6 +5,7 @@ disablePreview: false
 ---
 
 # [Auto fixing](https://github.com/eslint/eslint/issues/5329)
+
 # [自动修复](https://github.com/eslint/eslint/issues/5329)
 
 There have been a few issues recently with people asking to add more autofixing. This is definitely something we want to address, but we can't do it with the way autofixing works right now. This (unfortunately long) issue is meant to outline what we currently have, its limitations, and start towards thinking about how to fix autofix so we can use autofix in as many places as possible.
@@ -12,6 +13,7 @@ There have been a few issues recently with people asking to add more autofixing.
 最近有一些要求增加更多自动修复的issue。自动修复我们肯定是要做的，但不是现在。在此，大概描述一下现阶段的情况，它的局限性，以及关于自动修复的一些思考，以便使我们在尽可能多的地方使用自动修复。
 
 ### Intro
+
 ### 介绍
 ---
 When ESLint first implemented autofixing, our belief was that it was primarily useful for making small changes, mostly whitespace and anything that could be contained within a single token. Most of the complaints people had about ESLint rules was that they hated going through and fixing alignment or adding/removing semicolons but loved the error catches. So naturally, I thought if we could get the whitespace and other small autofixes in, that would make people happy. It did, it's just that then we started getting requests to autofix more rules and we realized that the current system doesn't scale well.
@@ -19,6 +21,7 @@ When ESLint first implemented autofixing, our belief was that it was primarily u
 ESLint最初实现自动修复时，我们的信念就是，它主要用于一些小的改变，主要是空白和单一的token。人们对于ESLint规则的大部分抱怨是他们讨厌经历和修复对齐或增删分号，但是喜欢错误的捕获。所以，我想过我们是否要把空白和其他小的自动修复添加进来，满足大家。我们已经做了，也就是那时起，我们开始收到对更多规则自动修复的请求，我们也意识到，现在的系统可扩展性并不是很好。
 
 ### How it Works Today
+
 ### 自动修复是如何工作的
 ---
 
@@ -59,6 +62,7 @@ Because of the single traversal, we can't apply the fixes as we go because it wo
 由于只会遍历一次，我们无法随意地进行修复，因为那些会影响到其他规则。比如，如果我们将let声明的变量改为了一个常量，然后将树中的所有范围记录两次，那么，什么时候进行计算呢？同时，每个规则在不同的节点上被多次触发，很多规则试图定位这些触发器之间的事情 -- 假定这颗树看起来和这条规则第一次被触发一样。
 
 ### Problems
+
 ### 存在的问题
 ---
 
@@ -87,6 +91,7 @@ As a result of these problems, we decided to limit what we'd allow as fixes in c
 鉴于这些问题的存在，我们决定把我们曾经限制修复核心规则，扩大到空白和其他小的改变。分号是最大的一个痛点，所以即使它们不是空白，相比于其他潜在的问题，我们确定修复分号具有更高优先级。字符串文本也一样。在我们意识到它可能会改变条件的含义和导致运行时错误之后，我们实际上已经移除了对 === 的自动修复。所以，我们决定任何新的自动修复只针对空白，以避免造成其他问题。
 
 ### Where I Went Wrong
+
 ### 我哪里错了
 ---
 
@@ -115,6 +120,7 @@ So now that I've explained the current state of stuff, I think we have an opport
 现在我已经解释了自动修复的现状，我想我们有机会去修复它。这可能会是一个突破性的改变，但希望比用户真正想使用自动修复去做的要更好。我还不知道具体实现的细节，但是我对自动修复的走向有一个高层次的想法。
 
 ### Requirements
+
 ### 要求
 ---
 
@@ -144,6 +150,7 @@ So now that I've explained the current state of stuff, I think we have an opport
 
 
 ### Ideas: Config
+
 ### 配置：
 ---
 
@@ -170,6 +177,7 @@ Open Question: When not running in fix mode, what does "fix" mean? Is it "warn" 
 **疑问：** 什么时候不运行在修复模式下？“fix” 是什么意思？ “warn” 还是 “error” ?
 
 ### Concerns
+
 ### 关注点
 ---
 
@@ -194,6 +202,7 @@ Some other concerns I have with changes are:
 4. 这将如何处理escope和 scope的评估？我们是否需要多次运行scope分析？这将如何影响性能？
 
 ### Next Steps
+
 ### 下一步
 ----
 
