@@ -112,6 +112,7 @@ Looking back, I think I made several design decisions that were incorrect. These
 3. 试图将自动修复融入到单一遍历系统的linting过程中，显得力不从心。
 
 ### The Future
+
 ### 未来
 ---
 
