@@ -5,6 +5,7 @@ layout: doc
 <!-- Note: No pull requests accepted for this file. See README.md in the root directory for details. -->
 
 # Disallow Invalid Regular Expressions (no-invalid-regexp)
+
 # 禁止无效的正则表达式（no-invalid-regexp）
 
 This rule validates string arguments passed to the `RegExp` constructor.
@@ -15,7 +16,7 @@ This rule validates string arguments passed to the `RegExp` constructor.
 
 Examples of **incorrect** code for this rule:
 
-**错误** 代码示例：
+**错误**代码示例：
 
 ```js
 /*eslint no-invalid-regexp: 2*/
@@ -29,7 +30,7 @@ new RegExp('\\')
 
 Examples of **correct** code for this rule:
 
-**正确** 代码示例：
+**正确**代码示例：
 
 ```js
 /*eslint no-invalid-regexp: 2*/
