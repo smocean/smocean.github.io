@@ -6,11 +6,10 @@
     -webkit-transition: all 300ms ease;
     transition: all 300ms ease;
 }
-.preview-panel {
-    position: fixed;
-    top: 40px;
-    left: 250px;
-    z-index: 1031;
+.navbar-left {
+    display: none;
+}
+.lang-chooser {
     font-size: 14px;
 }
 
